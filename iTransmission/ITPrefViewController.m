@@ -11,6 +11,7 @@
 #import "ITPrefsController.h"
 #import "ITNetworkSwitcher.h"
 #import "ITAppDelegate.h"
+#import "ITLogger.h"
 
 #define IN_RANGE(i, min, max) (i < min) || (i > max) ? NO : YES
 
@@ -36,6 +37,22 @@
 @synthesize bindPortTextField;
 @synthesize webInterfaceURLTextView;
 @synthesize keyboardController;
+@synthesize enableAutoStart;
+@synthesize MaxPeersPerTorrent;
+@synthesize enablePeerLimitCell;
+@synthesize fEnableLoggingCell;
+@synthesize RPCUsernameTextField;
+@synthesize RPCPasswordTextField;
+@synthesize enablePeerGlobalCell;
+@synthesize MaxPeersGlobal;
+@synthesize DownloadLimit;
+@synthesize UploadLimit;
+@synthesize enableUploadLimitCell;
+@synthesize enableDownloadLimitCell;
+@synthesize enableLimits;
+@synthesize enableLimitCell;
+@synthesize userDefaults;
+@synthesize enableAutoStartCell;
 
 - (id)init
 {
@@ -48,17 +65,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
         case 0:
-            return 3;
+            return 6;
         case 1:
             return 2;
         case 2:
+            return 2;
+        case 3:
+            return 1;
+        case 4:
+            return 5;
+        case 5:
             return 1;
     }
     return 0;
@@ -71,13 +94,24 @@
     self.enableRPCSwitch.on = [[[ITController sharedController] prefsController] isRPCEnabled];
     self.useWiFiSwitch.on = [[ITNetworkSwitcher sharedNetworkSwitcher] canUseWiFiNetwork];
     self.useMobileSwitch.on = [[ITNetworkSwitcher sharedNetworkSwitcher] canUseMobileNetwork];
-    
+    self.enableLimits.on = [[[ITController sharedController] prefsController] isLimitsEnabled];
+    self.enableAutoStart.on = [[[ITController sharedController] prefsController] isAutoStartEnabled];
     self.keyboardController = [[ITKeyboardController alloc] initWithDelegate:self];
     self.RPCPortTextField.delegate = self.keyboardController;
     self.bindPortTextField.delegate = self.keyboardController;
+    self.MaxPeersPerTorrent.delegate = self.keyboardController;
+    self.MaxPeersGlobal.delegate = self.keyboardController;
+    self.DownloadLimit.delegate = self.keyboardController;
+    self.UploadLimit.delegate = self.keyboardController;
+    self.RPCUsernameTextField.delegate = self.keyboardController;
+    self.RPCPasswordTextField.delegate = self.keyboardController;
     self.RPCPortTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCPort]];
     self.bindPortTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] bindPort]];
     self.webInterfaceURLTextView.text = [NSString stringWithFormat:@"http://127.0.0.1:%d/transmission/web/", [[[ITController sharedController] prefsController] RPCPort]];
+    self.MaxPeersPerTorrent.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersPerTorrent]];
+    self.MaxPeersGlobal.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersGlobal]];
+    self.DownloadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] DownloadLimit]];
+    self.UploadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] UploadLimit]];
 }
 
 - (void)registerNotifications
@@ -91,13 +125,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsRPCPortUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITNetworkPrefUseWiFiChangedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITNetworkPrefUseMobileChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsPeersPerTorrentUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsPeersGlobalLimitUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsDownloadLimitUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsUploadLimitUpdatedNotification object:nil];
 }
 
 - (void)preferencesUpdateNotificationReceived:(NSNotification *)notification
 {
     if ([[notification name] isEqualToString:kITPrefsBindPortUpdatedNotification]) {
         self.bindPortTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] bindPort]];
-
     }
     else if ([[notification name] isEqualToString:kITPrefsNatTraversalFlagUpdatedNotification]) {
         self.enablePortMapSwitch.on = [[[ITController sharedController] prefsController] isNatTransversalEnabled];
@@ -109,7 +146,7 @@
         
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCUsernameUpdatedNotification]) {
-        
+
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCFlagUpdatedNotification]) {
         self.enableRPCSwitch.on = [[[ITController sharedController] prefsController] isRPCEnabled];
@@ -128,7 +165,22 @@
     else if ([[notification name] isEqualToString:kITPrefsBindPortUpdatedNotification]) {
         
     }
-    
+    else if ([[notification name] isEqualToString:kITPrefsPeersPerTorrentUpdatedNotification])
+    {
+        self.MaxPeersPerTorrent.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersPerTorrent]];
+    }
+    else if ([[notification name] isEqualToString:kITPrefsPeersGlobalLimitUpdatedNotification])
+    {
+        self.MaxPeersGlobal.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersGlobal]];
+    }
+    else if ([[notification name] isEqualToString:kITPrefsDownloadLimitUpdatedNotification])
+    {
+        self.DownloadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] DownloadLimit]];
+    }
+    else if ([[notification name] isEqualToString:kITPrefsUploadLimitUpdatedNotification])
+    {
+        self.UploadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] UploadLimit]];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,7 +197,9 @@
         case 0: return @"Web Interface";
         case 1: return @"Network Interface";
         case 2: return @"Port Listening";
-//        case 3: return @"Logging";
+        case 3: return @"Logging";
+        case 4: return @"Limits";
+        case 5: return @"Other options";
     }
     return nil;
 }
@@ -157,7 +211,9 @@
             return nil;
         case 1: return @"Enabling cellular network may generate significant data charges. ";
         case 2: return nil;
-//        case 3: return @"Only use logging for debugging. Extensive loggings will shorten both battery and Nand life. Saved logs will be available in iTunes. ";
+        case 3: return @"Only use logging for debugging. Extensive loggings will shorten both battery and Nand life. Saved logs will be available in iTunes. (switch does nothing as of now)";
+        case 4: return @"If you type 0 into any of the boxes, iTransmission will download anything";
+        case 5: return nil;
     }
     return nil;
 }
@@ -170,9 +226,9 @@
                 case 0: return self.enableRPCCell;
                 case 1: return self.RPCPortCell;
                 case 2: return self.openWebInterfaceCell;
-//                case 2: return self.enableRPCAuthenticationCell;
-//                case 3: return self.RPCUsernameCell;
-//                case 4: return self.RPCPasswordCell;
+                case 3: return self.enableRPCAuthenticationCell;
+                case 4: return self.RPCUsernameCell;
+                case 5: return self.RPCPasswordCell;
             }
         }
         case 1: {
@@ -183,15 +239,31 @@
         }
         case 2: {
             switch (indexPath.row) {
-//                case 0: return self.bindPortCell;
-                case 0: return self.enablePortMapCell;
+                case 0: return self.bindPortCell;
+                case 1: return self.enablePortMapCell;
             }
         }
-//        case 3: {
-//            switch (indexPath.row) {
-//                case 0: return fEnableLoggingCell;
-//            }
-//        }
+        case 3: {
+            switch (indexPath.row) {
+                case 0: return self.fEnableLoggingCell;
+            }
+        }
+        case 4:
+        {
+            switch (indexPath.row) {
+                case 0: return self.enableLimitCell;    
+                case 1: return self.enablePeerLimitCell;
+                case 2: return self.enablePeerGlobalCell;
+                case 3: return self.enableDownloadLimitCell;
+                case 4: return self.enableUploadLimitCell;
+            }
+        }
+        case 5:
+        {
+            switch (indexPath.row) {
+                case 0: return self.enableAutoStartCell;
+            }
+        }
     }
     return nil;
 }
@@ -221,6 +293,16 @@
     [[[ITController sharedController] prefsController] setNatTraverselEnabled:[sender isOn]];
 }
 
+- (IBAction)enableLimits:(id)sender
+{
+    [[[ITController sharedController] prefsController] setLimits:[sender isOn]];
+}
+
+- (IBAction)enableAutoStart:(id)sender
+{
+    [[[ITController sharedController] prefsController] setAutoStartDownloads:[sender isOn]];
+}
+
 - (ITKeyboardToolbarOptions)keyboardOptionsForTextField:(UITextField*)textField
 {
     return ITKeyboardOptionDone | ITKeyboardOptionCancel | ITKeyboardOptionResetToDefault;
@@ -240,13 +322,21 @@
 
 - (void)textFieldFinishedEditing:(UITextField *)textField
 {
-    if (textField == self.RPCPortTextField || textField == self.bindPortTextField) {
+    if (textField == self.RPCPortTextField || textField == self.bindPortTextField || textField == self.MaxPeersPerTorrent || self.MaxPeersGlobal || self.DownloadLimit || self.UploadLimit) {
         NSInteger port = [textField.text integerValue];
-        assert(IN_RANGE(port, 1025, 65535));
+        NSInteger limit = [textField.text integerValue];
         if (textField == self.RPCPortTextField)
             [[[ITController sharedController] prefsController] setRPCPort:port];
         if (textField == self.bindPortTextField)
             [[[ITController sharedController] prefsController] setPort:port];
+        if (textField == self.MaxPeersPerTorrent)
+            [[[ITController sharedController] prefsController] setPeersPerTorrent:limit];
+        if (textField == self.MaxPeersGlobal)
+            [[[ITController sharedController] prefsController] setPeersGlobalLimit:limit];
+        if (textField == self.DownloadLimit)
+            [[[ITController sharedController] prefsController] setDownloadLimit:limit];
+        if (textField == self.UploadLimit)
+            [[[ITController sharedController] prefsController] setUploadLimit:limit];
     }
 }
 
@@ -256,6 +346,10 @@
         return @"9091";
     if (textField == self.bindPortTextField)
         return @"51413";
+    if (textField == self.MaxPeersPerTorrent)
+        return @"60";
+    if (textField == self.MaxPeersGlobal)
+        return @"200";
     return nil;
 }
 

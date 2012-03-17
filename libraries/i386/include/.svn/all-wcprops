@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/3/trunk/libraries/i386/include
+END
+evhttp.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/3/trunk/libraries/i386/include/evhttp.h
+END
+evrpc.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/3/trunk/libraries/i386/include/evrpc.h
+END
+evdns.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/3/trunk/libraries/i386/include/evdns.h
+END
+zconf.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/3/trunk/libraries/i386/include/zconf.h
+END
+zlib.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/3/trunk/libraries/i386/include/zlib.h
+END
+event.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/3/trunk/libraries/i386/include/event.h
+END
+evutil.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/3/trunk/libraries/i386/include/evutil.h
+END

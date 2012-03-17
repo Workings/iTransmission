@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/2/trunk/iTransmission/NSLogger
+END
+LoggerClient.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2/trunk/iTransmission/NSLogger/LoggerClient.h
+END
+LoggerClient.m
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2/trunk/iTransmission/NSLogger/LoggerClient.m
+END
+LoggerCommon.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2/trunk/iTransmission/NSLogger/LoggerCommon.h
+END

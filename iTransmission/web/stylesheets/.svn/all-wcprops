@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/2/trunk/iTransmission/web/stylesheets
+END
+common.css
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2/trunk/iTransmission/web/stylesheets/common.css
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2/trunk/iTransmission/web/stylesheets/Makefile.in
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2/trunk/iTransmission/web/stylesheets/Makefile.am
+END
+ie7.css
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2/trunk/iTransmission/web/stylesheets/ie7.css
+END
+ieAll.css
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/2/trunk/iTransmission/web/stylesheets/ieAll.css
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2/trunk/iTransmission/web/stylesheets/Makefile
+END
+mobile.css
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2/trunk/iTransmission/web/stylesheets/mobile.css
+END

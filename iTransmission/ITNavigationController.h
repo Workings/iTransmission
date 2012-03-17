@@ -7,17 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ITStatusBarController.h"
+#import "ITSidebarController.h"
+#import "ITController.h"
+#import "ITTimerListener.h"
+#import "ITNetworkSwitcher.h"
 #import "ITSidebarItemDatasource.h"
 
-@class ITSidebarController;
+@class ITNavigationController;
 
 @interface ITNavigationController : UINavigationController <ITSidebarItemDatasource, UINavigationControllerDelegate>
 
 @property (assign, nonatomic) UIViewController *rootViewController;
 @property (strong, nonatomic) ITSidebarItem *sidebarItem;
 @property (strong, nonatomic) ITSidebarController *sidebarController;
+@property (strong, nonatomic) UIViewController *viewController;
+@property (strong, nonatomic) UISwipeGestureRecognizer *swiperight;
 @property (nonatomic, assign) BOOL useDefaultTheme;
-- (UIBarButtonItem*)sidebarButtonItem;
-- (void)sidebarButtonItemClicked:(id)sender;
 
 @end

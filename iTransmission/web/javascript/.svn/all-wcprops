@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript
+END
+file-row.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/file-row.js
+END
+inspector.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/inspector.js
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/Makefile.in
+END
+common.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/common.js
+END
+transmission.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/transmission.js
+END
+remote.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/remote.js
+END
+prefs-dialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/prefs-dialog.js
+END
+torrent.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/torrent.js
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/Makefile.am
+END
+dialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/dialog.js
+END
+torrent-row.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/torrent-row.js
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/Makefile
+END
+formatter.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/formatter.js
+END

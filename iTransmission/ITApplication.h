@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+NSString *fFolderPopUp;
 @interface ITApplication : NSObject
 
 + (void)setExecutionPath:(const char *)path;
-+ (BOOL)isRunningInSandbox;
 + (NSString*)defaultDocumentsPath;
-+ (NSString*)sandboxeDocumentsPath;
 + (NSString*)homeDocumentsPath;
 + (NSString*)applicationPath;
 @end

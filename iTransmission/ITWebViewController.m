@@ -12,10 +12,11 @@
 
 @implementation ITWebViewController
 @synthesize sidebarItem = _sidebarItem;
+@synthesize controller = _controller;
 
 - (id)init
 {
-    if ((self = [super initWithAddress:@"http://www.google.com"])) {
+    if ((self = [super initWithAddress:@"http://www.thepiratebay.se"])) {
         self.sidebarItem = [[ITSidebarItem alloc] init];
         self.sidebarItem.title = @"Browser";
 //        self.sidebarItem.icon = [UIImage imageNamed:@"browser-icon.png"];
@@ -30,10 +31,6 @@
     [super viewDidLoad];
     if ([self.navigationController respondsToSelector:@selector(setUseDefaultTheme:)])
         [(ITNavigationController*)self.navigationController setUseDefaultTheme:YES];
-//    [[self.navigationController navigationBar] setBarStyle:UIBarStyleDefault];
-//    [[self.navigationController navigationBar] setTintColor:nil];
-//    if ([[self.navigationController navigationBar] respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-//        [[self.navigationController navigationBar] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,6 +43,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+
     return YES;
 }
 

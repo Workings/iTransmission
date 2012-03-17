@@ -14,12 +14,7 @@ BOOL __isInSandbox = YES;
 
 + (void)setExecutionPath:(const char *)path
 {
-    if (strncmp(path, "/Applications/", sizeof("/Applications/") == 0)) {
-        __isInSandbox = NO;
-    }
-    else {
-        __isInSandbox = YES;
-    }
+    __isInSandbox = NO;
 }
 
 + (BOOL)isRunningInSandbox
@@ -29,15 +24,7 @@ BOOL __isInSandbox = YES;
 
 + (NSString*)defaultDocumentsPath
 {
-    if ([ITApplication isRunningInSandbox]) 
-        return [ITApplication sandboxeDocumentsPath];
-    else 
-        return [ITApplication homeDocumentsPath];
-}
-
-+ (NSString*)sandboxeDocumentsPath
-{
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return [ITApplication homeDocumentsPath];
 }
 
 + (NSString*)homeDocumentsPath

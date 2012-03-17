@@ -11,7 +11,7 @@
 
 @interface SVModalWebViewController ()
 
-@property (nonatomic, assign) SVWebViewController *webViewController;
+@property (nonatomic, strong) SVWebViewController *webViewController;
 
 @end
 
@@ -22,25 +22,21 @@
 
 #pragma mark - Initialization
 
-- (void)dealloc {
-    self.barsTintColor = nil;
-    [super dealloc];
-}
 
 - (id)initWithAddress:(NSString*)urlString {
     return [self initWithURL:[NSURL URLWithString:urlString]];
 }
 
 - (id)initWithURL:(NSURL *)URL {
-    self.webViewController = [[[SVWebViewController alloc] initWithURL:URL] autorelease];
+    self.webViewController = [[SVWebViewController alloc] initWithURL:URL];
     if (self = [super initWithRootViewController:self.webViewController]) {
-        self.webViewController.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:webViewController action:@selector(doneButtonClicked:)] autorelease];
+        self.webViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:webViewController action:@selector(doneButtonClicked:)];
     }
     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    [super viewWillAppear:NO];
     
     self.navigationBar.tintColor = self.toolbar.tintColor = self.barsTintColor;
 }

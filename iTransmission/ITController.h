@@ -52,7 +52,6 @@ typedef enum
 - (NSString*)incompletePath;
 - (void)logUsedPaths;
 
-- (void)fixPathPreferencesForSandbox;
 - (void)createPathsIfNeeded;
 
 - (void)rpcCallback: (tr_rpc_callback_type) type forTorrentStruct: (struct tr_torrent *) torrentStruct;

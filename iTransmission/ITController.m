@@ -104,16 +104,11 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
         [self logUsedPaths];
         
         NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults registerDefaults: [NSDictionary dictionaryWithContentsOfFile:
-                                                                  [[NSBundle mainBundle] pathForResource: @"Defaults" ofType: @"plist"]]];
+        [userDefaults registerDefaults: [NSDictionary dictionaryWithContentsOfFile: [[ITApplication defaultDocumentsPath] stringByAppendingPathComponent:@"Defaults.plist"]]];
         
         tr_benc settings;
         tr_bencInitDict(&settings, 41);
         tr_sessionGetDefaultSettings(&settings);
-        
-        if ([ITApplication isRunningInSandbox]) {
-//            [self fixPathPreferencesForSandbox];
-        }
         
         /* We don't care alternative speed limits but we leave them there if users prefer to use*/
         const BOOL usesSpeedLimitSched = [userDefaults boolForKey: @"SpeedLimitAuto"];
@@ -229,16 +224,6 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
         [self loadTorrentHistory];
     }
     return self;
-}
-
-- (void)fixPathPreferencesForSandbox
-{
-    if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"DownloadFolder"] hasPrefix:[ITApplication applicationPath]] == FALSE) {
-        [[NSUserDefaults standardUserDefaults] setObject:[self downloadPath] forKey:@"DownloadFolder"];
-    }
-    if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"IncompleteDownloadFolder"] hasPrefix:[ITApplication applicationPath]] == FALSE) {
-        [[NSUserDefaults standardUserDefaults] setObject:[self downloadPath] forKey:@"IncompleteDownloadFolder"];
-    }
 }
 
 - (void)shutdown
@@ -631,8 +616,7 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
         }
         else
         {
-            if ([[NSUserDefaults standardUserDefaults] boolForKey: @"AutoStartDownload"])
-                [torrent startTransfer];
+            [torrent startTransfer];
             
             [torrent update];
             [self.torrents addObject: torrent];

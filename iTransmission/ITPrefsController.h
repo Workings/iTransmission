@@ -33,6 +33,7 @@
 #define kITPrefsRPCWhiteListFlagUpdatedNotification @"kITPrefsRPCWhiteListFlagUpdated"
 #define kITPrefsUpdatedFromRPCNotification @"kITPrefsUpdatedFromRPC"
 #define kITPrefsRPCWhiteListUpdatedNotification @"kITPrefsRPCWhiteListUpdated"
+bool fHasLoaded;
 
 
 @interface ITPrefsController : NSObject
@@ -73,13 +74,20 @@
 - (void)rpcUpdatePrefs;
 - (void)setKeychainPassword: (const char *) password forService: (const char *) service username: (const char *) username;
 - (void)updateRPCWhitelist;
+- (void)setLimits:(BOOL)enabled;
 + (NSInteger)dateToTimeSum: (NSDate *) date;
 + (NSDate *)timeSumToDate: (NSInteger) sum;
 - (BOOL)isRPCEnabled;
 - (BOOL)isRPCAuthorizationEnabled;
 - (BOOL)isNatTransversalEnabled;
+- (BOOL)isLimitsEnabled;
+- (BOOL)isAutoStartEnabled;
 - (NSInteger)RPCPort;
 - (NSInteger)bindPort;
+- (NSInteger)PeersPerTorrent;
+- (NSInteger)PeersGlobal;
+- (NSInteger)DownloadLimit;
+- (NSInteger)UploadLimit;
 
 // Commented from MacOSX version; NOT USED! //
 /*

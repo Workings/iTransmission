@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/jquery
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/jquery/Makefile.in
+END
+jquery.contextmenu.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/jquery/jquery.contextmenu.min.js
+END
+jquery.transmenu.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/jquery/jquery.transmenu.min.js
+END
+json2.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/jquery/json2.min.js
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/jquery/Makefile.am
+END
+jquery.form.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/jquery/jquery.form.js
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/jquery/Makefile
+END
+jquery.form.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2/trunk/iTransmission/web/javascript/jquery/jquery.form.min.js
+END

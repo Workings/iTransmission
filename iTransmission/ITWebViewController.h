@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SVWebViewController.h"
 #import "ITSidebarItemDatasource.h"
+#import "ITController.h"
 
 @interface ITWebViewController : SVWebViewController <ITSidebarItemDatasource>
 
 @property (nonatomic, strong) ITSidebarItem *sidebarItem;
+@property (nonatomic, strong) ITController *controller;
 
 - (id)init;
-- (void)navigateToURL:(NSURL*)url;
 @end
