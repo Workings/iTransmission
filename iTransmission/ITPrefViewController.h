@@ -32,6 +32,9 @@
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableLimitCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableAutoStartCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableBlocklistCell;
+@property (nonatomic, strong) IBOutlet UITableViewCell *enableUTPCell;
+@property (nonatomic, strong) IBOutlet UITableViewCell *enableDHTCell;
+@property (nonatomic, strong) IBOutlet UITableViewCell *enablePEXCell;
 @property (nonatomic, strong) IBOutlet UISwitch *enableRPCSwitch;
 @property (nonatomic, strong) IBOutlet UISwitch *enableRPCAuthenticationSwitch;
 @property (nonatomic, strong) IBOutlet UISwitch *useWiFiSwitch;
@@ -40,6 +43,9 @@
 @property (nonatomic, strong) IBOutlet UISwitch *enableAutoStart;
 @property (nonatomic, strong) IBOutlet UISwitch *enableLimits;
 @property (nonatomic, strong) IBOutlet UISwitch *enableBlocklist;
+@property (nonatomic, strong) IBOutlet UISwitch *enableUTP;
+@property (nonatomic, strong) IBOutlet UISwitch *enablePEX;
+@property (nonatomic, strong) IBOutlet UISwitch *enableDHT;
 @property (nonatomic, strong) IBOutlet UITextField *RPCPortTextField;
 @property (nonatomic, strong) IBOutlet UITextField *RPCUsernameTextField;
 @property (nonatomic, strong) IBOutlet UITextField *RPCPasswordTextField;

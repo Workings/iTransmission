@@ -1210,6 +1210,21 @@
     return [self.userDefaults boolForKey:@"BlocklistEnabled"];
 }
 
+- (BOOL)isUTPEnabled
+{
+    return [self.userDefaults boolForKey:@"UTPGlobal"];
+}
+
+- (BOOL)isPexEnabled
+{
+    return [self.userDefaults boolForKey:@"PEXGlobal"];
+}
+
+- (BOOL)isDHTEnabled
+{
+    return [self.userDefaults boolForKey:@"DHTGlobal"];
+}
+
 - (NSInteger)RPCPort
 {
     return tr_sessionGetRPCPort(self.handle);

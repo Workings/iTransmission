@@ -55,6 +55,12 @@
 @synthesize enableAutoStartCell;
 @synthesize enableBlocklist;
 @synthesize enableBlocklistCell;
+@synthesize enableDHTCell;
+@synthesize enableUTPCell;
+@synthesize enablePEXCell;
+@synthesize enableUTP;
+@synthesize enableDHT;
+@synthesize enablePEX;
 
 - (id)init
 {
@@ -84,7 +90,7 @@
         case 4:
             return 5;
         case 5:
-            return 1;
+            return 5;
     }
     return 0;
 }
@@ -98,6 +104,10 @@
     self.useMobileSwitch.on = [[ITNetworkSwitcher sharedNetworkSwitcher] canUseMobileNetwork];
     self.enableLimits.on = [[[ITController sharedController] prefsController] isLimitsEnabled];
     self.enableAutoStart.on = [[[ITController sharedController] prefsController] isAutoStartEnabled];
+    self.enableBlocklist.on = [[[ITController sharedController] prefsController] isBlocklistEnabled];
+    self.enableUTP.on = [[[ITController sharedController] prefsController] isUTPEnabled];
+    self.enablePEX.on = [[[ITController sharedController] prefsController] isPexEnabled];
+    self.enableDHT.on = [[[ITController sharedController] prefsController] isDHTEnabled];
     self.keyboardController = [[ITKeyboardController alloc] initWithDelegate:self];
     self.RPCPortTextField.delegate = self.keyboardController;
     self.bindPortTextField.delegate = self.keyboardController;
@@ -133,6 +143,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsUploadLimitUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsLimitUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsAutoStartDownloadFlagUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsUTPFlagUpdateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsDHTFlagUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsPEXFlagUpdatedNotification object:nil];
 }
 
 - (void)preferencesUpdateNotificationReceived:(NSNotification *)notification
@@ -187,6 +200,22 @@
     }
     else if ([[notification name] isEqualToString:kITPrefsAutoStartDownloadFlagUpdatedNotification]) {
         self.enableAutoStart.on = [[[ITController sharedController] prefsController]isAutoStartEnabled];
+    }
+    else if ([[notification name] isEqualToString:kITPrefsUTPFlagUpdateNotification])
+    {
+        self.enableUTP.on = [[[ITController sharedController] prefsController] isUTPEnabled];
+    }
+    else if ([[notification name] isEqualToString:kITPrefsPEXFlagUpdatedNotification])
+    {
+        self.enablePEX.on = [[[ITController sharedController] prefsController] isPexEnabled];
+    }
+    else if ([[notification name] isEqualToString:kITPrefsDHTFlagUpdatedNotification])
+    {
+        self.enableDHT.on = [[[ITController sharedController] prefsController] isDHTEnabled];
+    }
+    else if ([[notification name] isEqualToString:kITPrefsBlocklistEnabled])
+    {
+        self.enableBlocklist.on = [[[ITController sharedController] prefsController] isBlocklistEnabled];
     }
 }
 
@@ -269,6 +298,10 @@
         {
             switch (indexPath.row) {
                 case 0: return self.enableAutoStartCell;
+                case 1: return self.enableBlocklistCell;
+                case 2: return self.enablePEXCell;
+                case 3: return self.enableDHTCell;
+                case 4: return self.enableUTPCell;
             }
         }
     }

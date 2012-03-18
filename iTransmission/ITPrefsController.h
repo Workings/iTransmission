@@ -35,6 +35,7 @@
 #define kITPrefsUpdatedFromRPCNotification @"kITPrefsUpdatedFromRPC"
 #define kITPrefsRPCWhiteListUpdatedNotification @"kITPrefsRPCWhiteListUpdated"
 #define kITPrefsLimitUpdatedNotification @"CheckDownload"
+#define kITPrefsBlocklistEnabled @"BlocklistEnabled"
 bool fHasLoaded;
 NSString *fUploadLimit;
 
@@ -87,6 +88,9 @@ NSString *fUploadLimit;
 - (BOOL)isLimitsEnabled;
 - (BOOL)isAutoStartEnabled;
 - (BOOL)isBlocklistEnabled;
+- (BOOL)isUTPEnabled;
+- (BOOL)isPexEnabled;
+- (BOOL)isDHTEnabled;
 - (NSInteger)RPCPort;
 - (NSInteger)bindPort;
 - (NSInteger)PeersPerTorrent;
