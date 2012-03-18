@@ -865,6 +865,7 @@
 		7E246D5E144F076D008A8586 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTransmission/iTransmission-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/include";
@@ -872,6 +873,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib";
 				OTHER_LDFLAGS = (
+					"-lutp",
 					"-ltransmission",
 					"-levent",
 					"-lssl",
@@ -881,7 +883,6 @@
 					"-lnatpmp",
 					"-ldht",
 					"-lminiupnp",
-					"-lutp",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -891,6 +892,7 @@
 		7E246D5F144F076D008A8586 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTransmission/iTransmission-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/include";
@@ -898,6 +900,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib";
 				OTHER_LDFLAGS = (
+					"-lutp",
 					"-ltransmission",
 					"-levent",
 					"-lssl",
@@ -907,7 +910,6 @@
 					"-lnatpmp",
 					"-ldht",
 					"-lminiupnp",
-					"-lutp",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

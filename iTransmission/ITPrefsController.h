@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <libtransmission/transmission.h>
+#import "ITPrefViewController.h"
 
 #define kITPrefsBindPortUpdatedNotification @"kITPrefsBindPortUpdated"
 #define kITPrefsRandomBindPortFlagUpdatedNotification @"kITPrefsRandomBindPortFlagUpdated"
@@ -33,14 +34,17 @@
 #define kITPrefsRPCWhiteListFlagUpdatedNotification @"kITPrefsRPCWhiteListFlagUpdated"
 #define kITPrefsUpdatedFromRPCNotification @"kITPrefsUpdatedFromRPC"
 #define kITPrefsRPCWhiteListUpdatedNotification @"kITPrefsRPCWhiteListUpdated"
+#define kITPrefsLimitUpdatedNotification @"CheckDownload"
 bool fHasLoaded;
-
+NSString *fUploadLimit;
 
 @interface ITPrefsController : NSObject
 
 @property (assign, nonatomic) tr_session *handle;
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
 @property (nonatomic, strong) NSMutableArray *RPCWhitelistArray;
+@property (nonatomic, strong) UITextField *fDownloadField;
+@property (nonatomic, strong) UITextField *fUploadField;
 - (id)initWithHandle:(tr_session*)h;
 - (void)unload;
 - (void)awakeFromNib;
@@ -82,6 +86,7 @@ bool fHasLoaded;
 - (BOOL)isNatTransversalEnabled;
 - (BOOL)isLimitsEnabled;
 - (BOOL)isAutoStartEnabled;
+- (BOOL)isBlocklistEnabled;
 - (NSInteger)RPCPort;
 - (NSInteger)bindPort;
 - (NSInteger)PeersPerTorrent;
@@ -89,55 +94,4 @@ bool fHasLoaded;
 - (NSInteger)DownloadLimit;
 - (NSInteger)UploadLimit;
 
-// Commented from MacOSX version; NOT USED! //
-/*
- - (NSToolbarItem *) toolbar: (NSToolbar *) toolbar itemForItemIdentifier: (NSString *) ident willBeInsertedIntoToolbar: (BOOL) flag
- - (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar
- - (NSArray *) toolbarSelectableItemIdentifiers: (NSToolbar *) toolbar
- - (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar
- - (void) setAutoUpdateToBeta: (id) sender
- - (void) updateBlocklist: (id) sender
- - (void) setBlocklistAutoUpdate: (id) sender
- - (void) updateBlocklistFields
- - (void) updateBlocklistURLField
- - (void) updateBlocklistButton
- - (void) applyIdleStopSetting: (id) sender
- - (void) setIdleStop: (id) sender
- - (void) updateLimitStopField
- - (void) updateLimitFields
- - (void) setSpeedLimit: (id) sender
- - (void) setAutoSpeedLimit: (id) sender
- - (void) setAutoSpeedLimitTime: (id) sender
- - (void) setAutoSpeedLimitDay: (id) sender
- - (void) setBadge: (id) sender
- - (void) resetWarnings: (id) sender
- - (void) setDefaultForMagnets: (id) sender
- - (void) setQueueEnabled:(BOOL)enabled;
- - (void) setQueueNumber: (id) sender
- - (void) setStalled: (id) sender
- - (void) setStalledMinutes: (id) sender
- - (void) setDownloadLocation: (id) sender
- - (void) folderSheetShow: (id) sender
- - (void) incompleteFolderSheetShow: (id) sender
- - (void) doneScriptSheetShow:(id)sender
- - (void) setDoneScriptEnabled: (id) sender
- - (void) setAutoImport: (id) sender
- - (void) importFolderSheetShow: (id) sender
- - (void) setAutoSize: (id) sender
- - (void) setRPCWebUIDiscovery: (id) sender
- - (void) addRemoveRPCIP: (id) sender
- - (NSInteger) numberOfRowsInTableView: (NSTableView *) tableView
- - (id) tableView: (NSTableView *) tableView objectValueForTableColumn: (NSTableColumn *) tableColumn row: (NSInteger) row
- - (void) tableView: (NSTableView *) tableView setObjectValue: (id) object forTableColumn: (NSTableColumn *) tableColumn
- - (void) tableViewSelectionDidChange: (NSNotification *) notification
- - (void) helpForScript: (id) sender
- - (void) helpForPeers: (id) sender
- - (void) helpForNetwork: (id) sender
- - (void) helpForRemote: (id) sender
- - (void) setPrefView: (id) sender
- - (void) folderSheetClosed: (NSOpenPanel *) openPanel returnCode: (int) code contextInfo: (void *) info
- - (void) incompleteFolderSheetClosed: (NSOpenPanel *) openPanel returnCode: (int) code contextInfo: (void *) info
- - (void) importFolderSheetClosed: (NSOpenPanel *) openPanel returnCode: (int) code contextInfo: (void *) info
- - (void) doneScriptSheetClosed: (NSOpenPanel *) openPanel returnCode: (int) code contextInfo: (void *) info
-*/
 @end

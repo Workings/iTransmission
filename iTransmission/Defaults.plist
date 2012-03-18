@@ -4,6 +4,10 @@
 <dict>
 	<key>AutoImport</key>
 	<false/>
+	<key>BlocklistURL</key>
+	<string>http://list.iblocklist.com/?list=bt_level1&amp;fileformat=p2p&amp;archiveformat=gz</string>
+	<key>BlocklistEnabled</key>
+	<false/>
 	<key>AutoSize</key>
 	<false/>
 	<key>AutoStartDownload</key>

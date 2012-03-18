@@ -53,6 +53,8 @@
 @synthesize enableLimitCell;
 @synthesize userDefaults;
 @synthesize enableAutoStartCell;
+@synthesize enableBlocklist;
+@synthesize enableBlocklistCell;
 
 - (id)init
 {
@@ -129,6 +131,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsPeersGlobalLimitUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsDownloadLimitUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsUploadLimitUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsLimitUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsAutoStartDownloadFlagUpdatedNotification object:nil];
 }
 
 - (void)preferencesUpdateNotificationReceived:(NSNotification *)notification
@@ -180,6 +184,9 @@
     else if ([[notification name] isEqualToString:kITPrefsUploadLimitUpdatedNotification])
     {
         self.UploadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] UploadLimit]];
+    }
+    else if ([[notification name] isEqualToString:kITPrefsAutoStartDownloadFlagUpdatedNotification]) {
+        self.enableAutoStart.on = [[[ITController sharedController] prefsController]isAutoStartEnabled];
     }
 }
 

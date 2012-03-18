@@ -20,6 +20,8 @@
 @synthesize handle = _handle;
 @synthesize userDefaults = _userDefaults;
 @synthesize RPCWhitelistArray = _RPCWhitelistArray;
+@synthesize fDownloadField;
+@synthesize fUploadField;
 
 - (id)initWithHandle:(tr_session*)h
 {
@@ -95,9 +97,9 @@
      //set idle seeding minutes
      [fIdleStopField setIntegerValue: [self.userDefaults integerForKey: @"IdleLimitMinutes"]];
      
-     //set limits
-     [self updateLimitFields];
+     */
      
+    /*
      //set speed limit
      [fSpeedLimitUploadField setIntValue: [self.userDefaults integerForKey: @"SpeedLimitUploadLimit";]];
      [_fSpeedLimitDownloadField setIntValue: [self.userDefaults integerForKey: @"SpeedLimitDownloadLimit"]];
@@ -192,20 +194,6 @@
  
  */
 
-
-//for a beta release, always use the beta appcast
-/*
- #if defined(TR_BETA_RELEASE)
- #define SPARKLE_TAG YES
- #else
- #define SPARKLE_TAG [self.userDefaults boolForKey: @"AutoUpdateBeta"]
- #endif
- - (void) setAutoUpdateToBeta: (id) sender
- {
- [[SUUpdater sharedUpdater] setAllowedTags: SPARKLE_TAG ? [NSSet setWithObject: @"beta"] : nil];
- }
- */
-
 - (void)setPort:(NSInteger)port
 {
     [self.userDefaults setInteger: port forKey: @"BindPort"];
@@ -284,14 +272,14 @@
     tr_sessionSetEncryption(self.handle, mode);
 }
 
-/*
 - (void)setBlocklistEnabled: (id) sender
 {
     tr_blocklistSetEnabled(self.handle, [self.userDefaults boolForKey:@"BlocklistEnabled"]);
     
-    [[BlocklistScheduler scheduler] updateSchedule];
+    // [[BlocklistScheduler scheduler] updateSchedule];
 }
 
+/*
 - (void) updateBlocklist: (id) sender
 {
     [BlocklistDownloaderViewController downloadWithPrefsController: self];
@@ -421,16 +409,6 @@
  }
  
  */
- 
-- (void) updateLimitFields
-{
-    if (!fHasLoaded)
-        return;
-    /*
-    [fUploadField setIntValue: [self.userDefaults integerForKey: @"UploadLimit"]];
-    [fDownloadField setIntValue: [self.userDefaults integerForKey: @"DownloadLimit";]];
-     */
-}
 
 - (void) setUploadLimit:(NSInteger)limit
 {
@@ -451,13 +429,6 @@
 }
 
 /*
- - (void) setSpeedLimit: (id) sender
- {
- [self.userDefaults setInteger: [sender intValue] forKey: sender == fSpeedLimitUploadField
- ? @"SpeedLimitUploadLimit" : @"SpeedLimitDownloadLimit"];
- [self applyAltSpeedSettings];
- }
- 
  - (void) setAutoSpeedLimit: (id) sender
  {
  tr_sessionUseAltSpeedTime(self.handle, [self.userDefaults boolForKey: @"SpeedLimitAuto"]);
@@ -495,24 +466,6 @@
  - (void) setBadge: (id) sender
  {
  [[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateUI" object: self];
- }
- */
-
-/*
- - (void) resetWarnings: (id) sender
- {
- // MARK
- [self.userDefaults removeObjectForKey: @"WarningDuplicate"];
- [self.userDefaults removeObjectForKey: @"WarningRemainingSpace"];
- [self.userDefaults removeObjectForKey: @"WarningFolderDataSameName"];
- [self.userDefaults removeObjectForKey: @"WarningResetStats"];
- [self.userDefaults removeObjectForKey: @"WarningCreatorBlankAddress"];
- [self.userDefaults removeObjectForKey: @"WarningCreatorPrivateBlankAddress"];
- [self.userDefaults removeObjectForKey: @"WarningRemoveTrackers"];
- [self.userDefaults removeObjectForKey: @"WarningInvalidOpen"];
- [self.userDefaults removeObjectForKey: @"WarningRemoveCompleted"];
- [self.userDefaults removeObjectForKey: @"WarningDonate"];
- //[self.userDefaults removeObjectForKey: @"WarningLegal"];
  }
  */
 
@@ -1227,43 +1180,6 @@
  }
  */
 
-- (void) setKeychainPassword: (const char *) password forService: (const char *) service username: (const char *) username
-{
-    /*
-     SecKeychainItemRef item = NULL;
-     NSUInteger passwordLength = strlen(password);
-     
-     OSStatus result = SecKeychainFindGenericPassword(NULL, strlen(service), service, strlen(username), username, NULL, NULL, &item);
-     if (result == noErr && item)
-     {
-     if (passwordLength > 0) //found, so update
-     {
-     result = SecKeychainItemModifyAttributesAndData(item, NULL, passwordLength, (const void *)password);
-     if (result != noErr)
-     LogMessageCompat(@"Problem updating Keychain item: %s", GetMacOSStatusErrorString(result));
-     }
-     else //remove the item
-     {
-     result = SecKeychainItemDelete(item);
-     if (result != noErr)
-     LogMessageCompat(@"Problem removing Keychain item: %s", GetMacOSStatusErrorString(result));
-     }
-     }
-     else if (result == errSecItemNotFound) //not found, so add
-     {
-     if (passwordLength > 0)
-     {
-     result = SecKeychainAddGenericPassword(NULL, strlen(service), service, strlen(username), username,
-     passwordLength, (const void *)password, NULL);
-     if (result != noErr)
-     LogMessageCompat(@"Problem adding Keychain item: %s", GetMacOSStatusErrorString(result));
-     }
-     }
-     else
-     LogMessageCompat(@"Problem accessing Keychain: %s", GetMacOSStatusErrorString(result));
-     */
-}
-
 - (BOOL)isRPCEnabled
 {
     return tr_sessionIsRPCEnabled(self.handle);
@@ -1287,6 +1203,11 @@
 - (BOOL)isAutoStartEnabled
 {
     return [self.userDefaults boolForKey:@"AutoStartDownload"];
+}
+
+- (BOOL)isBlocklistEnabled
+{
+    return [self.userDefaults boolForKey:@"BlocklistEnabled"];
 }
 
 - (NSInteger)RPCPort

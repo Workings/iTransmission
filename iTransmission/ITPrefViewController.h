@@ -31,6 +31,7 @@
 @property (nonatomic, strong) IBOutlet UITableViewCell *fEnableLoggingCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableLimitCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableAutoStartCell;
+@property (nonatomic, strong) IBOutlet UITableViewCell *enableBlocklistCell;
 @property (nonatomic, strong) IBOutlet UISwitch *enableRPCSwitch;
 @property (nonatomic, strong) IBOutlet UISwitch *enableRPCAuthenticationSwitch;
 @property (nonatomic, strong) IBOutlet UISwitch *useWiFiSwitch;
@@ -38,6 +39,7 @@
 @property (nonatomic, strong) IBOutlet UISwitch *enablePortMapSwitch;
 @property (nonatomic, strong) IBOutlet UISwitch *enableAutoStart;
 @property (nonatomic, strong) IBOutlet UISwitch *enableLimits;
+@property (nonatomic, strong) IBOutlet UISwitch *enableBlocklist;
 @property (nonatomic, strong) IBOutlet UITextField *RPCPortTextField;
 @property (nonatomic, strong) IBOutlet UITextField *RPCUsernameTextField;
 @property (nonatomic, strong) IBOutlet UITextField *RPCPasswordTextField;
@@ -47,7 +49,7 @@
 @property (nonatomic, strong) IBOutlet UITextField *DownloadLimit;
 @property (nonatomic, strong) IBOutlet UITextField *UploadLimit;
 @property (nonatomic, strong) IBOutlet UITextView *webInterfaceURLTextView;
-@property (nonatomic, strong) IBOutlet ITPrefsController *userDefaults;
+@property (nonatomic, strong) IBOutlet ITPrefViewController *userDefaults;
 - (void)registerNotifications;
 
 - (IBAction)enableRPCValueChanged:(id)sender;
