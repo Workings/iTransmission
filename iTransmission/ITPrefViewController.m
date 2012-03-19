@@ -124,6 +124,8 @@
     self.MaxPeersGlobal.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersGlobal]];
     self.DownloadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] DownloadLimit]];
     self.UploadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] UploadLimit]];
+    self.RPCUsernameTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCUsername]];
+    self.RPCPasswordTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCPassword]];
 }
 
 - (void)registerNotifications
@@ -146,6 +148,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsUTPFlagUpdateNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsDHTFlagUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsPEXFlagUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsBlocklistEnabled object:nil];
 }
 
 - (void)preferencesUpdateNotificationReceived:(NSNotification *)notification
@@ -160,10 +163,10 @@
         self.enableRPCAuthenticationSwitch.on = [[[ITController sharedController] prefsController] isRPCAuthorizationEnabled];
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCPasswordUpdatedNotification]) {
-        
+        self.RPCUsernameTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCPassword]];
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCUsernameUpdatedNotification]) {
-
+        self.RPCUsernameTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCUsername]];
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCFlagUpdatedNotification]) {
         self.enableRPCSwitch.on = [[[ITController sharedController] prefsController] isRPCEnabled];
@@ -341,6 +344,36 @@
 - (IBAction)enableAutoStart:(id)sender
 {
     [[[ITController sharedController] prefsController] setAutoStartDownloads:[sender isOn]];
+}
+
+- (IBAction)enableuTP:(id)sender
+{
+    [[[ITController sharedController] prefsController] setUTPEnabled:[sender isOn]];
+}
+
+- (IBAction)enableBlocklist:(id)sender
+{
+    [[[ITController sharedController] prefsController] setBlocklistEnabled:[sender isOn]];
+}
+
+- (IBAction)enableDHT:(id)sender
+{
+    [[[ITController sharedController] prefsController] setDHTEnabled:[sender isOn]];
+}
+
+- (IBAction)enablePEX:(id)sender
+{
+    [[[ITController sharedController] prefsController] setPEXEnabled:[sender isOn]];
+}
+
+- (IBAction)RPCUsernamechanged:(id)sender
+{
+    [[[ITController sharedController] prefsController] setRPCUsername:[sender string]];
+}
+
+- (IBAction)RPCPasswordchanged:(id)sender
+{
+    [[[ITController sharedController] prefsController] setRPCPassword:[sender string]];
 }
 
 - (ITKeyboardToolbarOptions)keyboardOptionsForTextField:(UITextField*)textField

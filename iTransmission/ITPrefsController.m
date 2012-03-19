@@ -272,9 +272,9 @@
     tr_sessionSetEncryption(self.handle, mode);
 }
 
-- (void)setBlocklistEnabled: (id) sender
+- (void)setBlocklistEnabled:(BOOL)enabled
 {
-    tr_blocklistSetEnabled(self.handle, [self.userDefaults boolForKey:@"BlocklistEnabled"]);
+    tr_blocklistSetEnabled(self.handle, enabled);
     
     // [[BlocklistScheduler scheduler] updateSchedule];
 }
@@ -1253,6 +1253,16 @@
 - (NSInteger)UploadLimit
 {
     return tr_sessionGetSpeedLimit_KBps(self.handle, TR_UP);
+}
+
+- (NSString *)RPCUsername
+{
+    return [NSString stringWithUTF8String:tr_sessionGetRPCUsername(self.handle)];
+}
+
+- (NSString *)RPCPassword
+{
+    return [NSString stringWithUTF8String:tr_sessionGetRPCPassword(self.handle)];
 }
 
 @end

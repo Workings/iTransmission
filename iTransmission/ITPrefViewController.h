@@ -66,6 +66,12 @@
 - (IBAction)LoggingEnabled:(id)sender;
 - (IBAction)enableLimits:(id)sender;
 - (IBAction)enableAutoStart:(id)sender;
+- (IBAction)enableuTP:(id)sender;
+- (IBAction)enableDHT:(id)sender;
+- (IBAction)enablePEX:(id)sender;
+- (IBAction)enableBlocklist:(id)sender;
+- (IBAction)RPCUsernamechanged:(id)sender;
+- (IBAction)RPCPasswordchanged:(id)sender;
 
 - (void)preferencesUpdateNotificationReceived:(NSNotification*)notification;
 

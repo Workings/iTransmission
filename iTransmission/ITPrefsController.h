@@ -60,7 +60,7 @@ NSString *fUploadLimit;
 - (void)setDHTEnabled:(BOOL)enabled;
 - (void)setLPDEnabled:(BOOL)enabled;
 - (void)setEncryptionMode:(tr_encryption_mode)mode;
-- (void)setBlocklistEnabled: (id) sender;
+- (void)setBlocklistEnabled:(BOOL)enabled;
 - (void)setAutoStartDownloads:(BOOL)autostart;
 - (void)setRadioStopEnabled:(BOOL)enabled;
 - (void)setRatioStop:(CGFloat)ratio;
@@ -97,5 +97,7 @@ NSString *fUploadLimit;
 - (NSInteger)PeersGlobal;
 - (NSInteger)DownloadLimit;
 - (NSInteger)UploadLimit;
+- (NSString *)RPCUsername;
+- (NSString *)RPCPassword;
 
 @end
