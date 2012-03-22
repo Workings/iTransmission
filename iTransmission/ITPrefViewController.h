@@ -56,6 +56,7 @@
 @property (nonatomic, strong) IBOutlet UITextField *UploadLimit;
 @property (nonatomic, strong) IBOutlet UITextView *webInterfaceURLTextView;
 @property (nonatomic, strong) IBOutlet ITPrefViewController *userDefaults;
+@property (assign, nonatomic) IBOutlet tr_session *handle;
 - (void)registerNotifications;
 
 - (IBAction)enableRPCValueChanged:(id)sender;

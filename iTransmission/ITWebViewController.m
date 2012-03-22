@@ -13,6 +13,9 @@
 @implementation ITWebViewController
 @synthesize sidebarItem = _sidebarItem;
 @synthesize controller = _controller;
+@synthesize handle = _handle;
+@synthesize torrent = _torrent;
+NSURL *requestedURL;
 
 - (id)init
 {
@@ -43,7 +46,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-
+    
     return YES;
 }
 

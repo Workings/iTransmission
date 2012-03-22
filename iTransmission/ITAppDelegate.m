@@ -76,6 +76,11 @@
         NSString *filePath = [url path];
         return [self.controller openFiles:[NSArray arrayWithObject:filePath] addType:ITAddTypeManual];
     }
+    else
+    {
+        NSString *magnet = [url path];
+        return [self.controller openFiles:[NSArray arrayWithObject:magnet] addType:ITAddTypeURL];
+    }
     
     return TRUE;
 }

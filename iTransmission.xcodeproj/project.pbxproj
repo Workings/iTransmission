@@ -873,7 +873,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib";
 				OTHER_LDFLAGS = (
-					"-lutp",
 					"-ltransmission",
 					"-levent",
 					"-lssl",
@@ -900,7 +899,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib";
 				OTHER_LDFLAGS = (
-					"-lutp",
 					"-ltransmission",
 					"-levent",
 					"-lssl",

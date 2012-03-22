@@ -10,11 +10,15 @@
 #import "SVWebViewController.h"
 #import "ITSidebarItemDatasource.h"
 #import "ITController.h"
+#import <libtransmission/transmission.h>
+#import "ITTorrent.h"
 
 @interface ITWebViewController : SVWebViewController <ITSidebarItemDatasource>
 
 @property (nonatomic, strong) ITSidebarItem *sidebarItem;
 @property (nonatomic, strong) ITController *controller;
+@property (assign, nonatomic) tr_session *handle;
+@property (nonatomic, strong) ITTorrent *torrent;
 
 - (id)init;
 @end

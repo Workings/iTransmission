@@ -21,7 +21,6 @@
 @property (assign, nonatomic) UIViewController *rootViewController;
 @property (strong, nonatomic) ITSidebarItem *sidebarItem;
 @property (strong, nonatomic) ITSidebarController *sidebarController;
-@property (strong, nonatomic) UIViewController *viewController;
 @property (strong, nonatomic) UISwipeGestureRecognizer *swiperight;
 @property (nonatomic, assign) BOOL useDefaultTheme;
 

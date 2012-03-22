@@ -61,6 +61,7 @@
 @synthesize enableUTP;
 @synthesize enableDHT;
 @synthesize enablePEX;
+@synthesize handle;
 
 - (id)init
 {
@@ -124,8 +125,8 @@
     self.MaxPeersGlobal.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersGlobal]];
     self.DownloadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] DownloadLimit]];
     self.UploadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] UploadLimit]];
-    self.RPCUsernameTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCUsername]];
-    self.RPCPasswordTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCPassword]];
+    self.RPCUsernameTextField.text = [NSString stringWithUTF8String:tr_sessionGetRPCUsername(self.handle)];
+    self.RPCPasswordTextField.text = [NSString stringWithUTF8String:tr_sessionGetRPCPassword(self.handle)];
 }
 
 - (void)registerNotifications
@@ -163,10 +164,10 @@
         self.enableRPCAuthenticationSwitch.on = [[[ITController sharedController] prefsController] isRPCAuthorizationEnabled];
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCPasswordUpdatedNotification]) {
-        self.RPCUsernameTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCPassword]];
+        self.RPCPasswordTextField.text = [NSString stringWithUTF8String:tr_sessionGetRPCPassword(self.handle)];
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCUsernameUpdatedNotification]) {
-        self.RPCUsernameTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCUsername]];
+        self.RPCUsernameTextField.text = [NSString stringWithUTF8String:tr_sessionGetRPCUsername(self.handle)];
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCFlagUpdatedNotification]) {
         self.enableRPCSwitch.on = [[[ITController sharedController] prefsController] isRPCEnabled];

@@ -11,18 +11,24 @@
 #import "ITSidebarItem.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIColor+Style.h"
-#import "ITTransferCell.h"
-#import "ITAddTorrentOptionsViewController.h"
 
 // Tint: 0.25, 0.375, 0.7
+
 @implementation ITNavigationController
 
 @synthesize sidebarController = _sidebarController;
 @synthesize sidebarItem = _sidebarItem;
 @synthesize rootViewController = _rootViewController;
 @synthesize useDefaultTheme = _useDefaultTheme;
-@synthesize viewController = _viewController;
 @synthesize swiperight = _swiperight;
+
+- (UIBarButtonItem*)sidebarButtonItem
+{
+    //    UIBarButtonItem *sidebarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"33-cabinet.png"] style:UIBarButtonItemStylePlain target:self action:@selector(sidebarButtonItemClicked:)];
+    UIBarButtonItem *sidebarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(sidebarButtonItemClicked:)];
+    
+    return sidebarButtonItem;
+}
 
 - (id)initWithRootViewController:(UIViewController *)rootViewController
 {
@@ -44,6 +50,11 @@
     [super viewDidLoad];
 }
 
+- (void)swipedRight
+{
+    [self.sidebarController toggleStateAnimated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -57,7 +68,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)swipedRight
+- (void)sidebarButtonItemClicked:(id)sender
 {
     [self.sidebarController toggleStateAnimated:YES];
 }
@@ -83,9 +94,10 @@
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-//        if (self.sidebarController) {
-//            viewController.navigationItem.rightBarButtonItem = nil;
-//        }
+    //    if (self.sidebarController) {
+    //        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    //            viewController.navigationItem.leftBarButtonItem = [self sidebarButtonItem];
+    //    }
 }
 
 - (void)setUseDefaultTheme:(BOOL)useDefaultTheme

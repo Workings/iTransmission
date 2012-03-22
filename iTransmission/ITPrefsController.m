@@ -107,75 +107,6 @@
 }
 
 /*
- - (NSToolbarItem *) toolbar: (NSToolbar *) toolbar itemForItemIdentifier: (NSString *) ident willBeInsertedIntoToolbar: (BOOL) flag
- {
- NSToolbarItem * item = [[NSToolbarItem alloc] initWithItemIdentifier: ident];
- 
- if ([ident isEqualToString: TOOLBAR_GENERAL])
- {
- [item setLabel: NSLocalizedString(@"General", "Preferences -> toolbar item title")];
- [item setImage: [NSImage imageNamed: NSImageNamePreferencesGeneral]];
- [item setTarget: self];
- [item setAction: @selector(setPrefView:)];
- [item setAutovalidates: NO];
- }
- else if ([ident isEqualToString: TOOLBAR_TRANSFERS])
- {
- [item setLabel: NSLocalizedString(@"Transfers", "Preferences -> toolbar item title")];
- [item setImage: [NSImage imageNamed: @"Transfers.png"]];
- [item setTarget: self];
- [item setAction: @selector(setPrefView:)];
- [item setAutovalidates: NO];
- }
- else if ([ident isEqualToString: TOOLBAR_GROUPS])
- {
- [item setLabel: NSLocalizedString(@"Groups", "Preferences -> toolbar item title")];
- [item setImage: [NSImage imageNamed: @"Groups.png"]];
- [item setTarget: self];
- [item setAction: @selector(setPrefView:)];
- [item setAutovalidates: NO];
- }
- else if ([ident isEqualToString: TOOLBAR_BANDWIDTH])
- {
- [item setLabel: NSLocalizedString(@"Bandwidth", "Preferences -> toolbar item title")];
- [item setImage: [NSImage imageNamed: @"Bandwidth.png"]];
- [item setTarget: self];
- [item setAction: @selector(setPrefView:)];
- [item setAutovalidates: NO];
- }
- else if ([ident isEqualToString: TOOLBAR_PEERS])
- {
- [item setLabel: NSLocalizedString(@"Peers", "Preferences -> toolbar item title")];
- [item setImage: [NSImage imageNamed: NSImageNameUserGroup]];
- [item setTarget: self];
- [item setAction: @selector(setPrefView:)];
- [item setAutovalidates: NO];
- }
- else if ([ident isEqualToString: TOOLBAR_NETWORK])
- {
- [item setLabel: NSLocalizedString(@"Network", "Preferences -> toolbar item title")];
- [item setImage: [NSImage imageNamed: NSImageNameNetwork]];
- [item setTarget: self];
- [item setAction: @selector(setPrefView:)];
- [item setAutovalidates: NO];
- }
- else if ([ident isEqualToString: TOOLBAR_REMOTE])
- {
- [item setLabel: NSLocalizedString(@"Remote", "Preferences -> toolbar item title")];
- [item setImage: [NSImage imageNamed: @"Remote.png"]];
- [item setTarget: self];
- [item setAction: @selector(setPrefView:)];
- [item setAutovalidates: NO];
- }
- else
- {
- [item release];
- return nil;
- }
- 
- return [item autorelease];
- }
- 
  - (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar
  {
  return [NSArray arrayWithObjects: TOOLBAR_GENERAL, TOOLBAR_TRANSFERS, TOOLBAR_GROUPS, TOOLBAR_BANDWIDTH,
@@ -466,16 +397,6 @@
  - (void) setBadge: (id) sender
  {
  [[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateUI" object: self];
- }
- */
-
-/*
- - (void) setDefaultForMagnets: (id) sender
- {
- NSString * bundleID = [[NSBundle mainBundle] bundleIdentifier];
- const OSStatus result = LSSetDefaultHandlerForURLScheme((CFStringRef)@"magnet", (__bridge_retained CFStringRef)bundleID);
- if (result != noErr)
- LogMessageCompat(@"Failed setting default magnet link handler");
  }
  */
 
