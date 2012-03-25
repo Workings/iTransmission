@@ -13,6 +13,7 @@ NSString *fFolderPopUp;
 
 + (void)setExecutionPath:(const char *)path;
 + (NSString*)defaultDocumentsPath;
++ (NSString*)sandboxeDocumentsPath;
 + (NSString*)homeDocumentsPath;
 + (NSString*)applicationPath;
 @end

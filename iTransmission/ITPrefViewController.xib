@@ -1084,7 +1084,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 								<string key="NSFrame">{{10, 11}, {91, 21}}</string>
 								<reference key="NSSuperview" ref="815770369"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -1160,7 +1159,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 								<string key="NSFrame">{{10, 11}, {91, 21}}</string>
 								<reference key="NSSuperview" ref="200466290"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -2010,24 +2008,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 					</object>
 					<int key="connectionID">191</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">RPCUsernamechanged:</string>
-						<reference key="source" ref="964365186"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">13</int>
-					</object>
-					<int key="connectionID">202</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">RPCPasswordchanged:</string>
-						<reference key="source" ref="869974499"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">13</int>
-					</object>
-					<int key="connectionID">201</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -2690,6 +2670,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="enableUTPCell">UITableViewCell</string>
 						<string key="enableUploadLimitCell">UITableViewCell</string>
 						<string key="fEnableLoggingCell">UITableViewCell</string>
+						<string key="handle">tr_session</string>
 						<string key="openWebInterfaceCell">UITableViewCell</string>
 						<string key="tableView">UITableView</string>
 						<string key="useMobileCell">UITableViewCell</string>
@@ -2839,6 +2820,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<object class="IBToOneOutletInfo" key="fEnableLoggingCell">
 							<string key="name">fEnableLoggingCell</string>
 							<string key="candidateClassName">UITableViewCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="handle">
+							<string key="name">handle</string>
+							<string key="candidateClassName">tr_session</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="openWebInterfaceCell">
 							<string key="name">openWebInterfaceCell</string>

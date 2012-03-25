@@ -14,18 +14,27 @@ BOOL __isInSandbox = YES;
 
 + (void)setExecutionPath:(const char *)path
 {
-    __isInSandbox = NO;
+    __isInSandbox = YES;
 }
 
 + (BOOL)isRunningInSandbox
 {
-    return __isInSandbox;
+    if ([ITApplication isRunningInSandbox]) 
+        return [ITApplication sandboxeDocumentsPath];
+    else 
+        return [ITApplication homeDocumentsPath];
 }
 
 + (NSString*)defaultDocumentsPath
 {
     return [ITApplication homeDocumentsPath];
 }
+
++ (NSString*)sandboxeDocumentsPath
+{
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+}
+
 
 + (NSString*)homeDocumentsPath
 {

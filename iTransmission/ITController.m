@@ -104,7 +104,8 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
         [self logUsedPaths];
         
         NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults registerDefaults: [NSDictionary dictionaryWithContentsOfFile: [[ITApplication defaultDocumentsPath] stringByAppendingPathComponent:@"Defaults.plist"]]];
+        [userDefaults registerDefaults: [NSDictionary dictionaryWithContentsOfFile:
+                                         [[NSBundle mainBundle] pathForResource: @"Defaults" ofType: @"plist"]]];
         
         tr_benc settings;
         tr_bencInitDict(&settings, 41);
