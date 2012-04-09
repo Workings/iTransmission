@@ -12,6 +12,7 @@
 #import "ITController.h"
 #import <libtransmission/transmission.h>
 #import "ITTorrent.h"
+#import "ITTransfersViewController.h"
 #import <curl/curl.h>
 
 @interface ITWebViewController : SVWebViewController <ITSidebarItemDatasource>
@@ -23,10 +24,7 @@
 @property (retain) NSFileHandle* downloadFile;
 @property (retain) NSString* downloadFilePath;
 @property (nonatomic, assign) id delegate;
-@property (retain) NSURL* url;
-@property (assign) BOOL cancel;
-@property (retain) NSDate* lastModified;
-@property (assign) BOOL actAsInsect;
+@property (nonatomic, strong) ITTransfersViewController *transfers;
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream);
 - (id)init;

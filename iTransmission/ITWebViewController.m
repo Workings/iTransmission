@@ -13,18 +13,16 @@
 #import <curl/types.h>
 #import <curl/easy.h>
 #import "ITApplication.h"
+#import "ITTorrent.h"
 
 @implementation ITWebViewController
 @synthesize sidebarItem = _sidebarItem;
 @synthesize controller = _controller;
 @synthesize handle = _handle;
-@synthesize torrent = _torrent;
+@synthesize torrent;
 @synthesize downloadFile;
 @synthesize downloadFilePath;
-@synthesize url;
-@synthesize cancel;
-@synthesize lastModified;
-@synthesize actAsInsect;
+@synthesize transfers;
 NSURL *requestedURL;
 
 - (id)init
@@ -64,6 +62,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
     if (navigationType == UIWebViewNavigationTypeLinkClicked)
     {
+        /*
         NSURL *requestedURL = [request URL];
         NSString *fileExtension = [requestedURL pathExtension];
          if ([fileExtension isEqualToString:@"torrent"])
@@ -73,7 +72,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
              CURL *curl;
              FILE *fp;
              CURLcode res;
-             char outfilename[FILENAME_MAX] = "/User/Documents/iTransmission/torrent.torrent";
+             char outfilename[FILENAME_MAX] = "/Applications/iTransmission.app/torrent.torrent";
              const char *url = [charURL UTF8String];
              curl = curl_easy_init();
              if (curl)
@@ -87,7 +86,9 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
                  curl_easy_cleanup(curl);
                  fclose(fp);
              }
+             [self.controller openFiles:[NSArray arrayWithObject:@"/Applications/iTransmission.app/torrent.torrent"] addType:ITAddTypeAuto];
          }
+         */
     }
     
     return YES;
