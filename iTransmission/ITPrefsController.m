@@ -10,6 +10,7 @@
 #import "ITPrefViewController.h"
 #import <Security/Security.h>
 #import "ITApplication.h"
+#import "ITBlocklist.h"
 
 #define WEBUI_URL @"http://127.0.0.1:%d/"
 #define RPC_KEYCHAIN_SERVICE    "iTransmission:Remote"
@@ -33,10 +34,12 @@
         if ([self.userDefaults boolForKey: @"RandomPort"])
             [self.userDefaults setInteger:tr_sessionGetPeerPort(self.handle) forKey:@"BindPort"];
         
-        //set blocklist scheduler
+        //download blocklist scheduler
         /*
          [[BlocklistScheduler scheduler] updateSchedule];
          */
+        NSString *blocklist = [self.userDefaults stringForKey:@"BlocklistURL"];
+        [[ITBlocklist alloc] downloadBlocklist:blocklist];
         
         //update rpc whitelist
         [self updateRPCPassword];
@@ -74,19 +77,6 @@
 - (void) awakeFromNib
 {
      fHasLoaded = YES;
-     /*
-     NSToolbar * toolbar = [[NSToolbar alloc] initWithIdentifier: @"Preferences Toolbar"];
-     [toolbar setDelegate: self];
-     [toolbar setAllowsUserCustomization: NO];
-     [toolbar setDisplayMode: NSToolbarDisplayModeIconAndLabel];
-     [toolbar setSizeMode: NSToolbarSizeModeRegular];
-     [toolbar setSelectedItemIdentifier: TOOLBAR_GENERAL];
-     [[self window] setToolbar: toolbar];
-     [toolbar release];
-      
-     
-     [self setPrefView: nil];
-      */
      
     /*
      //set download folder
@@ -207,7 +197,7 @@
 {
     tr_blocklistSetEnabled(self.handle, enabled);
     
-    // [[BlocklistScheduler scheduler] updateSchedule];
+    // [];
 }
 
 /*
@@ -1178,12 +1168,19 @@
 
 - (NSString *)RPCUsername
 {
-    return [NSString stringWithUTF8String:tr_sessionGetRPCUsername(self.handle)];
+    // return [NSString stringWithUTF8String:tr_sessionGetRPCUsername(self.handle)];
+    return [self.userDefaults stringForKey:@"RPCUsername"];
 }
 
 - (NSString *)RPCPassword
 {
-    return [NSString stringWithUTF8String:tr_sessionGetRPCPassword(self.handle)];
+    // return [NSString stringWithUTF8String:tr_sessionGetRPCPassword(self.handle)];
+    return [self.userDefaults stringForKey:@"RPCPassword"];
+}
+
+- (NSString *)blocklistURL
+{
+    return [self.userDefaults stringForKey:@"BlocklistURL"];
 }
 
 @end

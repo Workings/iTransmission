@@ -37,12 +37,13 @@ NSURL *requestedURL;
     return self;
 }
 
-size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
+/* size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
     size_t written;
     written = fwrite(ptr, size, nmemb, stream);
     return written;
 }
+ */
 
 - (void)viewDidLoad
 {
@@ -62,7 +63,6 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
     if (navigationType == UIWebViewNavigationTypeLinkClicked)
     {
-        /*
         NSURL *requestedURL = [request URL];
         NSString *fileExtension = [requestedURL pathExtension];
          if ([fileExtension isEqualToString:@"torrent"])
@@ -86,12 +86,16 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
                  curl_easy_cleanup(curl);
                  fclose(fp);
              }
-             [self.controller openFiles:[NSArray arrayWithObject:@"/Applications/iTransmission.app/torrent.torrent"] addType:ITAddTypeAuto];
+             [self performSelector:@selector(add) withObject:nil afterDelay:1.0f];
          }
-         */
     }
     
     return YES;
+}
+
+- (void)add
+{
+    [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"torrent" ofType:@"torrent"]] addType:ITAddTypeManual];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

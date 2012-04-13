@@ -35,7 +35,6 @@ BOOL __isInSandbox = YES;
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 }
 
-
 + (NSString*)homeDocumentsPath
 {
     return @"/private/var/mobile/Documents/iTransmission";

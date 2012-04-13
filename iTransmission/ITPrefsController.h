@@ -99,5 +99,6 @@ NSString *fUploadLimit;
 - (NSInteger)UploadLimit;
 - (NSString *)RPCUsername;
 - (NSString *)RPCPassword;
+- (NSString *)blocklistURL;
 
 @end

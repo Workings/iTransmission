@@ -17,6 +17,7 @@
 #import "ITPrefViewController.h"
 #import "UIAlertView+Lazy.h"
 #import "ITTorrent.h"
+#import "ITPrefs2.h"
 
 @implementation ITAppDelegate
 
@@ -53,9 +54,9 @@
     
     NSMutableArray *viewControllers = [NSMutableArray array];
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITTransfersViewController alloc] init]]];
-    [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITWebViewController alloc] init]]];
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITPrefViewController alloc] init]]];
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITInfoViewController alloc] initWithPageName:@"about"]]];
+    [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITPrefs2 alloc] init]]];
     
     self.sidebarController = [[ITSidebarController alloc] init];
     self.sidebarController.viewControllers = viewControllers;

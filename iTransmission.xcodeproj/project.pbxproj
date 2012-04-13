@@ -131,6 +131,11 @@
 		7EF855AE1454215000AD5DBB /* ITAddTorrentOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF855AC1454214B00AD5DBB /* ITAddTorrentOptionsViewController.m */; };
 		7EF855AF1454215000AD5DBB /* ITAddTorrentOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF855AD1454214D00AD5DBB /* ITAddTorrentOptionsViewController.xib */; };
 		7EF855B91454290800AD5DBB /* ITTorrentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF855B81454290600AD5DBB /* ITTorrentListViewController.m */; };
+		CE0FE1641537E4130075E958 /* ITPrefs2.h in Headers */ = {isa = PBXBuildFile; fileRef = CE0FE1611537E4130075E958 /* ITPrefs2.h */; };
+		CE0FE1651537E4130075E958 /* ITPrefs2.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE1621537E4130075E958 /* ITPrefs2.m */; };
+		CE0FE1661537E4130075E958 /* ITPrefs2.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0FE1631537E4130075E958 /* ITPrefs2.xib */; };
+		CE18CB6A15354F44005FDF12 /* ITBlocklist.h in Headers */ = {isa = PBXBuildFile; fileRef = CE18CB6815354F44005FDF12 /* ITBlocklist.h */; };
+		CE18CB75153550C3005FDF12 /* ITBlocklist.m in Sources */ = {isa = PBXBuildFile; fileRef = CE18CB74153550C3005FDF12 /* ITBlocklist.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -315,6 +320,11 @@
 		7EF855AD1454214D00AD5DBB /* ITAddTorrentOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITAddTorrentOptionsViewController.xib; sourceTree = "<group>"; };
 		7EF855B71454290300AD5DBB /* ITTorrentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTorrentListViewController.h; sourceTree = "<group>"; };
 		7EF855B81454290600AD5DBB /* ITTorrentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTorrentListViewController.m; sourceTree = "<group>"; };
+		CE0FE1611537E4130075E958 /* ITPrefs2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPrefs2.h; sourceTree = "<group>"; };
+		CE0FE1621537E4130075E958 /* ITPrefs2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPrefs2.m; sourceTree = "<group>"; };
+		CE0FE1631537E4130075E958 /* ITPrefs2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPrefs2.xib; sourceTree = "<group>"; };
+		CE18CB6815354F44005FDF12 /* ITBlocklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITBlocklist.h; sourceTree = "<group>"; };
+		CE18CB74153550C3005FDF12 /* ITBlocklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITBlocklist.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +435,9 @@
 		7E246D4F144F076D008A8586 /* iTransmission */ = {
 			isa = PBXGroup;
 			children = (
+				CE0FE1611537E4130075E958 /* ITPrefs2.h */,
+				CE0FE1621537E4130075E958 /* ITPrefs2.m */,
+				CE0FE1631537E4130075E958 /* ITPrefs2.xib */,
 				7E856DAA1491A64A00F9E912 /* Defaults.plist */,
 				7E217D58148E1EDE00C7BD50 /* Settings */,
 				7E137CFD1453098C0030DC13 /* NSArray+iTransmissionUtility.h */,
@@ -516,6 +529,8 @@
 				7E667912145CFC0300C1E585 /* ITInspectorCollectionTabBar.m */,
 				7E667914145CFF9D00C1E585 /* ITInspectorCollectionView.h */,
 				7E667915145CFF9E00C1E585 /* ITInspectorCollectionView.m */,
+				CE18CB6815354F44005FDF12 /* ITBlocklist.h */,
+				CE18CB74153550C3005FDF12 /* ITBlocklist.m */,
 				7E98A448146A4F39006ADF77 /* Inspectors */,
 				7E98A442146A4B77006ADF77 /* ITLogger.h */,
 				7E98A443146A4B78006ADF77 /* ITLogger.m */,
@@ -615,6 +630,8 @@
 				7E856DA314919F4C00F9E912 /* ITNetworkSwitcher.h in Headers */,
 				7E856DA81491A00800F9E912 /* Reachability.h in Headers */,
 				7EC0F6E21492E4F300C02C73 /* ITKeyboardController.h in Headers */,
+				CE18CB6A15354F44005FDF12 /* ITBlocklist.h in Headers */,
+				CE0FE1641537E4130075E958 /* ITPrefs2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +722,7 @@
 				7E217D67148E27EF00C7BD50 /* ITPrefViewController.xib in Resources */,
 				7E217D71148E313300C7BD50 /* web in Resources */,
 				7E856DAB1491A64A00F9E912 /* Defaults.plist in Resources */,
+				CE0FE1661537E4130075E958 /* ITPrefs2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +808,8 @@
 				7E856DA414919F4C00F9E912 /* ITNetworkSwitcher.m in Sources */,
 				7E856DA91491A00800F9E912 /* Reachability.m in Sources */,
 				7EC0F6E31492E4F300C02C73 /* ITKeyboardController.m in Sources */,
+				CE18CB75153550C3005FDF12 /* ITBlocklist.m in Sources */,
+				CE0FE1651537E4130075E958 /* ITPrefs2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
