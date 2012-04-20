@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ITSidebarItem.h"
 
 @interface ITWebinterface : UIViewController
+
+@property (nonatomic, retain) ITSidebarItem *sidebarItem;
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
 
 @end

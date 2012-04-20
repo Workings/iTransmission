@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ITSidebarItemDatasource.h"
 #import "ITTimerListener.h"
+#import "ITController.h"
 
 @class ITTransferCell;
 @class ITTorrent;
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) NSMutableArray *displayedTorrents;
 @property (strong, nonatomic) ITSidebarItem *sidebarItem;
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) ITController *controller;
 
 - (void)registerNotifications;
 - (void)torrentHistoryLoaded:(NSNotification*)notification;

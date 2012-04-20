@@ -1221,7 +1221,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 				<string key="IBUIReuseIdentifier"/>
 			</object>
 			<object class="IBUITableViewCell" id="553647333">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="784708160">
@@ -1292,6 +1292,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 72}</string>
+				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="784708160"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="784708160"/>
@@ -2008,6 +2009,24 @@ AAgACAAIAAEAAQABAAE</bytes>
 					</object>
 					<int key="connectionID">191</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">RPCUsernamechanged:</string>
+						<reference key="source" ref="964365186"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">203</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">RPCPasswordchanged:</string>
+						<reference key="source" ref="869974499"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">204</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -2553,7 +2572,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">202</int>
+			<int key="maxID">204</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

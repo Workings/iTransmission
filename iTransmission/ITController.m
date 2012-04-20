@@ -50,6 +50,8 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
 @synthesize unconfirmedTorrents = _unconfirmedTorrents;
 @synthesize loggingEnabled = _loggingEnabled;
 
+NSUserDefaults* userDefaults;
+
 + (id)sharedController
 {
     return [(ITAppDelegate*)[[UIApplication sharedApplication] delegate] controller];
@@ -77,12 +79,18 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
 
 - (void)createPathsIfNeeded
 {
+    BOOL *fileExists;
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     LogMessageCompat(@"Using document directory: %@\n", [ITApplication defaultDocumentsPath]);
     [fileManager createDirectoryAtPath:[ITApplication defaultDocumentsPath] withIntermediateDirectories:YES attributes:nil error:nil];
     [fileManager createDirectoryAtPath:[self configPath] withIntermediateDirectories:YES attributes:nil error:nil];
     [fileManager createDirectoryAtPath:[self downloadPath] withIntermediateDirectories:YES attributes:nil error:nil];
     [fileManager createDirectoryAtPath:[self incompletePath] withIntermediateDirectories:YES attributes:nil error:nil];
+    fileExists = [[NSFileManager defaultManager] fileExistsAtPath:@"/var/mobile/Documents/iTransmission/transfers.plist"];
+    if(fileExists == FALSE)
+    {
+        [fileManager createFileAtPath:@"/var/mobile/Documents/iTransmission/transfers.plist" contents:nil attributes:nil];
+    }
 }
 
 - (void)logUsedPaths
@@ -103,7 +111,7 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
         [self createPathsIfNeeded];
         [self logUsedPaths];
         
-        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+        userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults registerDefaults: [NSDictionary dictionaryWithContentsOfFile:
                                          [[NSBundle mainBundle] pathForResource: @"Defaults" ofType: @"plist"]]];
         
@@ -560,6 +568,7 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
             {
                 if (type != ITAddTypeAuto) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:kITAttemptToAddInvalidTorrentNotification object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:torrentPath, @"TorrentPath", [NSNumber numberWithInteger:type], @"AddType", nil]];
+                    retval = YES;
                 }
             }
             else
@@ -608,12 +617,6 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
         //show the add window or add directly
         if (showWindow || !location)
         {
-            /*
-            AddWindowController * addController = [[AddWindowController alloc] initWithTorrent: torrent destination: location
-                                                                               lockDestination: lockDestination controller: self torrentFile: torrentPath
-                                                                                 deleteTorrent: deleteTorrentFile canToggleDelete: canToggleDelete];
-            [addController showWindow: self];
-            */
         }
         else
         {
@@ -628,4 +631,57 @@ static void sleepCallback(void * controller, io_service_t y, natural_t messageTy
     return retval;
 }
 
+- (BOOL)openMagnet:(NSString *)url
+{
+    BOOL retval = YES;
+    
+    for (NSString * torrentPath in url)
+    {
+        //ensure torrent doesn't already exist
+        tr_ctor * ctor = tr_ctorNew(self.handle);
+        tr_ctorSetMetainfoFromFile(ctor, [torrentPath UTF8String]);
+        
+        tr_info info;
+        tr_ctorFree(ctor);
+        
+        //determine download location
+        NSString * location;
+        /*
+         else if ([[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadLocationConstant"])
+         location = [[fDefaults stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
+         else if (type != ADD_URL)
+         location = [torrentPath stringByDeletingLastPathComponent];
+         else
+         location = nil;
+         */
+        location = [[[NSUserDefaults standardUserDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
+        
+        //determine to show the options window
+        tr_metainfoFree(&info);
+        
+        ITTorrent * torrent;
+        if (!(torrent = [[ITTorrent alloc] initWithMagnetAddress:url location:location lib:self.handle])) {
+            retval = YES;
+            continue;
+        }
+        //change the location if the group calls for it (this has to wait until after the torrent is created)
+        /*
+         if (!lockDestination && [[GroupsController groups] usesCustomDownloadLocationForIndex: [torrent groupValue]])
+         {
+         location = [[GroupsController groups] customDownloadLocationForIndex: [torrent groupValue]];
+         [torrent changeDownloadFolderBeforeUsing: location];
+         }
+         */
+        else
+        {
+            [torrent startTransfer];
+            
+            [torrent update];
+            [self.torrents addObject: torrent];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kITNewTorrentAddedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:torrent forKey:@"torrent"]];
+            [self updateTorrentHistory];
+        }
+    }
+    return retval;
+}
 @end

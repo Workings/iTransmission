@@ -28,6 +28,7 @@
 @property (strong, nonatomic) ITNetworkSwitcher *networkSwitcher;
 @property (strong, nonatomic) UIDocumentInteractionController *interactionController;
 @property (strong, nonatomic) ITTorrent *torrent;
+@property (nonatomic, assign) tr_session *handle;
 
 + (id)sharedDelegate;
 - (void)startTransmission;

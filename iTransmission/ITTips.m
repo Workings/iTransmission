@@ -9,6 +9,19 @@
 #import "ITTips.h"
 
 @implementation ITTips
+@synthesize sidebarItem;
+@synthesize webView;
+
+- (id)init 
+{
+    if ((self = [super init])) {
+        self.title = @"Tips and tricks";
+        self.sidebarItem = [[ITSidebarItem alloc] init];
+        self.sidebarItem.title = @"Tips and tricks";
+    }
+    return self;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +44,7 @@
 
 - (void)viewDidLoad
 {
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Info/tips" ofType:@"html"]isDirectory:NO]]];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

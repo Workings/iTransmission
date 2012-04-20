@@ -11,7 +11,7 @@
 
 @implementation ITBlocklist
 
-size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
+size_t write_data2(void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
     size_t written;
     written = fwrite(ptr, size, nmemb, stream);
@@ -31,7 +31,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
     {
         fp = fopen(outfilename,"wb");
         curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data2);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
         res = curl_easy_perform(curl);
             

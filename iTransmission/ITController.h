@@ -78,6 +78,7 @@ typedef enum
 - (void)shutdown;
 
 - (BOOL)openFiles:(NSArray *)filenames addType:(ITAddType)type;
+- (BOOL)openMagnet:(NSArray *)url;
 - (void)openFilesWithDict:(NSDictionary *)dictionary;
 - (void)confirmRemoveTorrents: (NSArray *) torrents deleteData: (BOOL) deleteData;
 

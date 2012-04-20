@@ -90,7 +90,7 @@
 		7E667910145CF75A00C1E585 /* UIColor+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E66790F145CF75800C1E585 /* UIColor+Style.m */; };
 		7E667913145CFC0400C1E585 /* ITInspectorCollectionTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E667912145CFC0300C1E585 /* ITInspectorCollectionTabBar.m */; };
 		7E667916145CFFA000C1E585 /* ITInspectorCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E667915145CFF9E00C1E585 /* ITInspectorCollectionView.m */; };
-		7E6BCA8B146C1BA80087A8F6 /* debian-6.0.3-i386-CD-1.iso.torrent in Resources */ = {isa = PBXBuildFile; fileRef = 7E6BCA8A146C1BA80087A8F6 /* debian-6.0.3-i386-CD-1.iso.torrent */; };
+		7E6BCA8B146C1BA80087A8F6 /* torrent.torrent in Resources */ = {isa = PBXBuildFile; fileRef = 7E6BCA8A146C1BA80087A8F6 /* torrent.torrent */; };
 		7E6BCA8D146C23260087A8F6 /* ITFileInspectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6BCA8C146C23260087A8F6 /* ITFileInspectorCell.xib */; };
 		7E6BCA90146C233D0087A8F6 /* ITFileInspectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6BCA8F146C233D0087A8F6 /* ITFileInspectorCell.m */; };
 		7E6BCA9E146C37D70087A8F6 /* UIAlertView+Lazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6BCA9D146C37D50087A8F6 /* UIAlertView+Lazy.m */; };
@@ -131,11 +131,19 @@
 		7EF855AE1454215000AD5DBB /* ITAddTorrentOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF855AC1454214B00AD5DBB /* ITAddTorrentOptionsViewController.m */; };
 		7EF855AF1454215000AD5DBB /* ITAddTorrentOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF855AD1454214D00AD5DBB /* ITAddTorrentOptionsViewController.xib */; };
 		7EF855B91454290800AD5DBB /* ITTorrentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF855B81454290600AD5DBB /* ITTorrentListViewController.m */; };
-		CE0FE1641537E4130075E958 /* ITPrefs2.h in Headers */ = {isa = PBXBuildFile; fileRef = CE0FE1611537E4130075E958 /* ITPrefs2.h */; };
-		CE0FE1651537E4130075E958 /* ITPrefs2.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE1621537E4130075E958 /* ITPrefs2.m */; };
-		CE0FE1661537E4130075E958 /* ITPrefs2.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0FE1631537E4130075E958 /* ITPrefs2.xib */; };
+		CE0FE198153895130075E958 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0FE197153895120075E958 /* MobileCoreServices.framework */; };
+		CE0FE19A153895290075E958 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0FE199153895290075E958 /* libz.dylib */; };
 		CE18CB6A15354F44005FDF12 /* ITBlocklist.h in Headers */ = {isa = PBXBuildFile; fileRef = CE18CB6815354F44005FDF12 /* ITBlocklist.h */; };
 		CE18CB75153550C3005FDF12 /* ITBlocklist.m in Sources */ = {isa = PBXBuildFile; fileRef = CE18CB74153550C3005FDF12 /* ITBlocklist.m */; };
+		CE894E17153F1CBD00074E9F /* ITTips.h in Headers */ = {isa = PBXBuildFile; fileRef = CE894E14153F1CBD00074E9F /* ITTips.h */; };
+		CE894E18153F1CBD00074E9F /* ITTips.m in Sources */ = {isa = PBXBuildFile; fileRef = CE894E15153F1CBD00074E9F /* ITTips.m */; };
+		CE894E19153F1CBD00074E9F /* ITTips.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE894E16153F1CBD00074E9F /* ITTips.xib */; };
+		CE8C11A6153A3DA700AD5690 /* ITThemeBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = CE8C11A3153A3DA700AD5690 /* ITThemeBrowser.h */; };
+		CE8C11A7153A3DA700AD5690 /* ITThemeBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C11A4153A3DA700AD5690 /* ITThemeBrowser.m */; };
+		CE8C11A8153A3DA700AD5690 /* ITThemeBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8C11A5153A3DA700AD5690 /* ITThemeBrowser.xib */; };
+		CEB5279E153D2C6A009DF90A /* ITWebinterface.h in Headers */ = {isa = PBXBuildFile; fileRef = CEB5279B153D2C6A009DF90A /* ITWebinterface.h */; };
+		CEB5279F153D2C6A009DF90A /* ITWebinterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB5279C153D2C6A009DF90A /* ITWebinterface.m */; };
+		CEB527A0153D2C6A009DF90A /* ITWebinterface.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB5279D153D2C6A009DF90A /* ITWebinterface.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,7 +269,7 @@
 		7E667912145CFC0300C1E585 /* ITInspectorCollectionTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITInspectorCollectionTabBar.m; sourceTree = "<group>"; };
 		7E667914145CFF9D00C1E585 /* ITInspectorCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITInspectorCollectionView.h; sourceTree = "<group>"; };
 		7E667915145CFF9E00C1E585 /* ITInspectorCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITInspectorCollectionView.m; sourceTree = "<group>"; };
-		7E6BCA8A146C1BA80087A8F6 /* debian-6.0.3-i386-CD-1.iso.torrent */ = {isa = PBXFileReference; lastKnownFileType = file; path = "debian-6.0.3-i386-CD-1.iso.torrent"; sourceTree = "<group>"; };
+		7E6BCA8A146C1BA80087A8F6 /* torrent.torrent */ = {isa = PBXFileReference; lastKnownFileType = file; path = torrent.torrent; sourceTree = "<group>"; };
 		7E6BCA8C146C23260087A8F6 /* ITFileInspectorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITFileInspectorCell.xib; sourceTree = "<group>"; };
 		7E6BCA8E146C233D0087A8F6 /* ITFileInspectorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITFileInspectorCell.h; sourceTree = "<group>"; };
 		7E6BCA8F146C233D0087A8F6 /* ITFileInspectorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITFileInspectorCell.m; sourceTree = "<group>"; };
@@ -320,11 +328,19 @@
 		7EF855AD1454214D00AD5DBB /* ITAddTorrentOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITAddTorrentOptionsViewController.xib; sourceTree = "<group>"; };
 		7EF855B71454290300AD5DBB /* ITTorrentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTorrentListViewController.h; sourceTree = "<group>"; };
 		7EF855B81454290600AD5DBB /* ITTorrentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTorrentListViewController.m; sourceTree = "<group>"; };
-		CE0FE1611537E4130075E958 /* ITPrefs2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPrefs2.h; sourceTree = "<group>"; };
-		CE0FE1621537E4130075E958 /* ITPrefs2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPrefs2.m; sourceTree = "<group>"; };
-		CE0FE1631537E4130075E958 /* ITPrefs2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPrefs2.xib; sourceTree = "<group>"; };
+		CE0FE197153895120075E958 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CE0FE199153895290075E958 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CE18CB6815354F44005FDF12 /* ITBlocklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITBlocklist.h; sourceTree = "<group>"; };
 		CE18CB74153550C3005FDF12 /* ITBlocklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITBlocklist.m; sourceTree = "<group>"; };
+		CE894E14153F1CBD00074E9F /* ITTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITTips.h; path = iTransmission/ITTips.h; sourceTree = "<group>"; };
+		CE894E15153F1CBD00074E9F /* ITTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITTips.m; path = iTransmission/ITTips.m; sourceTree = "<group>"; };
+		CE894E16153F1CBD00074E9F /* ITTips.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ITTips.xib; path = iTransmission/ITTips.xib; sourceTree = "<group>"; };
+		CE8C11A3153A3DA700AD5690 /* ITThemeBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITThemeBrowser.h; path = iTransmission/ITThemeBrowser.h; sourceTree = "<group>"; };
+		CE8C11A4153A3DA700AD5690 /* ITThemeBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITThemeBrowser.m; path = iTransmission/ITThemeBrowser.m; sourceTree = "<group>"; };
+		CE8C11A5153A3DA700AD5690 /* ITThemeBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ITThemeBrowser.xib; path = iTransmission/ITThemeBrowser.xib; sourceTree = "<group>"; };
+		CEB5279B153D2C6A009DF90A /* ITWebinterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITWebinterface.h; sourceTree = "<group>"; };
+		CEB5279C153D2C6A009DF90A /* ITWebinterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITWebinterface.m; sourceTree = "<group>"; };
+		CEB5279D153D2C6A009DF90A /* ITWebinterface.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITWebinterface.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +348,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0FE19A153895290075E958 /* libz.dylib in Frameworks */,
+				CE0FE198153895130075E958 /* MobileCoreServices.framework in Frameworks */,
 				7E2D992B146BF66000736336 /* SystemConfiguration.framework in Frameworks */,
 				7E2D9929146BF63400736336 /* CFNetwork.framework in Frameworks */,
 				7E137CF01452FB720030DC13 /* Security.framework in Frameworks */,
@@ -363,6 +381,9 @@
 			children = (
 				7E137D13145316CB0030DC13 /* Defaults.plist */,
 				7E137CCF1452D2950030DC13 /* ITController.h */,
+				CEB5279B153D2C6A009DF90A /* ITWebinterface.h */,
+				CEB5279C153D2C6A009DF90A /* ITWebinterface.m */,
+				CEB5279D153D2C6A009DF90A /* ITWebinterface.xib */,
 				7E137CD01452D2950030DC13 /* ITController.m */,
 				7E137CE61452E7860030DC13 /* ITApplication.h */,
 				7E137CE71452E7860030DC13 /* ITApplication.m */,
@@ -403,6 +424,14 @@
 		7E246D3A144F076C008A8586 = {
 			isa = PBXGroup;
 			children = (
+				CE894E14153F1CBD00074E9F /* ITTips.h */,
+				CE894E15153F1CBD00074E9F /* ITTips.m */,
+				CE894E16153F1CBD00074E9F /* ITTips.xib */,
+				CE8C11A3153A3DA700AD5690 /* ITThemeBrowser.h */,
+				CE8C11A4153A3DA700AD5690 /* ITThemeBrowser.m */,
+				CE8C11A5153A3DA700AD5690 /* ITThemeBrowser.xib */,
+				CE0FE199153895290075E958 /* libz.dylib */,
+				CE0FE197153895120075E958 /* MobileCoreServices.framework */,
 				7E2D992A146BF66000736336 /* SystemConfiguration.framework */,
 				7E2D9928146BF63400736336 /* CFNetwork.framework */,
 				7E137CEF1452FB720030DC13 /* Security.framework */,
@@ -435,9 +464,6 @@
 		7E246D4F144F076D008A8586 /* iTransmission */ = {
 			isa = PBXGroup;
 			children = (
-				CE0FE1611537E4130075E958 /* ITPrefs2.h */,
-				CE0FE1621537E4130075E958 /* ITPrefs2.m */,
-				CE0FE1631537E4130075E958 /* ITPrefs2.xib */,
 				7E856DAA1491A64A00F9E912 /* Defaults.plist */,
 				7E217D58148E1EDE00C7BD50 /* Settings */,
 				7E137CFD1453098C0030DC13 /* NSArray+iTransmissionUtility.h */,
@@ -453,7 +479,7 @@
 				7EF0098F146E84C300AD1BA5 /* transfers-icon@2x.png */,
 				7EF00993146E84F400AD1BA5 /* about-icon@2x.png */,
 				7EF009A4146E8A3900AD1BA5 /* iTunesMetadata.plist */,
-				7E6BCA8A146C1BA80087A8F6 /* debian-6.0.3-i386-CD-1.iso.torrent */,
+				7E6BCA8A146C1BA80087A8F6 /* torrent.torrent */,
 				7E246D58144F076D008A8586 /* ITAppDelegate.h */,
 				7E246D59144F076D008A8586 /* ITAppDelegate.m */,
 				7E655FB714545A2100C9622F /* ubuntu-11.10-desktop-i386.iso.torrent */,
@@ -631,7 +657,9 @@
 				7E856DA81491A00800F9E912 /* Reachability.h in Headers */,
 				7EC0F6E21492E4F300C02C73 /* ITKeyboardController.h in Headers */,
 				CE18CB6A15354F44005FDF12 /* ITBlocklist.h in Headers */,
-				CE0FE1641537E4130075E958 /* ITPrefs2.h in Headers */,
+				CE8C11A6153A3DA700AD5690 /* ITThemeBrowser.h in Headers */,
+				CEB5279E153D2C6A009DF90A /* ITWebinterface.h in Headers */,
+				CE894E17153F1CBD00074E9F /* ITTips.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,7 +732,7 @@
 				7E61E9EE1455B57A0056B2EA /* bar-bg.png in Resources */,
 				7E61E9F31455BB7D0056B2EA /* texture_white_small.png in Resources */,
 				7E667907145CF37A00C1E585 /* SVSegmentedControl.bundle in Resources */,
-				7E6BCA8B146C1BA80087A8F6 /* debian-6.0.3-i386-CD-1.iso.torrent in Resources */,
+				7E6BCA8B146C1BA80087A8F6 /* torrent.torrent in Resources */,
 				7E6BCA8D146C23260087A8F6 /* ITFileInspectorCell.xib in Resources */,
 				7EF00987146E634300AD1BA5 /* Icon-iPad.png in Resources */,
 				7EF00988146E634300AD1BA5 /* Icon-Small-50.png in Resources */,
@@ -722,7 +750,9 @@
 				7E217D67148E27EF00C7BD50 /* ITPrefViewController.xib in Resources */,
 				7E217D71148E313300C7BD50 /* web in Resources */,
 				7E856DAB1491A64A00F9E912 /* Defaults.plist in Resources */,
-				CE0FE1661537E4130075E958 /* ITPrefs2.xib in Resources */,
+				CE8C11A8153A3DA700AD5690 /* ITThemeBrowser.xib in Resources */,
+				CEB527A0153D2C6A009DF90A /* ITWebinterface.xib in Resources */,
+				CE894E19153F1CBD00074E9F /* ITTips.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,7 +839,9 @@
 				7E856DA91491A00800F9E912 /* Reachability.m in Sources */,
 				7EC0F6E31492E4F300C02C73 /* ITKeyboardController.m in Sources */,
 				CE18CB75153550C3005FDF12 /* ITBlocklist.m in Sources */,
-				CE0FE1651537E4130075E958 /* ITPrefs2.m in Sources */,
+				CE8C11A7153A3DA700AD5690 /* ITThemeBrowser.m in Sources */,
+				CEB5279F153D2C6A009DF90A /* ITWebinterface.m in Sources */,
+				CE894E18153F1CBD00074E9F /* ITTips.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,19 @@
 #import "ITWebinterface.h"
 
 @implementation ITWebinterface
+@synthesize sidebarItem;
+@synthesize webView;
+
+- (id)init 
+{
+    if ((self = [super init])) {
+        self.title = @"Web Interface";
+        self.sidebarItem = [[ITSidebarItem alloc] init];
+        self.sidebarItem.title = @"Web Interface";
+    }
+    return self;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +44,9 @@
 
 - (void)viewDidLoad
 {
+    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:9091/transmission/web/"];
+    NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:requestURL];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

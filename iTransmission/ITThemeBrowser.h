@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ITSidebarItem.h"
+#import "ITController.h"
 
 @interface ITThemeBrowser : UIViewController
+
+@property (strong, nonatomic) ITSidebarItem *sidebarItem;
+@property (strong, nonatomic) ITController *controller;
 
 @end

@@ -23,6 +23,7 @@
 @synthesize sidebarItem = _sidebarItem;
 @synthesize tableView = _tableView;
 @synthesize displayedTorrents = _displayedTorrents;
+@synthesize controller;
 
 - (id)init 
 {
@@ -197,7 +198,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         ITTorrent *torrent = [self.displayedTorrents objectAtIndex:indexPath.row];
-        [[ITController sharedController] confirmRemoveTorrents:[NSArray arrayWithObject:torrent] deleteData:YES];
+        [[ITController sharedController] confirmRemoveTorrents:[NSArray arrayWithObject:torrent] deleteData:NO];
     }
 }
 

@@ -125,8 +125,8 @@
     self.MaxPeersGlobal.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersGlobal]];
     self.DownloadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] DownloadLimit]];
     self.UploadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] UploadLimit]];
-    self.RPCUsernameTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCUsername]];
-    self.RPCPasswordTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCPassword]];
+    self.RPCUsernameTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCUsername]];
+    self.RPCPasswordTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCPassword]];
 }
 
 - (void)registerNotifications
@@ -164,10 +164,10 @@
         self.enableRPCAuthenticationSwitch.on = [[[ITController sharedController] prefsController] isRPCAuthorizationEnabled];
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCPasswordUpdatedNotification]) {
-        self.RPCPasswordTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCUsername]];
+        self.RPCPasswordTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCPassword]];
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCUsernameUpdatedNotification]) {
-        self.RPCUsernameTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCUsername]];
+        self.RPCUsernameTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCUsername]];
     }
     else if ([[notification name] isEqualToString:kITPrefsRPCFlagUpdatedNotification]) {
         self.enableRPCSwitch.on = [[[ITController sharedController] prefsController] isRPCEnabled];

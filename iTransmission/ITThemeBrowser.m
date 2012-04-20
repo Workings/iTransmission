@@ -7,8 +7,21 @@
 //
 
 #import "ITThemeBrowser.h"
+#import "ITSidebarItem.h"
 
 @implementation ITThemeBrowser
+@synthesize controller;
+@synthesize sidebarItem;
+
+- (id)init 
+{
+    if ((self = [super init])) {
+        self.title = @"Theme's";
+        self.sidebarItem = [[ITSidebarItem alloc] init];
+        self.sidebarItem.title = @"Theme's";
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

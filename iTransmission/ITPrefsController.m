@@ -1093,12 +1093,12 @@
 
 - (BOOL)isRPCEnabled
 {
-    return tr_sessionIsRPCEnabled(self.handle);
+    return [self.userDefaults boolForKey:@"RPC"];
 }
 
 - (BOOL)isRPCAuthorizationEnabled
 {
-    return tr_sessionIsRPCPasswordEnabled(self.handle);
+    return [self.userDefaults boolForKey:@"RPCAuthorize"];
 }
 
 - (BOOL)isNatTransversalEnabled
@@ -1138,7 +1138,7 @@
 
 - (NSInteger)RPCPort
 {
-    return tr_sessionGetRPCPort(self.handle);
+    return [self.userDefaults integerForKey:@"RPCPort"];
 }
 
 - (NSInteger)bindPort
@@ -1148,33 +1148,31 @@
 
 - (NSInteger)PeersPerTorrent
 {
-    return tr_sessionGetPeerLimitPerTorrent(self.handle);
+    return [self.userDefaults integerForKey:@"PeersTorrent"];
 }
 
 - (NSInteger)PeersGlobal
 {
-    return tr_sessionGetPeerLimit(self.handle);
+    return [self.userDefaults integerForKey:@"PeersTotal"];
 }
 
 - (NSInteger)DownloadLimit
 {
-    return tr_sessionGetSpeedLimit_KBps(self.handle, TR_DOWN);
+    return [self.userDefaults integerForKey:@"DownloadLimit"];
 }
 
 - (NSInteger)UploadLimit
 {
-    return tr_sessionGetSpeedLimit_KBps(self.handle, TR_UP);
+    return [self.userDefaults integerForKey:@"UploadLimit"];
 }
 
 - (NSString *)RPCUsername
 {
-    // return [NSString stringWithUTF8String:tr_sessionGetRPCUsername(self.handle)];
     return [self.userDefaults stringForKey:@"RPCUsername"];
 }
 
 - (NSString *)RPCPassword
 {
-    // return [NSString stringWithUTF8String:tr_sessionGetRPCPassword(self.handle)];
     return [self.userDefaults stringForKey:@"RPCPassword"];
 }
 

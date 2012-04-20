@@ -17,7 +17,9 @@
 #import "ITPrefViewController.h"
 #import "UIAlertView+Lazy.h"
 #import "ITTorrent.h"
-#import "ITPrefs2.h"
+#import "ITThemeBrowser.h"
+#import "ITTips.h"
+#import "ITWebinterface.h"
 
 @implementation ITAppDelegate
 
@@ -32,6 +34,7 @@
 @synthesize navigationController = _navigationController;
 @synthesize transfersController = _transfersController;
 @synthesize torrent = _torrent;
+@synthesize handle;
 
 + (id)sharedDelegate
 {
@@ -54,9 +57,12 @@
     
     NSMutableArray *viewControllers = [NSMutableArray array];
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITTransfersViewController alloc] init]]];
+    // [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITWebViewController alloc] init]]];
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITPrefViewController alloc] init]]];
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITInfoViewController alloc] initWithPageName:@"about"]]];
-    [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITPrefs2 alloc] init]]];
+    // [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITThemeBrowser alloc] init]]];
+    [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITWebinterface alloc] init]]];
+    [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITTips alloc] init]]];
     
     self.sidebarController = [[ITSidebarController alloc] init];
     self.sidebarController.viewControllers = viewControllers;
@@ -66,6 +72,7 @@
     self.networkSwitcher = [[ITNetworkSwitcher alloc] init];
     
     [self performSelectorInBackground:@selector(startTransmission) withObject:nil];
+    // [self performSelector:@selector(_test) withObject:nil afterDelay:1.0f];
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -80,7 +87,8 @@
     else
     {
         NSString *magnet = [url path];
-        return [self.controller openFiles:[NSArray arrayWithObject:magnet] addType:ITAddTypeURL];
+        // NSString *download = @"/var/mobile/Documents/iTransmission/download";
+        return [self.controller openMagnet:[NSArray arrayWithObject:magnet]];
     }
     
     return TRUE;
@@ -88,7 +96,9 @@
 
 - (void)_test
 {
-    [(id)self.statusBarController.contentViewController slideContainerViewToRightAnimated:YES];
+    // [(id)self.statusBarController.contentViewController slideContainerViewToRightAnimated:YES];
+    // [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"torrent" ofType:@"torrent"]] addType:ITAddTypeManual];
+    [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"torrent" ofType:@"torrent"]] addType:ITAddTypeManual];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -161,6 +171,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     self.networkSwitcher = nil;
+    [self.controller shutdown];
 }
 
 - (void)requestToOpenURL:(NSURL*)URL
@@ -189,9 +200,11 @@
     self.interactionController = nil;
 }
 
+/*
 - (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller
 {
     self.interactionController = nil;
 }
+ */
 
 @end

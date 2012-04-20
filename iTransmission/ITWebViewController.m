@@ -37,13 +37,12 @@ NSURL *requestedURL;
     return self;
 }
 
-/* size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
+size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
     size_t written;
     written = fwrite(ptr, size, nmemb, stream);
     return written;
 }
- */
 
 - (void)viewDidLoad
 {
@@ -65,29 +64,45 @@ NSURL *requestedURL;
     {
         NSURL *requestedURL = [request URL];
         NSString *fileExtension = [requestedURL pathExtension];
-         if ([fileExtension isEqualToString:@"torrent"])
-         {
-             NSLog(@"TORRENT");
-             NSString *charURL = [requestedURL absoluteString]; 
-             CURL *curl;
-             FILE *fp;
-             CURLcode res;
-             char outfilename[FILENAME_MAX] = "/Applications/iTransmission.app/torrent.torrent";
-             const char *url = [charURL UTF8String];
-             curl = curl_easy_init();
-             if (curl)
-             {
-                 fp = fopen(outfilename,"wb");
-                 curl_easy_setopt(curl, CURLOPT_URL, url);
-                 curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-                 curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-                 res = curl_easy_perform(curl);
+        if ([fileExtension isEqualToString:@"torrent"])
+        {
+            NSString *charURL = [requestedURL absoluteString]; 
+            CURL *curl;
+            FILE *fp;
+            CURLcode res;
+            char outfilename[FILENAME_MAX] = "/Applications/iTransmission.app/torrent.torrent";
+            const char *url = [charURL UTF8String];
+            curl = curl_easy_init();
+            if (curl)
+            {
+                fp = fopen(outfilename,"wb");
+                NSFileManager *check;
+                BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/iTransmission.app/torrent.torrent"];
+                if(fileExists == YES)
+                {
+                    [check removeItemAtPath:@"/Applications/iTransmission.app/torrent.torrent" error:nil];
+                }
+                curl_easy_setopt(curl, CURLOPT_URL, url);
+                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+                curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+                res = curl_easy_perform(curl);
                  
-                 curl_easy_cleanup(curl);
-                 fclose(fp);
-             }
-             [self performSelector:@selector(add) withObject:nil afterDelay:1.0f];
-         }
+                curl_easy_cleanup(curl);
+                fclose(fp);
+            }
+            [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"torrent" ofType:@"torrent"]] addType:ITAddTypeManual];
+        }
+        /*
+        if(navigationType == UIWebViewNavigationTypeLinkClicked) {
+            NSURL *requestedURL = [request URL];
+            // ...Check if the URL points to a file you're looking for...
+            // Then load the file
+            NSData *fileData = [[NSData alloc] initWithContentsOfURL:requestedURL];
+            // Get the path to the App's Documents directory
+            NSString *path = @"/Applications/iTransmission.app/";
+            [fileData writeToFile:[NSString stringWithFormat:@"%@%@", path, [requestedURL lastPathComponent]] atomically:YES];
+        }
+         */
     }
     
     return YES;

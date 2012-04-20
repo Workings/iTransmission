@@ -11,6 +11,6 @@
 @interface ITBlocklist : NSObject
 
 - (void)downloadBlocklist:(NSString *)URL;
-size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream);
+size_t write_data2(void *ptr, size_t size, size_t nmemb, FILE *stream);
 
 @end
