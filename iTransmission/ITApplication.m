@@ -10,7 +10,7 @@ BOOL __isInSandbox = YES;
         __isInSandbox = NO;
     }
     else {
-        __isInSandbox = YES;
+        __isInSandbox = NO;
     }
 }
 
