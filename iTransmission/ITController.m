@@ -105,7 +105,7 @@ NSUserDefaults* userDefaults;
 - (id)init
 {
     if (self = [super init]) {
-        [self setLoggingEnabled:YES];
+        [self setLoggingEnabled:NO];
         [[ITAppDelegate sharedDelegate] registerForTimerEvent:self];
         
         [self createPathsIfNeeded];

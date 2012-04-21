@@ -13,5 +13,6 @@
 
 @property (nonatomic, retain) ITSidebarItem *sidebarItem;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
 @end

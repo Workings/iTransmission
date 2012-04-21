@@ -169,19 +169,19 @@
 
         if ([interactionController presentOpenInMenuFromRect:self.view.bounds inView:self.view animated:YES] == NO) {
             [UIAlertView showMessageWithDismissButton:[NSString stringWithFormat:@"No application can open \"%@\"!\n", node.name]];
-            self.interactionController = nil;
+            // self.interactionController = nil;
         }
     }
 }
 
 - (void)documentInteractionController:(UIDocumentInteractionController *)controller didEndSendingToApplication:(NSString *)application
 {
-    self.interactionController = nil;
+    // self.interactionController = nil;
 }
 
 - (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller
 {
-    self.interactionController = nil;
+    // self.interactionController = nil;
 }
 
 - (void)viewDidUnload

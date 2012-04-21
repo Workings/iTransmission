@@ -11,6 +11,7 @@
 @implementation ITWebinterface
 @synthesize sidebarItem;
 @synthesize webView;
+@synthesize activityIndicator;
 
 - (id)init 
 {
@@ -48,6 +49,22 @@
     NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
     [webView loadRequest:requestURL];
     [super viewDidLoad];
+    
+    CGRect frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
+    self.activityIndicator = [[UIActivityIndicatorView alloc]
+                              initWithFrame:frame];
+    [self.activityIndicator sizeToFit];
+    [self.activityIndicator setHidesWhenStopped:YES];
+    self.activityIndicator.autoresizingMask =
+    (UIViewAutoresizingFlexibleLeftMargin |
+     UIViewAutoresizingFlexibleRightMargin |
+     UIViewAutoresizingFlexibleTopMargin |
+     UIViewAutoresizingFlexibleBottomMargin);
+    
+    UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] 
+                                    initWithCustomView:self.activityIndicator];
+    loadingView.target = self;
+    self.navigationItem.rightBarButtonItem = loadingView;
     // Do any additional setup after loading the view from its nib.
 }
 
