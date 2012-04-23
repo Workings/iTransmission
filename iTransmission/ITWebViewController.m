@@ -14,6 +14,7 @@
 #import <curl/easy.h>
 #import "ITApplication.h"
 #import "ITTorrent.h"
+#import "ITTransfersViewController.h"
 
 @implementation ITWebViewController
 @synthesize sidebarItem = _sidebarItem;
@@ -27,7 +28,7 @@ NSURL *requestedURL;
 
 - (id)init
 {
-    if ((self = [super initWithAddress:@"http://www.isohunt.com/torrent_details/52510650/ubuntu?tab=summary"])) {
+    if ((self = [super initWithAddress:@"http://www.kat.ph"])) {
         self.sidebarItem = [[ITSidebarItem alloc] init];
         self.sidebarItem.title = @"Browser";
 //        self.sidebarItem.icon = [UIImage imageNamed:@"browser-icon.png"];
@@ -58,12 +59,41 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
     
 }
 
+- (void) openMagnet: (NSString *) address
+{
+    tr_torrent * duplicateTorrent;
+    if ((duplicateTorrent = tr_torrentFindFromMagnetLink(self.handle, [address UTF8String])))
+    {
+        const tr_info * info = tr_torrentInfo(duplicateTorrent);
+        NSString * name = (info != NULL && info->name != NULL) ? [NSString stringWithUTF8String: info->name] : nil;
+        return;
+    }
+    
+    //determine download location
+    NSString * location = nil;
+    
+    // ITTorrent * torrent;
+    if (!(torrent = [[ITTorrent alloc] initWithMagnetAddress: address location: location lib: self.handle]))
+    {
+        return;
+    }
+    
+    [torrent startTransfer];
+    
+    [torrent update];
+    [[[ITTransfersViewController alloc] displayedTorrents] addObject: torrent];
+    
+    [[[ITTransfersViewController alloc] displayedTorrents] addObject: torrent];
+}
+
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    NSURL *requestedURL = [request URL];
+    NSString *fileExtension = [requestedURL pathExtension];
+    NSString *scheme = [requestedURL scheme];
     if (navigationType == UIWebViewNavigationTypeLinkClicked)
     {
-        NSURL *requestedURL = [request URL];
-        NSString *fileExtension = [requestedURL pathExtension];
         if ([fileExtension isEqualToString:@"torrent"])
         {
             NSString *charURL = [requestedURL absoluteString]; 
@@ -92,17 +122,13 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
             }
             [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"torrent" ofType:@"torrent"]] addType:ITAddTypeManual];
         }
-        /*
         if(navigationType == UIWebViewNavigationTypeLinkClicked) {
-            NSURL *requestedURL = [request URL];
-            // ...Check if the URL points to a file you're looking for...
-            // Then load the file
-            NSData *fileData = [[NSData alloc] initWithContentsOfURL:requestedURL];
-            // Get the path to the App's Documents directory
-            NSString *path = @"/Applications/iTransmission.app/";
-            [fileData writeToFile:[NSString stringWithFormat:@"%@%@", path, [requestedURL lastPathComponent]] atomically:YES];
+            if( [scheme isEqualToString:@"magnet"] )
+            {
+                NSLog(@"magnet");
+                // [self.openMagnet:[requestedURL absoluteString];
+            }
         }
-         */
     }
     
     return YES;

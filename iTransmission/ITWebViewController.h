@@ -28,4 +28,5 @@
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream);
 - (id)init;
+- (void) openMagnet: (NSString *) address;
 @end
