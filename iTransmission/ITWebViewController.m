@@ -28,10 +28,10 @@ NSURL *requestedURL;
 
 - (id)init
 {
-    if ((self = [super initWithAddress:@"http://www.kat.ph"])) {
+    if ((self = [super initWithAddress:@"http://www.thepiratebay.se"])) {
         self.sidebarItem = [[ITSidebarItem alloc] init];
         self.sidebarItem.title = @"Browser";
-//        self.sidebarItem.icon = [UIImage imageNamed:@"browser-icon.png"];
+        self.sidebarItem.icon = [UIImage imageNamed:@"browser-icon.png"];
         self.navigationController.toolbarHidden = NO;
 //        self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     }
@@ -59,34 +59,6 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
     
 }
 
-- (void) openMagnet: (NSString *) address
-{
-    tr_torrent * duplicateTorrent;
-    if ((duplicateTorrent = tr_torrentFindFromMagnetLink(self.handle, [address UTF8String])))
-    {
-        const tr_info * info = tr_torrentInfo(duplicateTorrent);
-        NSString * name = (info != NULL && info->name != NULL) ? [NSString stringWithUTF8String: info->name] : nil;
-        return;
-    }
-    
-    //determine download location
-    NSString * location = nil;
-    
-    // ITTorrent * torrent;
-    if (!(torrent = [[ITTorrent alloc] initWithMagnetAddress: address location: location lib: self.handle]))
-    {
-        return;
-    }
-    
-    [torrent startTransfer];
-    
-    [torrent update];
-    [[[ITTransfersViewController alloc] displayedTorrents] addObject: torrent];
-    
-    [[[ITTransfersViewController alloc] displayedTorrents] addObject: torrent];
-}
-
-
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSURL *requestedURL = [request URL];
@@ -94,46 +66,24 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
     NSString *scheme = [requestedURL scheme];
     if (navigationType == UIWebViewNavigationTypeLinkClicked)
     {
-        if ([fileExtension isEqualToString:@"torrent"])
+        if( [scheme isEqualToString:@"magnet"] )
         {
-            NSString *charURL = [requestedURL absoluteString]; 
-            CURL *curl;
-            FILE *fp;
-            CURLcode res;
-            char outfilename[FILENAME_MAX] = "/Applications/iTransmission.app/torrent.torrent";
-            const char *url = [charURL UTF8String];
-            curl = curl_easy_init();
-            if (curl)
-            {
-                fp = fopen(outfilename,"wb");
-                NSFileManager *check;
-                BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/iTransmission.app/torrent.torrent"];
-                if(fileExists == YES)
-                {
-                    [check removeItemAtPath:@"/Applications/iTransmission.app/torrent.torrent" error:nil];
-                }
-                curl_easy_setopt(curl, CURLOPT_URL, url);
-                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-                curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-                res = curl_easy_perform(curl);
-                 
-                curl_easy_cleanup(curl);
-                fclose(fp);
-            }
-            [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"torrent" ofType:@"torrent"]] addType:ITAddTypeManual];
-        }
-        if(navigationType == UIWebViewNavigationTypeLinkClicked) {
-            if( [scheme isEqualToString:@"magnet"] )
-            {
-                NSLog(@"magnet");
-                // [self.openMagnet:[requestedURL absoluteString];
-            }
+            NSLog(@"magnet");
+            NSString *magnetlink = [requestedURL absoluteString];
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            NSURL *webinterface = [NSURL URLWithString:@"http://127.0.0.1:9091/transmission/web/"];
+            NSURLRequest *requestURL = [NSURLRequest requestWithURL:webinterface];
+            pasteboard.string = magnetlink;
+            UIAlertView *message;
+            message = [[UIAlertView alloc] initWithTitle:@"How to add" message:@"Now paste the URL into the open button in the web interface" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
+            [message show];
+            [webView loadRequest:requestURL];
         }
     }
     
     return YES;
 }
-
+                 
 - (void)add
 {
     [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"torrent" ofType:@"torrent"]] addType:ITAddTypeManual];

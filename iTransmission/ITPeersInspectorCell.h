@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ITPeersInspectorCell : UIViewController
+@interface ITPeersInspectorCell : UITableViewCell
+
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UIView *view;
 
 @end

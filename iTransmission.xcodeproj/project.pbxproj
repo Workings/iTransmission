@@ -144,6 +144,10 @@
 		CEB5279E153D2C6A009DF90A /* ITWebinterface.h in Headers */ = {isa = PBXBuildFile; fileRef = CEB5279B153D2C6A009DF90A /* ITWebinterface.h */; };
 		CEB5279F153D2C6A009DF90A /* ITWebinterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB5279C153D2C6A009DF90A /* ITWebinterface.m */; };
 		CEB527A0153D2C6A009DF90A /* ITWebinterface.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB5279D153D2C6A009DF90A /* ITWebinterface.xib */; };
+		CEE5D0D715466F1F0097640A /* ITPeersInspectorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE5D0D415466F1E0097640A /* ITPeersInspectorCell.h */; };
+		CEE5D0D815466F1F0097640A /* ITPeersInspectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE5D0D515466F1E0097640A /* ITPeersInspectorCell.m */; };
+		CEE5D0D915466F1F0097640A /* ITPeersInspectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE5D0D615466F1E0097640A /* ITPeersInspectorCell.xib */; };
+		CEED9408154E0EF700FA201F /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = CEED9407154E0EF700FA201F /* home.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -341,6 +345,10 @@
 		CEB5279B153D2C6A009DF90A /* ITWebinterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITWebinterface.h; sourceTree = "<group>"; };
 		CEB5279C153D2C6A009DF90A /* ITWebinterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITWebinterface.m; sourceTree = "<group>"; };
 		CEB5279D153D2C6A009DF90A /* ITWebinterface.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITWebinterface.xib; sourceTree = "<group>"; };
+		CEE5D0D415466F1E0097640A /* ITPeersInspectorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPeersInspectorCell.h; sourceTree = "<group>"; };
+		CEE5D0D515466F1E0097640A /* ITPeersInspectorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPeersInspectorCell.m; sourceTree = "<group>"; };
+		CEE5D0D615466F1E0097640A /* ITPeersInspectorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPeersInspectorCell.xib; sourceTree = "<group>"; };
+		CEED9407154E0EF700FA201F /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = iTransmission/home.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,6 +432,7 @@
 		7E246D3A144F076C008A8586 = {
 			isa = PBXGroup;
 			children = (
+				CEED9407154E0EF700FA201F /* home.png */,
 				CE894E14153F1CBD00074E9F /* ITTips.h */,
 				CE894E15153F1CBD00074E9F /* ITTips.m */,
 				CE894E16153F1CBD00074E9F /* ITTips.xib */,
@@ -624,6 +633,9 @@
 				7E6BCA8C146C23260087A8F6 /* ITFileInspectorCell.xib */,
 				7E6BCA8E146C233D0087A8F6 /* ITFileInspectorCell.h */,
 				7E6BCA8F146C233D0087A8F6 /* ITFileInspectorCell.m */,
+				CEE5D0D415466F1E0097640A /* ITPeersInspectorCell.h */,
+				CEE5D0D515466F1E0097640A /* ITPeersInspectorCell.m */,
+				CEE5D0D615466F1E0097640A /* ITPeersInspectorCell.xib */,
 			);
 			name = Inspectors;
 			sourceTree = "<group>";
@@ -660,6 +672,7 @@
 				CE8C11A6153A3DA700AD5690 /* ITThemeBrowser.h in Headers */,
 				CEB5279E153D2C6A009DF90A /* ITWebinterface.h in Headers */,
 				CE894E17153F1CBD00074E9F /* ITTips.h in Headers */,
+				CEE5D0D715466F1F0097640A /* ITPeersInspectorCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +767,8 @@
 				CE8C11A8153A3DA700AD5690 /* ITThemeBrowser.xib in Resources */,
 				CEB527A0153D2C6A009DF90A /* ITWebinterface.xib in Resources */,
 				CE894E19153F1CBD00074E9F /* ITTips.xib in Resources */,
+				CEE5D0D915466F1F0097640A /* ITPeersInspectorCell.xib in Resources */,
+				CEED9408154E0EF700FA201F /* home.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,6 +871,7 @@
 				CE8C11A7153A3DA700AD5690 /* ITThemeBrowser.m in Sources */,
 				CEB5279F153D2C6A009DF90A /* ITWebinterface.m in Sources */,
 				CE894E18153F1CBD00074E9F /* ITTips.m in Sources */,
+				CEE5D0D815466F1F0097640A /* ITPeersInspectorCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

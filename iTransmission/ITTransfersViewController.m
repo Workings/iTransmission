@@ -31,6 +31,7 @@
         self.title = @"Transfers";
         self.sidebarItem = [[ITSidebarItem alloc] init];
         self.sidebarItem.title = @"Transfers";
+        self.sidebarItem.icon = [UIImage imageNamed:@"transfers-icon.png"];
         self.displayedTorrents = [NSMutableArray array];
         [self registerNotifications];
     }

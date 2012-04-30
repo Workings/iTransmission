@@ -61,8 +61,8 @@
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITPrefViewController alloc] init]]];
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITInfoViewController alloc] initWithPageName:@"about"]]];
     // [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITThemeBrowser alloc] init]]];
-    [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITWebinterface alloc] init]]];
-    [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITTips alloc] init]]];
+    // [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITWebinterface alloc] init]]];
+    // [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITTips alloc] init]]];
     
     self.sidebarController = [[ITSidebarController alloc] init];
     self.sidebarController.viewControllers = viewControllers;
@@ -83,12 +83,6 @@
     if ([url isFileURL]) {
         NSString *filePath = [url path];
         return [self.controller openFiles:[NSArray arrayWithObject:filePath] addType:ITAddTypeManual];
-    }
-    else
-    {
-        NSString *magnet = [url path];
-        // NSString *download = @"/var/mobile/Documents/iTransmission/download";
-        return [self.controller openMagnet:[NSArray arrayWithObject:magnet]];
     }
     
     return TRUE;

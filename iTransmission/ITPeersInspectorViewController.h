@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ITInspectorBaseViewController.h"
 
-@interface ITPeersInspectorViewController : ITInspectorBaseViewController
+@interface ITPeersInspectorViewController : ITInspectorBaseViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

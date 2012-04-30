@@ -15,10 +15,12 @@
 @property (nonatomic, strong, readonly) UIBarButtonItem *refreshBarButtonItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem *stopBarButtonItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem *actionBarButtonItem;
+@property (nonatomic, strong, readonly) UIBarButtonItem *home;
 @property (nonatomic, strong, readonly) UIActionSheet *pageActionSheet;
 
 @property (nonatomic, strong) UIWebView *mainWebView;
 @property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, strong) UIImage *homebutton;
 
 - (id)initWithAddress:(NSString*)urlString;
 - (id)initWithURL:(NSURL*)URL;
@@ -28,6 +30,7 @@
 - (void)goBackClicked:(UIBarButtonItem *)sender;
 - (void)goForwardClicked:(UIBarButtonItem *)sender;
 - (void)reloadClicked:(UIBarButtonItem *)sender;
+- (void)homeClicked:(UIBarButtonItem *)sender;
 - (void)stopClicked:(UIBarButtonItem *)sender;
 - (void)actionButtonClicked:(UIBarButtonItem *)sender;
 
@@ -39,7 +42,7 @@
 @synthesize availableActions;
 
 @synthesize URL, mainWebView;
-@synthesize backBarButtonItem, forwardBarButtonItem, refreshBarButtonItem, stopBarButtonItem, actionBarButtonItem, pageActionSheet;
+@synthesize backBarButtonItem, forwardBarButtonItem, refreshBarButtonItem, stopBarButtonItem, actionBarButtonItem, pageActionSheet, home, homebutton;
 
 #pragma mark - setters and getters
 
@@ -78,6 +81,16 @@
         stopBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stopClicked:)];
     }
     return stopBarButtonItem;
+}
+
+- (UIBarButtonItem *)home
+{
+    homebutton = [UIImage imageNamed:@"home.png"];
+    if (!home) {
+        // home = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(homeClicked:)];
+        home = [[UIBarButtonItem alloc] initWithImage:homebutton landscapeImagePhone:homebutton style:UIBarButtonItemStylePlain target:self action:@selector(homeClicked:)];
+    }
+    return home;
 }
 
 - (UIBarButtonItem *)actionBarButtonItem {
@@ -226,6 +239,8 @@
                      flexibleSpace,
                      self.forwardBarButtonItem,
                      flexibleSpace,
+                     self.home,
+                     flexibleSpace,
                      self.actionBarButtonItem,
                      fixedSpace,
                      nil];
@@ -255,6 +270,8 @@
                      self.backBarButtonItem, 
                      flexibleSpace,
                      self.forwardBarButtonItem,
+                     flexibleSpace,
+                     self.home,
                      flexibleSpace,
                      refreshStopBarButtonItem,
                      flexibleSpace,
@@ -307,6 +324,14 @@
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	[self updateToolbarItems];
+}
+
+- (void)homeClicked:(UIBarButtonItem *)sender
+{
+    NSURL *homepage;
+    homepage = [NSURL URLWithString:@"http://www.thepiratebay.se"];
+    NSURLRequest *requestURL = [NSURLRequest requestWithURL:homepage];
+    [mainWebView loadRequest:requestURL];
 }
 
 - (void)actionButtonClicked:(id)sender {
