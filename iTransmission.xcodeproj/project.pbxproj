@@ -687,7 +687,7 @@
 				7E246D42144F076D008A8586 /* Frameworks */,
 				7E246D43144F076D008A8586 /* Resources */,
 				7EF009A6146E9F6600AD1BA5 /* Headers */,
-				CEA90C6E154517BC006124C4 /* ShellScript */,
+				CE7C08271573EDC100C19EFB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -788,7 +788,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ $BUILD_STYLE != \"AdHoc_Distribution\" ]; then\nexit\nfi\n\n# remove previous files\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/Payload\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTunesArtwork\n\n/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp iTransmission/Icons/icon-original-large.png $CONFIGURATION_BUILD_DIR/iTunesArtwork\n/bin/cp iTransmission/iTunesMetadata.plist $CONFIGURATION_BUILD_DIR/iTunesMetadata.plist\nrm $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app/iTunesMetadata.plist\n\n# set build number\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" iTransmission/iTransmission-Info.plist)\nbuildNumber=$(($buildNumber + 1))\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" iTransmission/iTransmission-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString 2.$buildNumber\" iTransmission/iTransmission-Info.plist\ncp -Rf iTransmission/iTransmission-Info.plist $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" iTransmission/iTransmission-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString 2.$buildNumber\" iTransmission/iTransmission-Info.plist\ncp -Rf iTransmission/iTransmission-Info.plist $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app\n\ncd $CONFIGURATION_BUILD_DIR\nDATE=\"`/bin/date +'%Y%m%d'`\"\n/usr/libexec/PlistBuddy -c \"Set :bundleVersion 2.$buildNumber\" iTunesMetadata.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app/Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString 2.$buildNumber\" $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app/Info.plist\n/usr/bin/zip -r iTransmission_b${buildNumber}.ipa Payload iTunesArtwork iTunesMetadata.plist\nopen $CONFIGURATION_BUILD_DIR -a Finder";
 		};
-		CEA90C6E154517BC006124C4 /* ShellScript */ = {
+		CE7C08271573EDC100C19EFB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -799,7 +799,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export CODESIGN_ALLOCATE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Developer/iphoneentitlements401/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+			shellScript = "export CODESIGN_ALLOCATE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Developer/iphoneentitlements401/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Development\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -903,7 +903,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -929,7 +929,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -947,6 +947,7 @@
 		7E246D5E144F076D008A8586 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTransmission/iTransmission-Prefix.pch";
@@ -973,6 +974,7 @@
 		7E246D5F144F076D008A8586 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTransmission/iTransmission-Prefix.pch";

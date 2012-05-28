@@ -634,54 +634,47 @@ NSUserDefaults* userDefaults;
 - (BOOL)openMagnet:(NSString *)url
 {
     BOOL retval = YES;
+    const char *magnet = [url UTF8String];
     
-    for (NSString * torrentPath in url)
-    {
-        //ensure torrent doesn't already exist
-        tr_ctor * ctor = tr_ctorNew(self.handle);
-        tr_ctorSetMetainfoFromFile(ctor, [torrentPath UTF8String]);
+    //ensure torrent doesn't already exist
+    tr_ctor * ctor = tr_ctorNew(self.handle);
+    tr_ctorSetMetainfoFromMagnetLink(ctor, magnet);
         
-        tr_info info;
-        tr_ctorFree(ctor);
+    tr_info info;
+    tr_ctorFree(ctor);
         
-        //determine download location
-        NSString * location;
-        /*
-         else if ([[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadLocationConstant"])
-         location = [[fDefaults stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
-         else if (type != ADD_URL)
-         location = [torrentPath stringByDeletingLastPathComponent];
-         else
-         location = nil;
-         */
-        location = [[[NSUserDefaults standardUserDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
+    //determine download location
+    NSString * location;
+    /*
+    else if ([[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadLocationConstant"])
+    location = [[fDefaults stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
+    else if (type != ADD_URL)
+    location = [torrentPath stringByDeletingLastPathComponent];
+    else
+    location = nil;
+    */
+    location = [[[NSUserDefaults standardUserDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
         
-        //determine to show the options window
-        tr_metainfoFree(&info);
+    tr_metainfoFree(&info);
         
-        ITTorrent * torrent;
-        if (!(torrent = [[ITTorrent alloc] initWithMagnetAddress:url location:location lib:self.handle])) {
-            retval = YES;
-            continue;
-        }
-        //change the location if the group calls for it (this has to wait until after the torrent is created)
-        /*
-         if (!lockDestination && [[GroupsController groups] usesCustomDownloadLocationForIndex: [torrent groupValue]])
+    ITTorrent * torrent;
+    torrent = [[ITTorrent alloc] initWithMagnetAddress: url location: location
+                                                    lib:self.handle];
+    //change the location if the group calls for it (this has to wait until after the torrent is created)
+    /*
+    if (!lockDestination && [[GroupsController groups] usesCustomDownloadLocationForIndex: [torrent groupValue]])
          {
          location = [[GroupsController groups] customDownloadLocationForIndex: [torrent groupValue]];
          [torrent changeDownloadFolderBeforeUsing: location];
          }
-         */
-        else
-        {
-            [torrent startTransfer];
-            
-            [torrent update];
-            [self.torrents addObject: torrent];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kITNewTorrentAddedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:torrent forKey:@"torrent"]];
-            [self updateTorrentHistory];
-        }
-    }
+    */
+        
+    [torrent startTransfer];
+        
+    [torrent update];
+    [self.torrents addObject: torrent];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kITNewTorrentAddedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:torrent forKey:@"torrent"]];
+        [self updateTorrentHistory];
     return retval;
 }
 @end

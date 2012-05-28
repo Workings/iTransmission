@@ -88,6 +88,12 @@
     return TRUE;
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    NSString *magnet = [url path];
+    return [self.controller openMagnet:magnet];
+}
+
 - (void)_test
 {
     // [(id)self.statusBarController.contentViewController slideContainerViewToRightAnimated:YES];

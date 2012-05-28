@@ -64,6 +64,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
     NSURL *requestedURL = [request URL];
     NSString *fileExtension = [requestedURL pathExtension];
     NSString *scheme = [requestedURL scheme];
+    NSString *url = [requestedURL path];
     if (navigationType == UIWebViewNavigationTypeLinkClicked)
     {
         if( [scheme isEqualToString:@"magnet"] )
@@ -78,6 +79,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
             message = [[UIAlertView alloc] initWithTitle:@"How to add" message:@"Now paste the URL into the open button in the web interface" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
             [message show];
             [webView loadRequest:requestURL];
+            [[ITTorrent alloc] initWithMagnetAddress:url location:downloadFilePath lib:self.handle];
         }
     }
     

@@ -78,21 +78,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.torrent flatFileList] count];
+    return [[self.torrent peers] count];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 
 {
-    if ([self.torrent canChangeDownloadCheckForFiles:[[self.torrent peers] objectAtIndex:indexPath.row]]) {
-    }
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.torrent fileProgress:[[self.torrent flatFileList] objectAtIndex:indexPath.row]] == 1.00f) {
-        return indexPath;
-    }
     return nil;
 }
 
