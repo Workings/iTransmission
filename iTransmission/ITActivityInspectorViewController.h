@@ -11,4 +11,7 @@
 
 @interface ITActivityInspectorViewController : ITInspectorBaseViewController
 
+@property (nonatomic, strong) UITableViewCell *peersCell;
+@property (nonatomic, strong) UITableViewCell *sizeCell;
+
 @end

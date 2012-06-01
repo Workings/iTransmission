@@ -595,9 +595,8 @@
 
 - (void) setRPCPassword:(NSString*)password
 {
-    [self setKeychainPassword:[password UTF8String] forService: RPC_KEYCHAIN_SERVICE username: RPC_KEYCHAIN_NAME];
-    
-    tr_sessionSetRPCPassword(self.handle, [password cStringUsingEncoding:NSUTF8StringEncoding]);
+    [self.userDefaults setObject:password forKey:@"RPCPassword"];
+    tr_sessionSetRPCPassword(self.handle, [[self.userDefaults stringForKey:@"RPCPassword"] UTF8String]);
     [[NSNotificationCenter defaultCenter] postNotificationName:kITPrefsRPCPasswordUpdatedNotification object:nil];
 }
 

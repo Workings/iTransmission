@@ -10,6 +10,8 @@
 #import "ITTorrent.h"
 
 @implementation ITActivityInspectorViewController
+@synthesize peersCell;
+@synthesize sizeCell;
 
 - (id)initWithTorrent:(ITTorrent*)torrent
 {
@@ -30,12 +32,62 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
 }
-*/
+
+- (UITableViewCell *)peersCell
+{
+    if (peersCell) return peersCell;
+    else {
+        peersCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        peersCell.textLabel.text = @"";
+        peersCell.detailTextLabel.text = [self.torrent name];
+    }
+    return _nameCell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return 2;
+            break;
+        default:
+            break;
+    }
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            switch (indexPath.row) {
+                case 0:
+                    return self.nameCell;
+                    break;
+                case 1:
+                    return self.sizeCell;
+                    break;
+                default:
+                    break;
+            }
+    }
+    return nil;
+}
+
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

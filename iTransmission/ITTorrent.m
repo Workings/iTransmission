@@ -791,7 +791,21 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
         tr_peer_stat * peer = &peers[i];
         NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithCapacity: 12];
         
+        [dict setObject: [self name] forKey: @"Name"];
+        [dict setObject: [NSNumber numberWithInt: peer->from] forKey: @"From"];
         [dict setObject: [NSString stringWithUTF8String: peer->addr] forKey: @"IP"];
+        [dict setObject: [NSNumber numberWithInt: peer->port] forKey: @"Port"];
+        [dict setObject: [NSNumber numberWithFloat: peer->progress] forKey: @"Progress"];
+        [dict setObject: [NSNumber numberWithBool: peer->isSeed] forKey: @"Seed"];
+        [dict setObject: [NSNumber numberWithBool: peer->isEncrypted] forKey: @"Encryption"];
+        [dict setObject: [NSNumber numberWithBool: peer->isUTP] forKey: @"uTP"];
+        [dict setObject: [NSString stringWithUTF8String: peer->client] forKey: @"Client"];
+        [dict setObject: [NSString stringWithUTF8String: peer->flagStr] forKey: @"Flags"];
+        
+        if (peer->isUploadingTo)
+            [dict setObject: [NSNumber numberWithDouble: peer->rateToPeer_KBps] forKey: @"UL To Rate"];
+        if (peer->isDownloadingFrom)
+            [dict setObject: [NSNumber numberWithDouble: peer->rateToClient_KBps] forKey: @"DL From Rate"];
         
         [peerDicts addObject: dict];
     }
@@ -1691,6 +1705,12 @@ legacyIncompleteFolder: (NSString *) incompleteFolder
         return YES;
     else if ([self isSeeding])
     {
+        UILocalNotification *done = [[UILocalNotification alloc] init];
+        done.alertBody = @"Torrent finished downloading!";
+        done.alertAction = @"View";
+        done.soundName = UILocalNotificationDefaultSoundName;
+        done.applicationIconBadgeNumber = 1;
+        
         //ratio: show if it's set at all
         if (tr_torrentGetSeedRatio(self.handle, NULL))
             return YES;

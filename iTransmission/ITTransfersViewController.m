@@ -221,7 +221,9 @@
         if ([torrent isChecking]) 
             cell.roundProgressView.progressColor = [UIColor controlYellowColor];
         else if ([torrent isSeeding])
+        {
             cell.roundProgressView.progressColor = [UIColor controlGreenColor];
+        }
         else 
             cell.roundProgressView.progressColor = [UIColor controlBlueColor];
     }

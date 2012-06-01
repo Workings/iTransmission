@@ -10,7 +10,7 @@ BOOL __isInSandbox = YES;
         __isInSandbox = NO;
     }
     else {
-        __isInSandbox = NO;
+        __isInSandbox = YES;
     }
 }
 
@@ -34,7 +34,7 @@ BOOL __isInSandbox = YES;
 
 + (NSString*)homeDocumentsPath
 {
-    return @"/private/var/mobile/Documents/iTransmission";
+    return @"/private/var/mobile/Media/iTransmission";
 }
 
 + (NSString*)applicationPath
