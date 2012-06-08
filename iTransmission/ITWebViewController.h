@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) ITSidebarItem *sidebarItem;
 @property (nonatomic, strong) ITController *controller;
+@property (nonatomic, strong) NSUserDefaults *userDefaults;
 @property (assign, nonatomic) tr_session *handle;
 @property (nonatomic, strong) ITTorrent *torrent;
 @property (retain) NSFileHandle* downloadFile;

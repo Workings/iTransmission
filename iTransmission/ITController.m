@@ -86,10 +86,10 @@ NSUserDefaults* userDefaults;
     [fileManager createDirectoryAtPath:[self configPath] withIntermediateDirectories:YES attributes:nil error:nil];
     [fileManager createDirectoryAtPath:[self downloadPath] withIntermediateDirectories:YES attributes:nil error:nil];
     [fileManager createDirectoryAtPath:[self incompletePath] withIntermediateDirectories:YES attributes:nil error:nil];
-    fileExists = [[NSFileManager defaultManager] fileExistsAtPath:@"/var/mobile/Documents/iTransmission/transfers.plist"];
+    fileExists = [[NSFileManager defaultManager] fileExistsAtPath:@"/var/mobile/Media/iTransmission/transfers.plist"];
     if(fileExists == FALSE)
     {
-        [fileManager createFileAtPath:@"/var/mobile/Documents/iTransmission/transfers.plist" contents:nil attributes:nil];
+        [fileManager createFileAtPath:@"/var/mobile/Media/iTransmission/transfers.plist" contents:nil attributes:nil];
     }
 }
 
@@ -563,16 +563,27 @@ NSUserDefaults* userDefaults;
         if (result != TR_PARSE_OK)
         {
             if (result == TR_PARSE_DUPLICATE)
+            {
                 [[NSNotificationCenter defaultCenter] postNotificationName:kITAttemptToAddDuplicateTorrentNotification object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithUTF8String:info.name], @"ExistingTorrentName", torrentPath, @"TorrentPath", [NSNumber numberWithInteger:type], @"AddType", nil]];
+                UIAlertView *alert;
+                alert = [[UIAlertView alloc] initWithTitle:@"Duplicate Torrent" message:@"You are trying to add a torrent that has already been added" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
+                [alert show];
+            }
             else if (result == TR_PARSE_ERR)
             {
                 if (type != ITAddTypeAuto) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:kITAttemptToAddInvalidTorrentNotification object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:torrentPath, @"TorrentPath", [NSNumber numberWithInteger:type], @"AddType", nil]];
+                    UIAlertView *alert;
+                    alert = [[UIAlertView alloc] initWithTitle:@"Torrent Error" message:@"You are trying to add an invalid torrent file" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
+                    [alert show];
                     retval = YES;
                 }
             }
             else
                 NSAssert2(NO, @"Unknown error code (%d) when attempting to open \"%@\"", result, torrentPath);
+            UIAlertView *alert;
+            alert = [[UIAlertView alloc] initWithTitle:@"Unknown error" message:@"Unknown eror" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
+            [alert show];
             
             tr_metainfoFree(&info);
             retval = NO;
@@ -637,44 +648,48 @@ NSUserDefaults* userDefaults;
     const char *magnet = [url UTF8String];
     
     //ensure torrent doesn't already exist
-    tr_ctor * ctor = tr_ctorNew(self.handle);
-    tr_ctorSetMetainfoFromMagnetLink(ctor, magnet);
+    for (NSString * magnetPath in url)
+    {
+        tr_ctor * ctor = tr_ctorNew(self.handle);
+        tr_ctorSetMetainfoFromMagnetLink(ctor, magnet);
         
-    tr_info info;
-    tr_ctorFree(ctor);
+        tr_info info;
+        tr_ctorFree(ctor);
         
-    //determine download location
-    NSString * location;
-    /*
-    else if ([[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadLocationConstant"])
-    location = [[fDefaults stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
-    else if (type != ADD_URL)
-    location = [torrentPath stringByDeletingLastPathComponent];
-    else
-    location = nil;
-    */
-    location = [[[NSUserDefaults standardUserDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
+        //determine download location
+        NSString * location;
+        /*
+         else if ([[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadLocationConstant"])
+         location = [[fDefaults stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
+         else if (type != ADD_URL)
+         location = [torrentPath stringByDeletingLastPathComponent];
+         else
+         location = nil;
+         */
+        location = [[[NSUserDefaults standardUserDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
         
-    tr_metainfoFree(&info);
+        tr_metainfoFree(&info);
+        continue;
         
-    ITTorrent * torrent;
-    torrent = [[ITTorrent alloc] initWithMagnetAddress: url location: location
+        ITTorrent * torrent;
+        torrent = [[ITTorrent alloc] initWithMagnetAddress: url location: location
                                                     lib:self.handle];
-    //change the location if the group calls for it (this has to wait until after the torrent is created)
-    /*
-    if (!lockDestination && [[GroupsController groups] usesCustomDownloadLocationForIndex: [torrent groupValue]])
+        //change the location if the group calls for it (this has to wait until after the torrent is created)
+        /*
+         if (!lockDestination && [[GroupsController groups] usesCustomDownloadLocationForIndex: [torrent groupValue]])
          {
          location = [[GroupsController groups] customDownloadLocationForIndex: [torrent groupValue]];
          [torrent changeDownloadFolderBeforeUsing: location];
          }
-    */
+        */
         
-    [torrent startTransfer];
+        [torrent startTransfer];
         
-    [torrent update];
-    [self.torrents addObject: torrent];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kITNewTorrentAddedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:torrent forKey:@"torrent"]];
+        [torrent update];
+        [self.torrents addObject: torrent];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kITNewTorrentAddedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:torrent forKey:@"torrent"]];
         [self updateTorrentHistory];
+    }
     return retval;
 }
 @end

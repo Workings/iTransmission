@@ -4,6 +4,8 @@
 <dict>
 	<key>AutoImport</key>
 	<false/>
+	<key>Homepage</key>
+	<string>http://www.google.com</string>
 	<key>BlocklistURL</key>
 	<string>http://list.iblocklist.com/?list=bt_level1&amp;fileformat=p2p&amp;archiveformat=gz</string>
 	<key>BlocklistEnabled</key>
@@ -133,7 +135,7 @@
 	<key>RenamePartialFiles</key>
 	<true/>
 	<key>RPC</key>
-	<false/>
+	<true/>
 	<key>RPCAuthorize</key>
 	<false/>
 	<key>RPCPassword</key>

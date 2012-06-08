@@ -27,6 +27,7 @@
 @property (assign, nonatomic) BOOL resumeOnWake;
 @property (strong, nonatomic) NSUserDefaults *userDefaults;
 @property (strong, nonatomic) NSArray *flatFileList;
+@property (strong, nonatomic) NSArray *peerlist;
 @property (strong, nonatomic) NSArray *fileList;
 @property (strong, nonatomic) NSDate *lastUpdateDate;
 
@@ -104,7 +105,7 @@
 
 - (NSString *) name;
 - (BOOL) isFolder;
-- (uint64_t) size;
+- (int) size;
 - (uint64_t) sizeLeft;
 
 - (NSMutableArray *) allTrackerStats;

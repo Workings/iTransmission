@@ -60,6 +60,7 @@ static int trashDataFile(const char * filename)
 legacyIncompleteFolder: (NSString *) incompleteFolder;
 
 - (void) createFileList;
+- (void) createPeerList;
 - (void) insertPath: (NSMutableArray *) components forParent: (ITFileListNode *) parent fileSize: (uint64_t) size
               index: (NSInteger) index flatList: (NSMutableArray *) flatFileList;
 - (void) sortFileList: (NSMutableArray *) fileNodes;
@@ -516,7 +517,7 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
     return self.info->isMultifile;
 }
 
-- (uint64_t) size
+- (int) size
 {
     return self.info->totalSize;
 }
@@ -791,21 +792,21 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
         tr_peer_stat * peer = &peers[i];
         NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithCapacity: 12];
         
-        [dict setObject: [self name] forKey: @"Name"];
-        [dict setObject: [NSNumber numberWithInt: peer->from] forKey: @"From"];
+        // [dict setObject: [self name] forKey: @"Name"];
+        // [dict setObject: [NSNumber numberWithInt: peer->from] forKey: @"From"];
         [dict setObject: [NSString stringWithUTF8String: peer->addr] forKey: @"IP"];
-        [dict setObject: [NSNumber numberWithInt: peer->port] forKey: @"Port"];
-        [dict setObject: [NSNumber numberWithFloat: peer->progress] forKey: @"Progress"];
-        [dict setObject: [NSNumber numberWithBool: peer->isSeed] forKey: @"Seed"];
-        [dict setObject: [NSNumber numberWithBool: peer->isEncrypted] forKey: @"Encryption"];
-        [dict setObject: [NSNumber numberWithBool: peer->isUTP] forKey: @"uTP"];
-        [dict setObject: [NSString stringWithUTF8String: peer->client] forKey: @"Client"];
-        [dict setObject: [NSString stringWithUTF8String: peer->flagStr] forKey: @"Flags"];
+        // [dict setObject: [NSNumber numberWithInt: peer->port] forKey: @"Port"];
+        // [dict setObject: [NSNumber numberWithFloat: peer->progress] forKey: @"Progress"];
+        // [dict setObject: [NSNumber numberWithBool: peer->isSeed] forKey: @"Seed"];
+        // [dict setObject: [NSNumber numberWithBool: peer->isEncrypted] forKey: @"Encryption"];
+        // [dict setObject: [NSNumber numberWithBool: peer->isUTP] forKey: @"uTP"];
+        // [dict setObject: [NSString stringWithUTF8String: peer->client] forKey: @"Client"];
+        // [dict setObject: [NSString stringWithUTF8String: peer->flagStr] forKey: @"Flags"];
         
-        if (peer->isUploadingTo)
-            [dict setObject: [NSNumber numberWithDouble: peer->rateToPeer_KBps] forKey: @"UL To Rate"];
-        if (peer->isDownloadingFrom)
-            [dict setObject: [NSNumber numberWithDouble: peer->rateToClient_KBps] forKey: @"DL From Rate"];
+        // if (peer->isUploadingTo)
+         //   [dict setObject: [NSNumber numberWithDouble: peer->rateToPeer_KBps] forKey: @"UL To Rate"];
+        // if (peer->isDownloadingFrom)
+          //  [dict setObject: [NSNumber numberWithDouble: peer->rateToClient_KBps] forKey: @"DL From Rate"];
         
         [peerDicts addObject: dict];
     }

@@ -10,7 +10,7 @@ BOOL __isInSandbox = YES;
         __isInSandbox = NO;
     }
     else {
-        __isInSandbox = YES;
+        __isInSandbox = NO;
     }
 }
 
@@ -21,10 +21,7 @@ BOOL __isInSandbox = YES;
 
 + (NSString*)defaultDocumentsPath
 {
-    if ([ITApplication isRunningInSandbox]) 
-        return [ITApplication sandboxeDocumentsPath];
-    else 
-        return [ITApplication homeDocumentsPath];
+    return [ITApplication homeDocumentsPath];
 }
 
 + (NSString*)sandboxeDocumentsPath
@@ -34,7 +31,7 @@ BOOL __isInSandbox = YES;
 
 + (NSString*)homeDocumentsPath
 {
-    return @"/private/var/mobile/Media/iTransmission";
+    return @"/private/var/mobile/Documents/iTransmission";
 }
 
 + (NSString*)applicationPath

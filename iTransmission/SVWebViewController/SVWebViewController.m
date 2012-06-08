@@ -329,7 +329,7 @@
 - (void)homeClicked:(UIBarButtonItem *)sender
 {
     NSURL *homepage;
-    homepage = [NSURL URLWithString:@"http://www.thepiratebay.se"];
+    homepage = [NSURL URLWithString:@"http://www.google.com"];
     NSURLRequest *requestURL = [NSURLRequest requestWithURL:homepage];
     [mainWebView loadRequest:requestURL];
 }

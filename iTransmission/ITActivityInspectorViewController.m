@@ -12,6 +12,8 @@
 @implementation ITActivityInspectorViewController
 @synthesize peersCell;
 @synthesize sizeCell;
+@synthesize trackersCell;
+@synthesize info;
 
 - (id)initWithTorrent:(ITTorrent*)torrent
 {
@@ -47,10 +49,35 @@
     if (peersCell) return peersCell;
     else {
         peersCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        peersCell.textLabel.text = @"";
+        peersCell.textLabel.text = @"Peers Connected";
         peersCell.detailTextLabel.text = [self.torrent name];
     }
-    return _nameCell;
+    return peersCell;
+}
+
+- (UITableViewCell *)sizeCell
+{
+    if (sizeCell) return sizeCell;
+    else {
+        sizeCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        sizeCell.textLabel.text = @"Size";
+        NSString *intString = [NSString stringWithFormat:@"%d", [self.torrent size]];
+        sizeCell.detailTextLabel.text = intString;
+    }
+    return sizeCell;
+}
+
+- (UITableViewCell *)trackersCell
+{
+    if (trackersCell) return trackersCell;
+    else {
+        trackersCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        trackersCell.textLabel.text = @"Number of trackers";
+        int trackerscount = self.info->trackerCount;
+        NSString *trackerscount2 = [NSString stringWithFormat:@"%d", trackerscount];
+        trackersCell.detailTextLabel.text = trackerscount2;
+    }
+    return trackersCell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -76,10 +103,7 @@
         case 0:
             switch (indexPath.row) {
                 case 0:
-                    return self.nameCell;
-                    break;
-                case 1:
-                    return self.sizeCell;
+                    return self.trackersCell;
                     break;
                 default:
                     break;

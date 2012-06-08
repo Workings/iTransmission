@@ -7,7 +7,6 @@
 //
 
 #import "ITPeersInspectorViewController.h"
-#import "ITPeersInspectorCell.h"
 #import "ITTorrent.h"
 #import "libtransmission/transmission.h"
 
@@ -93,13 +92,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ITPeersInspectorCell *cell = (ITPeersInspectorCell*)[tableView dequeueReusableCellWithIdentifier:@"ITPeersInspectorCell"];
-    if (! [self.tableView respondsToSelector:@selector(registerNib:forCellReuseIdentifier:)]) {
-        cell = (ITPeersInspectorCell*)[[[NSBundle mainBundle] loadNibNamed:@"ITPeersInspectorCell" owner:nil options:nil] objectAtIndex:0];
-    }
-    assert(cell);
+    UITableViewCell *cell; 
     
-    cell.nameLabel.text = [[[self.torrent peers] objectAtIndex:indexPath.row] name];
+    cell.textLabel.text = [[[self.torrent peers] objectAtIndex:indexPath.row] name];
 
     cell.accessoryType = UITableViewCellAccessoryNone;
     

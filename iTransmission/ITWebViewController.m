@@ -15,6 +15,7 @@
 #import "ITApplication.h"
 #import "ITTorrent.h"
 #import "ITTransfersViewController.h"
+#import "ITController.h"
 
 @implementation ITWebViewController
 @synthesize sidebarItem = _sidebarItem;
@@ -24,11 +25,17 @@
 @synthesize downloadFile;
 @synthesize downloadFilePath;
 @synthesize transfers;
+@synthesize userDefaults;
 NSURL *requestedURL;
 
 - (id)init
 {
-    if ((self = [super initWithAddress:@"http://www.thepiratebay.se"])) {
+    NSString *home;
+    // NSString *path = [[NSBundle mainBundle] bundlePath];
+    // NSString *viTrans = [path stringByAppendingPathComponent:@"Defaults.plist"];
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    home = [userDefaults objectForKey:@"Homepage"];
+    if ((self = [super initWithAddress:@"http://google.com"])) {
         self.sidebarItem = [[ITSidebarItem alloc] init];
         self.sidebarItem.title = @"Browser";
         self.sidebarItem.icon = [UIImage imageNamed:@"browser-icon.png"];
@@ -79,7 +86,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
             message = [[UIAlertView alloc] initWithTitle:@"How to add" message:@"Now paste the URL into the open button in the web interface" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
             [message show];
             [webView loadRequest:requestURL];
-            [[ITTorrent alloc] initWithMagnetAddress:url location:downloadFilePath lib:self.handle];
+            [[ITController alloc] openMagnet:url];
         }
     }
     

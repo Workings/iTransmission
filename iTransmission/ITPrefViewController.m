@@ -62,26 +62,32 @@
 @synthesize enableDHT;
 @synthesize enablePEX;
 @synthesize handle;
+@synthesize sidebarItem;
+@synthesize reseteverything;
+@synthesize resetitransmission;
 
 - (id)init
 {
     if ((self = [super initWithNibName:@"ITPrefViewController" bundle:[NSBundle mainBundle]])) {
         [self registerNotifications];
         self.title = @"Preferences";
+        self.sidebarItem = [[ITSidebarItem alloc] init];
+        self.sidebarItem.title = @"Preferences";
+        self.sidebarItem.icon = [UIImage imageNamed:@"preferences-icon.png"];
     }
     return self;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
         case 0:
-            return 6;
+            return 1;
         case 1:
             return 2;
         case 2:
@@ -92,41 +98,43 @@
             return 5;
         case 5:
             return 5;
+        case 6:
+            return 1;
     }
     return 0;
 }
 
 - (void)viewDidLoad
 {
-    self.enableRPCAuthenticationSwitch.on = [[[ITController sharedController] prefsController] isRPCAuthorizationEnabled];
+    // self.enableRPCAuthenticationSwitch.on = [[[ITController sharedController] prefsController] isRPCAuthorizationEnabled];
     self.enablePortMapSwitch.on = [[[ITController sharedController] prefsController] isNatTransversalEnabled];
-    self.enableRPCSwitch.on = [[[ITController sharedController] prefsController] isRPCEnabled];
+    // self.enableRPCSwitch.on = [[[ITController sharedController] prefsController] isRPCEnabled];
     self.useWiFiSwitch.on = [[ITNetworkSwitcher sharedNetworkSwitcher] canUseWiFiNetwork];
     self.useMobileSwitch.on = [[ITNetworkSwitcher sharedNetworkSwitcher] canUseMobileNetwork];
     self.enableLimits.on = [[[ITController sharedController] prefsController] isLimitsEnabled];
     self.enableAutoStart.on = [[[ITController sharedController] prefsController] isAutoStartEnabled];
-    self.enableBlocklist.on = [[[ITController sharedController] prefsController] isBlocklistEnabled];
+    // self.enableBlocklist.on = [[[ITController sharedController] prefsController] isBlocklistEnabled];
     self.enableUTP.on = [[[ITController sharedController] prefsController] isUTPEnabled];
     self.enablePEX.on = [[[ITController sharedController] prefsController] isPexEnabled];
     self.enableDHT.on = [[[ITController sharedController] prefsController] isDHTEnabled];
     self.keyboardController = [[ITKeyboardController alloc] initWithDelegate:self];
-    self.RPCPortTextField.delegate = self.keyboardController;
+    // self.RPCPortTextField.delegate = self.keyboardController;
     self.bindPortTextField.delegate = self.keyboardController;
     self.MaxPeersPerTorrent.delegate = self.keyboardController;
     self.MaxPeersGlobal.delegate = self.keyboardController;
     self.DownloadLimit.delegate = self.keyboardController;
     self.UploadLimit.delegate = self.keyboardController;
-    self.RPCUsernameTextField.delegate = self.keyboardController;
-    self.RPCPasswordTextField.delegate = self.keyboardController;
-    self.RPCPortTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCPort]];
+    // self.RPCUsernameTextField.delegate = self.keyboardController;
+    // self.RPCPasswordTextField.delegate = self.keyboardController;
+    // self.RPCPortTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCPort]];
     self.bindPortTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] bindPort]];
     self.webInterfaceURLTextView.text = [NSString stringWithFormat:@"http://127.0.0.1:%d/transmission/web/", [[[ITController sharedController] prefsController] RPCPort]];
     self.MaxPeersPerTorrent.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersPerTorrent]];
     self.MaxPeersGlobal.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersGlobal]];
     self.DownloadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] DownloadLimit]];
     self.UploadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] UploadLimit]];
-    self.RPCUsernameTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCUsername]];
-    self.RPCPasswordTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCPassword]];
+    // self.RPCUsernameTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCUsername]];
+    // self.RPCPasswordTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCPassword]];
 }
 
 - (void)registerNotifications
@@ -240,6 +248,7 @@
         case 3: return @"Logging";
         case 4: return @"Limits";
         case 5: return @"Other options";
+        case 6: return @"Reset";
     }
     return nil;
 }
@@ -254,6 +263,7 @@
         case 3: return @"Only use logging for debugging. Extensive loggings will shorten both battery and Nand life. Saved logs will be available in iTunes. (switch does nothing as of now)";
         case 4: return @"If you type 0 into any of the boxes, iTransmission will download anything";
         case 5: return nil;
+        case 6: return nil;
     }
     return nil;
 }
@@ -263,12 +273,12 @@
     switch (indexPath.section) {
         case 0: {
             switch (indexPath.row) {
-                case 0: return self.enableRPCCell;
-                case 1: return self.RPCPortCell;
-                case 2: return self.openWebInterfaceCell;
-                case 3: return self.enableRPCAuthenticationCell;
-                case 4: return self.RPCUsernameCell;
-                case 5: return self.RPCPasswordCell;
+                // case 0: return self.enableRPCCell;
+                // case 1: return self.RPCPortCell;
+                case 0: return self.openWebInterfaceCell;
+                // case 3: return self.enableRPCAuthenticationCell;
+                // case 4: return self.RPCUsernameCell;
+                // case 5: return self.RPCPasswordCell;
             }
         }
         case 1: {
@@ -308,6 +318,12 @@
                 case 4: return self.enableUTPCell;
             }
         }
+        case 6:
+        {
+            switch (indexPath.row) {
+                case 0: return self.reseteverything;
+            }
+        }
     }
     return nil;
 }
@@ -320,6 +336,27 @@
 - (IBAction)useWiFiValueChanged:(id)sender
 {
     [[ITNetworkSwitcher sharedNetworkSwitcher] setUseWiFiNetwork:[sender isOn]];
+}
+
+- (IBAction)resetitransmission:(id)sender
+{
+    UIAlertView *alert;
+    alert = [[UIAlertView alloc] initWithTitle:@"Reset iTransmission?" message:@"" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 0)
+    {
+    }
+    else
+    {
+        system("rm -rf /User/Documents/iTransmission");
+        UIAlertView *alert;
+        alert = [[UIAlertView alloc] initWithTitle:@"iTransmission been reset" message:@"iTransmission has been sucsess" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 - (IBAction)useMobileValueChanged:(id)sender

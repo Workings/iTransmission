@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ITKeyboardController.h"
 #import "ITPrefsController.h"
+#import "ITSidebarItem.h"
 
-@interface ITPrefViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ITKeyboardControllerDelegate>
+@interface ITPrefViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ITKeyboardControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) ITKeyboardController *keyboardController;
+@property (nonatomic, strong) ITSidebarItem *sidebarItem;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableRPCCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableRPCAuthenticationCell;
@@ -35,6 +37,7 @@
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableUTPCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableDHTCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *enablePEXCell;
+@property (nonatomic, strong) IBOutlet UITableViewCell *reseteverything;
 @property (nonatomic, strong) IBOutlet UISwitch *enableRPCSwitch;
 @property (nonatomic, strong) IBOutlet UISwitch *enableRPCAuthenticationSwitch;
 @property (nonatomic, strong) IBOutlet UISwitch *useWiFiSwitch;
@@ -55,6 +58,7 @@
 @property (nonatomic, strong) IBOutlet UITextField *DownloadLimit;
 @property (nonatomic, strong) IBOutlet UITextField *UploadLimit;
 @property (nonatomic, strong) IBOutlet UITextView *webInterfaceURLTextView;
+@property (nonatomic, strong) IBOutlet UIButton *resetitransmission;
 @property (nonatomic, strong) IBOutlet ITPrefViewController *userDefaults;
 @property (assign, nonatomic) IBOutlet tr_session *handle;
 - (void)registerNotifications;
@@ -73,6 +77,7 @@
 - (IBAction)enableBlocklist:(id)sender;
 - (IBAction)RPCUsernamechanged:(id)sender;
 - (IBAction)RPCPasswordchanged:(id)sender;
+- (IBAction)resetitransmission:(id)sender;
 
 - (void)preferencesUpdateNotificationReceived:(NSNotification*)notification;
 
