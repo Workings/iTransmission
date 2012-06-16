@@ -86,10 +86,10 @@ NSUserDefaults* userDefaults;
     [fileManager createDirectoryAtPath:[self configPath] withIntermediateDirectories:YES attributes:nil error:nil];
     [fileManager createDirectoryAtPath:[self downloadPath] withIntermediateDirectories:YES attributes:nil error:nil];
     [fileManager createDirectoryAtPath:[self incompletePath] withIntermediateDirectories:YES attributes:nil error:nil];
-    fileExists = [[NSFileManager defaultManager] fileExistsAtPath:@"/var/mobile/Media/iTransmission/transfers.plist"];
+    fileExists = [[NSFileManager defaultManager] fileExistsAtPath:@"/var/mobile/Documents/iTransmission/transfers.plist"];
     if(fileExists == FALSE)
     {
-        [fileManager createFileAtPath:@"/var/mobile/Media/iTransmission/transfers.plist" contents:nil attributes:nil];
+        [fileManager createFileAtPath:@"/var/mobile/Documents/iTransmission/transfers.plist" contents:nil attributes:nil];
     }
 }
 

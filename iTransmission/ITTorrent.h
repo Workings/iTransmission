@@ -105,7 +105,7 @@
 
 - (NSString *) name;
 - (BOOL) isFolder;
-- (int) size;
+- (uint64_t) size;
 - (uint64_t) sizeLeft;
 
 - (NSMutableArray *) allTrackerStats;

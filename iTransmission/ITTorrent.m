@@ -517,7 +517,7 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
     return self.info->isMultifile;
 }
 
-- (int) size
+- (uint64_t) size
 {
     return self.info->totalSize;
 }
