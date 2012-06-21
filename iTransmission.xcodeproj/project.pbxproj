@@ -1150,7 +1150,7 @@
 				VALIDATE_PRODUCT = NO;
 				iOSOpenDevCopyOnBuild = YES;
 				iOSOpenDevDevice = 192.168.1.67;
-				iOSOpenDevInstallOnAnyBuild = YES;
+				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = NO;
 				iOSOpenDevPath = /opt/iOSOpenDev;
 				iOSOpenDevRespringOnInstall = NO;
@@ -1188,7 +1188,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				iOSOpenDevCopyOnBuild = YES;
 				iOSOpenDevDevice = 192.168.1.67;
-				iOSOpenDevInstallOnAnyBuild = YES;
+				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = NO;
 				iOSOpenDevPath = /opt/iOSOpenDev;
 				iOSOpenDevRespringOnInstall = NO;

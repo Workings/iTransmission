@@ -63,8 +63,8 @@
  ***/
 
 #define LINEWIDTH 80
-#define MY_CONFIG_NAME "transmission"
-#define MY_READABLE_NAME "transmission-cli"
+#define MY_CONFIG_NAME "itransmission"
+#define MY_READABLE_NAME "itransmission-cli"
 
 static bool showVersion              = false;
 static bool verify                   = 0;
