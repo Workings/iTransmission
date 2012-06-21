@@ -131,6 +131,7 @@
 		7EF855AE1454215000AD5DBB /* ITAddTorrentOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF855AC1454214B00AD5DBB /* ITAddTorrentOptionsViewController.m */; };
 		7EF855AF1454215000AD5DBB /* ITAddTorrentOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF855AD1454214D00AD5DBB /* ITAddTorrentOptionsViewController.xib */; };
 		7EF855B91454290800AD5DBB /* ITTorrentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF855B81454290600AD5DBB /* ITTorrentListViewController.m */; };
+		CE0886BC1592A65A000E6E59 /* cli.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0886BB1592A65A000E6E59 /* cli.c */; };
 		CE0FE198153895130075E958 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0FE197153895120075E958 /* MobileCoreServices.framework */; };
 		CE0FE19A153895290075E958 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0FE199153895290075E958 /* libz.dylib */; };
 		CE18CB6A15354F44005FDF12 /* ITBlocklist.h in Headers */ = {isa = PBXBuildFile; fileRef = CE18CB6815354F44005FDF12 /* ITBlocklist.h */; };
@@ -333,6 +334,11 @@
 		7EF855AD1454214D00AD5DBB /* ITAddTorrentOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITAddTorrentOptionsViewController.xib; sourceTree = "<group>"; };
 		7EF855B71454290300AD5DBB /* ITTorrentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTorrentListViewController.h; sourceTree = "<group>"; };
 		7EF855B81454290600AD5DBB /* ITTorrentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTorrentListViewController.m; sourceTree = "<group>"; };
+		CE0886B41592A65A000E6E59 /* control.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = control.txt; path = Package/DEBIAN/control.txt; sourceTree = "<group>"; };
+		CE0886B51592A65A000E6E59 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
+		CE0886B71592A65A000E6E59 /* PackageVersion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PackageVersion.plist; sourceTree = "<group>"; };
+		CE0886BA1592A65A000E6E59 /* 0xdeadfa11 */ = {isa = PBXFileReference; lastKnownFileType = text; name = 0xdeadfa11; path = Package/usr/bin/0xdeadfa11; sourceTree = "<group>"; };
+		CE0886BB1592A65A000E6E59 /* cli.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cli.c; sourceTree = "<group>"; };
 		CE0FE197153895120075E958 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CE0FE199153895290075E958 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CE18CB6815354F44005FDF12 /* ITBlocklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITBlocklist.h; sourceTree = "<group>"; };
@@ -368,6 +374,13 @@
 				7E246D4A144F076D008A8586 /* UIKit.framework in Frameworks */,
 				7E246D4C144F076D008A8586 /* Foundation.framework in Frameworks */,
 				7E246D4E144F076D008A8586 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0886AE1592A65A000E6E59 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +464,7 @@
 				7E2D9928146BF63400736336 /* CFNetwork.framework */,
 				7E137CEF1452FB720030DC13 /* Security.framework */,
 				7E246D4F144F076D008A8586 /* iTransmission */,
+				CE0886B11592A65A000E6E59 /* itransmission-cli */,
 				7E246D48144F076D008A8586 /* Frameworks */,
 				7E246D46144F076D008A8586 /* Products */,
 			);
@@ -657,6 +671,58 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		CE0886B11592A65A000E6E59 /* itransmission-cli */ = {
+			isa = PBXGroup;
+			children = (
+				CE0886BB1592A65A000E6E59 /* cli.c */,
+				CE0886B21592A65A000E6E59 /* Package */,
+				CE0886B61592A65A000E6E59 /* Supporting Files */,
+			);
+			path = "itransmission-cli";
+			sourceTree = "<group>";
+		};
+		CE0886B21592A65A000E6E59 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				CE0886B31592A65A000E6E59 /* DEBIAN */,
+				CE0886B81592A65A000E6E59 /* usr */,
+			);
+			name = Package;
+			sourceTree = "<group>";
+		};
+		CE0886B31592A65A000E6E59 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				CE0886B41592A65A000E6E59 /* control.txt */,
+				CE0886B51592A65A000E6E59 /* control */,
+			);
+			name = DEBIAN;
+			sourceTree = "<group>";
+		};
+		CE0886B61592A65A000E6E59 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE0886B71592A65A000E6E59 /* PackageVersion.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE0886B81592A65A000E6E59 /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				CE0886B91592A65A000E6E59 /* bin */,
+			);
+			name = usr;
+			sourceTree = "<group>";
+		};
+		CE0886B91592A65A000E6E59 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				CE0886BA1592A65A000E6E59 /* 0xdeadfa11 */,
+			);
+			name = bin;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -700,6 +766,22 @@
 			productReference = 7E246D45144F076D008A8586 /* iTransmission.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CE0886B01592A65A000E6E59 /* itransmission-cli */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE0886BF1592A65A000E6E59 /* Build configuration list for PBXNativeTarget "itransmission-cli" */;
+			buildPhases = (
+				CE0886AD1592A65A000E6E59 /* Sources */,
+				CE0886AE1592A65A000E6E59 /* Frameworks */,
+				CE0886AF1592A65A000E6E59 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "itransmission-cli";
+			productName = "itransmission-cli";
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -722,6 +804,7 @@
 			targets = (
 				7E246D44144F076D008A8586 /* iTransmission */,
 				7EF0099D146E87EC00AD1BA5 /* iTransmission IPA */,
+				CE0886B01592A65A000E6E59 /* itransmission-cli */,
 			);
 		};
 /* End PBXProject section */
@@ -792,6 +875,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ $BUILD_STYLE != \"AdHoc_Distribution\" ]; then\nexit\nfi\n\n# remove previous files\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/Payload\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTunesArtwork\n\n/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp iTransmission/Icons/icon-original-large.png $CONFIGURATION_BUILD_DIR/iTunesArtwork\n/bin/cp iTransmission/iTunesMetadata.plist $CONFIGURATION_BUILD_DIR/iTunesMetadata.plist\nrm $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app/iTunesMetadata.plist\n\n# set build number\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" iTransmission/iTransmission-Info.plist)\nbuildNumber=$(($buildNumber + 1))\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" iTransmission/iTransmission-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString 2.$buildNumber\" iTransmission/iTransmission-Info.plist\ncp -Rf iTransmission/iTransmission-Info.plist $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" iTransmission/iTransmission-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString 2.$buildNumber\" iTransmission/iTransmission-Info.plist\ncp -Rf iTransmission/iTransmission-Info.plist $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app\n\ncd $CONFIGURATION_BUILD_DIR\nDATE=\"`/bin/date +'%Y%m%d'`\"\n/usr/libexec/PlistBuddy -c \"Set :bundleVersion 2.$buildNumber\" iTunesMetadata.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app/Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString 2.$buildNumber\" $CONFIGURATION_BUILD_DIR/Payload/iTransmission.app/Info.plist\n/usr/bin/zip -r iTransmission_b${buildNumber}.ipa Payload iTunesArtwork iTunesMetadata.plist\nopen $CONFIGURATION_BUILD_DIR -a Finder";
+		};
+		CE0886AF1592A65A000E6E59 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp";
 		};
 		CE7C08271573EDC100C19EFB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -876,6 +972,14 @@
 				CE8C11A7153A3DA700AD5690 /* ITThemeBrowser.m in Sources */,
 				CEB5279F153D2C6A009DF90A /* ITWebinterface.m in Sources */,
 				CE894E18153F1CBD00074E9F /* ITTips.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0886AD1592A65A000E6E59 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE0886BC1592A65A000E6E59 /* cli.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1120,82 @@
 			};
 			name = Release;
 		};
+		CE0886BD1592A65A000E6E59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = "$(iOSOpenDevPath)/frameworks/**";
+				HEADER_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/include/**",
+					"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include/**",
+				);
+				INSTALL_PATH = /usr/bin;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/lib/**",
+					"$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib/**",
+				);
+				OTHER_LDFLAGS = (
+					"-ltransmission",
+					"-levent",
+					"-lssl",
+					"-lcrypto",
+					"-lcurl",
+					"-lz",
+					"-lnatpmp",
+					"-ldht",
+					"-lminiupnp",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = NO;
+				iOSOpenDevCopyOnBuild = YES;
+				iOSOpenDevDevice = 192.168.1.67;
+				iOSOpenDevInstallOnAnyBuild = YES;
+				iOSOpenDevInstallOnProfiling = NO;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+				iOSOpenDevRespringOnInstall = NO;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Debug;
+		};
+		CE0886BE1592A65A000E6E59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = "$(iOSOpenDevPath)/frameworks/**";
+				HEADER_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/include/**",
+					"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include/**",
+				);
+				INSTALL_PATH = /usr/bin;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/lib/**",
+					"$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib/**",
+				);
+				OTHER_LDFLAGS = (
+					"-ltransmission",
+					"-levent",
+					"-lssl",
+					"-lcrypto",
+					"-lcurl",
+					"-lz",
+					"-lnatpmp",
+					"-ldht",
+					"-lminiupnp",
+				);
+				"OTHER_LDFLAGS[arch=*]" = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				iOSOpenDevCopyOnBuild = YES;
+				iOSOpenDevDevice = 192.168.1.67;
+				iOSOpenDevInstallOnAnyBuild = YES;
+				iOSOpenDevInstallOnProfiling = NO;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+				iOSOpenDevRespringOnInstall = NO;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1042,6 +1222,15 @@
 			buildConfigurations = (
 				7EF0099F146E87EC00AD1BA5 /* Debug */,
 				7EF009A0146E87EC00AD1BA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE0886BF1592A65A000E6E59 /* Build configuration list for PBXNativeTarget "itransmission-cli" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE0886BD1592A65A000E6E59 /* Debug */,
+				CE0886BE1592A65A000E6E59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
