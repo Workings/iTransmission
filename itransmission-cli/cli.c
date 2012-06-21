@@ -101,7 +101,7 @@ getUsage( void )
 {
     return "A fast and easy BitTorrent client\n"
     "\n"
-    "Usage: " MY_READABLE_NAME " [options] <file|url|magnet>";
+    "Usage: itransmission-cli [options] <file|url|magnet>";
 }
 
 static int parseCommandLine( tr_benc*, int argc, const char ** argv );
@@ -233,11 +233,11 @@ main( int argc, char ** argv )
     tr_formatter_size_init( DISK_K,DISK_K_STR, DISK_M_STR, DISK_G_STR, DISK_T_STR );
     tr_formatter_speed_init( SPEED_K, SPEED_K_STR, SPEED_M_STR, SPEED_G_STR, SPEED_T_STR );
     
-    printf( "%s %s\n", MY_READABLE_NAME, LONG_VERSION_STRING );
+    printf( "%s\n itransmission-cli", LONG_VERSION_STRING );
     
     /* user needs to pass in at least one argument */
     if( argc < 2 ) {
-        tr_getopt_usage( MY_READABLE_NAME, getUsage( ), options );
+        tr_getopt_usage( "itransmission-cli", getUsage( ), options );
         return EXIT_FAILURE;
     }
     
