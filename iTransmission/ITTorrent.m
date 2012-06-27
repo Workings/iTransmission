@@ -512,6 +512,11 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
     return self.info->name != NULL ? [NSString stringWithUTF8String: self.info->name] : self.hashString;
 }
 
+- (uint64_t) trackerCount
+{
+    return self.info->trackerCount;
+}
+
 - (BOOL) isFolder
 {
     return self.info->isMultifile;
@@ -814,6 +819,16 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
     tr_torrentPeersFree(peers, totalPeers);
     
     return peerDicts;
+}
+
+- (NSArray *)peers2
+{
+    tr_peer_stat *peer;
+    
+    NSMutableArray * tmpary = [[NSMutableArray alloc] initWithCapacity: 46];
+    [tmpary addObject: [NSString stringWithCString: peer->addr encoding:NSASCIIStringEncoding]];
+    
+    return tmpary;
 }
 
 - (NSUInteger) webSeedCount

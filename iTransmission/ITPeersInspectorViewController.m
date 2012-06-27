@@ -92,11 +92,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell; 
+    static NSString *CellIdentifier = @"CountryCell";
     
-    cell.textLabel.text = [[[self.torrent peers] objectAtIndex:indexPath.row] name];
-
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    // Configure the cell...
+    
+    cell.textLabel.text = @"Test";
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

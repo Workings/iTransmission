@@ -1073,7 +1073,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export CODESIGN_ALLOCATE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Developer/iphoneentitlements401/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Development\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/iphoneentitlements401/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Development\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
 		};
 		CE9D3A2C1592D25D006247D8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1517,10 +1517,10 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = NO;
-				iOSOpenDevBuildPackageOnAnyBuild = NO;
-				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = "";
-				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevBuildPackageOnAnyBuild = YES;
+				iOSOpenDevCopyOnBuild = YES;
+				iOSOpenDevDevice = 192.168.1.67;
+				iOSOpenDevInstallOnAnyBuild = YES;
 				iOSOpenDevInstallOnProfiling = NO;
 				iOSOpenDevPath = /opt/iOSOpenDev;
 				iOSOpenDevRespringOnInstall = NO;
@@ -1555,10 +1555,10 @@
 					"-lminiupnp",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				iOSOpenDevBuildPackageOnAnyBuild = NO;
-				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = "";
-				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevBuildPackageOnAnyBuild = YES;
+				iOSOpenDevCopyOnBuild = YES;
+				iOSOpenDevDevice = 192.168.1.67;
+				iOSOpenDevInstallOnAnyBuild = YES;
 				iOSOpenDevInstallOnProfiling = NO;
 				iOSOpenDevPath = /opt/iOSOpenDev;
 				iOSOpenDevRespringOnInstall = NO;
@@ -1612,6 +1612,7 @@
 				CE9D3A3E1592D25D006247D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE9D3A581592D40B006247D8 /* Build configuration list for PBXNativeTarget "itransmission-dameon" */ = {
 			isa = XCConfigurationList;
@@ -1620,6 +1621,7 @@
 				CE9D3A5A1592D40B006247D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

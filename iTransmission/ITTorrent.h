@@ -145,6 +145,7 @@
 - (NSString *) errorMessage;
 
 - (NSArray *) peers;
+- (NSArray *) peers2;
 
 - (NSUInteger) webSeedCount;
 - (NSArray *) webSeeds;
@@ -176,6 +177,7 @@
 - (uint64_t) downloadedTotal;
 - (uint64_t) uploadedTotal;
 - (uint64_t) failedHash;
+- (uint64_t) trackerCount;
 
 - (NSInteger) groupValue;
 - (void) setGroupValue: (NSInteger) groupValue;

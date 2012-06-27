@@ -46,11 +46,12 @@
 
 - (UITableViewCell *)peersCell
 {
+    NSString *inStr = [NSString stringWithFormat:@"%d", [[self.torrent peers] count]];
     if (peersCell) return peersCell;
     else {
         peersCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        peersCell.textLabel.text = @"Peers Connected";
-        peersCell.detailTextLabel.text = [self.torrent name];
+        peersCell.textLabel.text = @"Peers Connected: ";
+        peersCell.detailTextLabel.text = inStr;
     }
     return peersCell;
 }
@@ -60,7 +61,7 @@
     if (sizeCell) return sizeCell;
     else {
         sizeCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        sizeCell.textLabel.text = @"Size";
+        sizeCell.textLabel.text = @"Size: ";
         NSString *intString = [NSString stringWithFormat:@"%d", [self.torrent size]];
         sizeCell.detailTextLabel.text = intString;
     }
@@ -69,13 +70,12 @@
 
 - (UITableViewCell *)trackersCell
 {
+    NSString *inStr = [NSString stringWithFormat:@"%d", [self.torrent trackerCount]];
     if (trackersCell) return trackersCell;
     else {
         trackersCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        trackersCell.textLabel.text = @"Number of trackers";
-        int trackerscount = self.info->trackerCount;
-        NSString *trackerscount2 = [NSString stringWithFormat:@"%d", trackerscount];
-        trackersCell.detailTextLabel.text = trackerscount2;
+        trackersCell.textLabel.text = @"Number of trackers: ";
+        trackersCell.detailTextLabel.text = inStr;
     }
     return trackersCell;
 }
@@ -89,7 +89,7 @@
 {
     switch (section) {
         case 0:
-            return 2;
+            return 3;
             break;
         default:
             break;
@@ -102,11 +102,9 @@
     switch (indexPath.section) {
         case 0:
             switch (indexPath.row) {
-                case 0:
-                    return self.trackersCell;
-                    break;
-                default:
-                    break;
+                case 0: return self.peersCell;
+                case 1: return self.sizeCell;
+                case 2: return self.trackersCell;
             }
     }
     return nil;

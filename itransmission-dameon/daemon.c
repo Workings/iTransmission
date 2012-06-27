@@ -359,7 +359,7 @@ main( int argc, char ** argv )
     while(( c = tr_getopt( getUsage(), argc, (const char**)argv, options, &optarg ))) {
         switch( c ) {
             case 'a': tr_bencDictAddStr( &settings, TR_PREFS_KEY_RPC_WHITELIST, optarg );
-                tr_bencDictAddBool( &settings, TR_PREFS_KEY_RPC_WHITELIST_ENABLED, true );
+                tr_bencDictAddBool( &settings, TR_PREFS_KEY_RPC_WHITELIST_ENABLED, false );
                 break;
             case 'b': tr_bencDictAddBool( &settings, TR_PREFS_KEY_BLOCKLIST_ENABLED, true );
                 break;
