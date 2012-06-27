@@ -26,6 +26,7 @@
 @synthesize downloadFilePath;
 @synthesize transfers;
 @synthesize userDefaults;
+@synthesize delegate;
 NSURL *requestedURL;
 
 - (id)init
@@ -87,6 +88,20 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
             [message show];
             [webView loadRequest:requestURL];
             [[ITController alloc] openMagnet:url];
+        }
+        
+        if ( [fileExtension isEqualToString:@"torrent"] ) 
+        {
+            NSLog(@"torrent");
+            NSString *torrentlink = [requestedURL absoluteString];
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            NSURL *webinterface = [NSURL URLWithString:@"http://127.0.0.1:9091/transmission/web/"];
+            NSURLRequest *requestURL = [NSURLRequest requestWithURL:webinterface];
+            pasteboard.string = torrentlink;
+            UIAlertView *message;
+            message = [[UIAlertView alloc] initWithTitle:@"How to add" message:@"Now paste the URL into the open button in the web interface" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
+            [message show];
+            [webView loadRequest:requestURL];
         }
     }
     

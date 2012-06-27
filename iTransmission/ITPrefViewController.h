@@ -60,7 +60,7 @@
 @property (nonatomic, strong) IBOutlet UITextView *webInterfaceURLTextView;
 @property (nonatomic, strong) IBOutlet UIButton *resetitransmission;
 @property (nonatomic, strong) IBOutlet ITPrefViewController *userDefaults;
-@property (assign, nonatomic) IBOutlet tr_session *handle;
+@property (assign, nonatomic) tr_session *handle;
 - (void)registerNotifications;
 
 - (IBAction)enableRPCValueChanged:(id)sender;
@@ -68,7 +68,6 @@
 - (IBAction)useWiFiValueChanged:(id)sender;
 - (IBAction)useMobileValueChanged:(id)sender;
 - (IBAction)enablePortMapValueChanged:(id)sender;
-- (IBAction)LoggingEnabled:(id)sender;
 - (IBAction)enableLimits:(id)sender;
 - (IBAction)enableAutoStart:(id)sender;
 - (IBAction)enableuTP:(id)sender;

@@ -823,10 +823,11 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
 
 - (NSArray *)peers2
 {
-    tr_peer_stat *peer;
+    int totalPeers;
+    tr_peer_stat * peers = tr_torrentPeers(self.handle, &totalPeers);
     
     NSMutableArray * tmpary = [[NSMutableArray alloc] initWithCapacity: 46];
-    [tmpary addObject: [NSString stringWithCString: peer->addr encoding:NSASCIIStringEncoding]];
+    [tmpary addObject: [NSString stringWithCString: peers->addr encoding:NSASCIIStringEncoding]];
     
     return tmpary;
 }

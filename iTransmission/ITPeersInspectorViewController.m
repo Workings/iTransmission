@@ -100,8 +100,9 @@
     }
     
     // Configure the cell...
+    NSString *peers = [[self.torrent peers2] objectAtIndex:0];
     
-    cell.textLabel.text = @"Test";
+    cell.textLabel.text = peers;
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     

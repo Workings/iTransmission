@@ -45,7 +45,7 @@
     self.view = [[ITInspectorCollectionView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
     
-    SVSegmentedControl *segmentedControl = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Info", @"Files", @"Activity", @"Peers", nil]];
+    SVSegmentedControl *segmentedControl = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Info", @"Activity", @"Files", @"Peers", nil]];
     segmentedControl.height = 32.0f;
     segmentedControl.crossFadeLabelsOnDrag = YES;
 	segmentedControl.thumb.tintColor = [UIColor controlBlueColor];
@@ -63,7 +63,7 @@
     ITActivityInspectorViewController *activityInspector = [[ITActivityInspectorViewController alloc] initWithTorrent:self.torrent];
     ITFilesInspectorViewController *filesInspector = [[ITFilesInspectorViewController alloc] initWithTorrent:self.torrent];
     ITPeersInspectorViewController *peersInspector = [[ITPeersInspectorViewController alloc] initWithTorrent:self.torrent];
-    self.childViewControllers = [NSArray arrayWithObjects:infoInspector, filesInspector, activityInspector, peersInspector, nil];
+    self.childViewControllers = [NSArray arrayWithObjects:infoInspector, activityInspector, filesInspector, peersInspector, nil];
     
     [self setCurrentInspector:infoInspector];
 }

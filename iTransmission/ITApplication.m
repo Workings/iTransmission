@@ -7,7 +7,7 @@ BOOL __isInSandbox = YES;
 + (void)setExecutionPath:(const char *)path
 {
     if (strncmp(path, "/Applications/", sizeof("/Applications/") == 0)) {
-        __isInSandbox = YES;
+        __isInSandbox = NO;
     }
     else {
         __isInSandbox = NO;
