@@ -364,7 +364,7 @@ NSUserDefaults* userDefaults;
     [self.torrents makeObjectsPerformSelector:@selector(stopTransfer)];
 }
 
-- (void) confirmRemoveTorrents: (NSArray *) torrents deleteData: (BOOL) deleteData
+- (void)confirmRemoveTorrents: (NSArray *) torrents deleteData: (BOOL) deleteData
 {
     /*
     NSMutableArray * selectedValues = [NSMutableArray arrayWithArray: [fTableView selectedValues]];
@@ -642,16 +642,15 @@ NSUserDefaults* userDefaults;
     return retval;
 }
 
-- (BOOL)openMagnet:(NSString *)url
+- (BOOL)openMagnet:(NSArray *)url
 {
     BOOL retval = YES;
-    const char *magnet = [url UTF8String];
     
     //ensure torrent doesn't already exist
     for (NSString * magnetPath in url)
     {
         tr_ctor * ctor = tr_ctorNew(self.handle);
-        tr_ctorSetMetainfoFromMagnetLink(ctor, magnet);
+        tr_ctorSetMetainfoFromMagnetLink(ctor, [magnetPath UTF8String]);
         
         tr_info info;
         tr_ctorFree(ctor);
@@ -672,7 +671,7 @@ NSUserDefaults* userDefaults;
         continue;
         
         ITTorrent * torrent;
-        torrent = [[ITTorrent alloc] initWithMagnetAddress: url location: location
+        torrent = [[ITTorrent alloc] initWithMagnetAddress: magnetPath location: location
                                                     lib:self.handle];
         //change the location if the group calls for it (this has to wait until after the torrent is created)
         /*
@@ -683,6 +682,7 @@ NSUserDefaults* userDefaults;
          }
         */
         
+        [torrent isMagnet];
         [torrent startTransfer];
         
         [torrent update];

@@ -73,6 +73,12 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
     NSString *fileExtension = [requestedURL pathExtension];
     NSString *scheme = [requestedURL scheme];
     NSString *url = [requestedURL path];
+    CURL *curl;
+    FILE *fp;
+    CURLcode res;
+    char *url2 = [[requestedURL absoluteString] UTF8String];
+    char outfilename[FILENAME_MAX] = "/User/Documents/iTransmission/torrent.torrent";
+    curl = curl_easy_init();
     if (navigationType == UIWebViewNavigationTypeLinkClicked)
     {
         if( [scheme isEqualToString:@"magnet"] )
@@ -87,30 +93,15 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
             message = [[UIAlertView alloc] initWithTitle:@"How to add" message:@"Now paste the URL into the open button in the web interface" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
             [message show];
             [webView loadRequest:requestURL];
-            [[ITController alloc] openMagnet:url];
         }
         
         if ( [fileExtension isEqualToString:@"torrent"] ) 
         {
             NSLog(@"torrent");
-            NSString *torrentlink = [requestedURL absoluteString];
-            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            NSURL *webinterface = [NSURL URLWithString:@"http://127.0.0.1:9091/transmission/web/"];
-            NSURLRequest *requestURL = [NSURLRequest requestWithURL:webinterface];
-            pasteboard.string = torrentlink;
-            UIAlertView *message;
-            message = [[UIAlertView alloc] initWithTitle:@"How to add" message:@"Now paste the URL into the open button in the web interface" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
-            [message show];
-            [webView loadRequest:requestURL];
         }
     }
     
     return YES;
-}
-                 
-- (void)add
-{
-    [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"torrent" ofType:@"torrent"]] addType:ITAddTypeManual];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

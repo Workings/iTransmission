@@ -13,11 +13,13 @@
 #import <libtransmission/transmission.h>
 #import "ITTorrent.h"
 #import "ITTransfersViewController.h"
+#import "ITSidebarController.h"
 #import <curl/curl.h>
 
 @interface ITWebViewController : SVWebViewController <ITSidebarItemDatasource>
 
 @property (nonatomic, strong) ITSidebarItem *sidebarItem;
+@property (nonatomic, strong) ITSidebarController *sidebarController;
 @property (nonatomic, strong) ITController *controller;
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
 @property (assign, nonatomic) tr_session *handle;

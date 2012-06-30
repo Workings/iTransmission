@@ -116,11 +116,9 @@
 
 - (void)torrentUpdated:(NSNotification *)notification
 {
-    if ([self.view isHidden] == NO) {
         ITTorrent *torrent = [[notification userInfo] objectForKey:@"torrent"];
         if ([self.displayedTorrents containsObject:torrent]) {
             [self updateCellForIndexPath:[NSIndexPath indexPathForRow:[self.displayedTorrents indexOfObject:torrent] inSection:0]];
-        }
     }
 }
 
@@ -201,6 +199,10 @@
         ITTorrent *torrent = [self.displayedTorrents objectAtIndex:indexPath.row];
         [[ITController sharedController] confirmRemoveTorrents:[NSArray arrayWithObject:torrent] deleteData:NO];
     }
+}
+
+- (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -1,22 +1,21 @@
 //
-//  ITPeersInspectorViewController.m
+//  ITActivityInspectorViewController.m
 //  iTransmission
 //
 //  Created by Mike Chen on 11/9/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ITPeersInspectorViewController.h"
+#import "ITTrackersInspectorViewController.h"
 #import "ITTorrent.h"
-#import "libtransmission/transmission.h"
 
-@implementation ITPeersInspectorViewController
+@implementation ITTrackersInspectorViewController
 
 - (id)initWithTorrent:(ITTorrent*)torrent
 {
     self = [super initWithNibName:nil bundle:nil torrent:torrent];
     if (self) {
-        self.title = @"Peers";
+        self.title = @"Activity";
     }
     return self;
 }
@@ -31,7 +30,6 @@
 
 #pragma mark - View lifecycle
 
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
@@ -43,32 +41,7 @@
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    if ([self.tableView respondsToSelector:@selector(registerNib:forCellReuseIdentifier:)]) {
-        [self.tableView registerNib:[UINib nibWithNibName:@"ITPeersInspectorCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ITPeersInspectorCell"];
-    }
 }
-
-- (void)registerNotifications
-{
-    [super registerNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(torrentUpdated:) name:kITTorrentUpdatedNotification object:nil];
-}
-
-- (void)torrentUpdated:(NSNotification *)notification
-{
-    ITTorrent *updatedTorrent = [[notification userInfo] objectForKey:@"torrent"];
-    if ([updatedTorrent isEqual:self.torrent]) {
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-    }
-}
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -77,7 +50,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.torrent peers] count];
+    return [self.torrent trackerCount];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -92,7 +65,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"IP Adress";
+    static NSString *CellIdentifier = @"CountryCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -100,14 +73,22 @@
     }
     
     // Configure the cell...
-    NSString *peers = [[self.torrent peers2] objectAtIndex:indexPath.row];
+    NSString *trackers = [[self.torrent allTrackersFlat] objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = peers;
+    cell.textLabel.text = trackers;
     
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     return cell;
 }
+
+/*
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+*/
 
 - (void)viewDidUnload
 {

@@ -34,7 +34,7 @@ typedef enum
 @class ITTorrent;
 @class ITStatistics;
 
-@interface ITController : NSObject<ITTimerListener>
+@interface ITController : NSObject<ITTimerListener, UIAlertViewDelegate>
 
 @property (nonatomic, assign, getter = isLoggingEnabled) BOOL loggingEnabled;
 @property (nonatomic, strong) ITPrefsController* prefsController;

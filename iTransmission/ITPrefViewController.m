@@ -73,7 +73,7 @@
         self.title = @"Preferences";
         self.sidebarItem = [[ITSidebarItem alloc] init];
         self.sidebarItem.title = @"Preferences";
-        self.sidebarItem.icon = [UIImage imageNamed:@"preferences-icon.png"];
+        self.sidebarItem.icon = [UIImage imageNamed:@"settings-icon.png"];
     }
     return self;
 }

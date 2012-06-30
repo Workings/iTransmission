@@ -14,7 +14,7 @@
 @class ITTransferCell;
 @class ITTorrent;
 
-@interface ITTransfersViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ITSidebarItemDatasource, ITTimerListener>
+@interface ITTransfersViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ITSidebarItemDatasource, ITTimerListener, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *displayedTorrents;
 @property (strong, nonatomic) ITSidebarItem *sidebarItem;

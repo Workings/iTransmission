@@ -103,7 +103,7 @@
 		7E93E018145278B9001DF159 /* 33-cabinet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E93E016145278B9001DF159 /* 33-cabinet@2x.png */; };
 		7E93E01D14527D0E001DF159 /* ITSidebarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E93E01C14527D0E001DF159 /* ITSidebarItem.m */; };
 		7E98A444146A4B78006ADF77 /* ITLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E98A443146A4B78006ADF77 /* ITLogger.m */; };
-		7E98A44B146A4F6D006ADF77 /* ITActivityInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E98A44A146A4F6D006ADF77 /* ITActivityInspectorViewController.m */; };
+		7E98A44B146A4F6D006ADF77 /* ITTrackersInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E98A44A146A4F6D006ADF77 /* ITTrackersInspectorViewController.m */; };
 		7E98A44E146A4F91006ADF77 /* ITFilesInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E98A44D146A4F90006ADF77 /* ITFilesInspectorViewController.m */; };
 		7E98A451146A4FA3006ADF77 /* ITPeersInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E98A450146A4FA3006ADF77 /* ITPeersInspectorViewController.m */; };
 		7EC0F6E21492E4F300C02C73 /* ITKeyboardController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC0F6E01492E4F200C02C73 /* ITKeyboardController.h */; };
@@ -296,8 +296,8 @@
 		7E93E01C14527D0E001DF159 /* ITSidebarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSidebarItem.m; sourceTree = "<group>"; };
 		7E98A442146A4B77006ADF77 /* ITLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITLogger.h; sourceTree = "<group>"; };
 		7E98A443146A4B78006ADF77 /* ITLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITLogger.m; sourceTree = "<group>"; };
-		7E98A449146A4F6D006ADF77 /* ITActivityInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITActivityInspectorViewController.h; sourceTree = "<group>"; };
-		7E98A44A146A4F6D006ADF77 /* ITActivityInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITActivityInspectorViewController.m; sourceTree = "<group>"; };
+		7E98A449146A4F6D006ADF77 /* ITTrackersInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ITTrackersInspectorViewController.h; sourceTree = "<group>"; };
+		7E98A44A146A4F6D006ADF77 /* ITTrackersInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTrackersInspectorViewController.m; sourceTree = "<group>"; };
 		7E98A44C146A4F90006ADF77 /* ITFilesInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITFilesInspectorViewController.h; sourceTree = "<group>"; };
 		7E98A44D146A4F90006ADF77 /* ITFilesInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITFilesInspectorViewController.m; sourceTree = "<group>"; };
 		7E98A44F146A4FA3006ADF77 /* ITPeersInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPeersInspectorViewController.h; sourceTree = "<group>"; };
@@ -677,8 +677,8 @@
 				7E61E9DB14559A770056B2EA /* ITInspectorBaseViewController.m */,
 				7E6678AB145CE63000C1E585 /* ITInfoInspectorViewController.h */,
 				7E6678AC145CE63000C1E585 /* ITInfoInspectorViewController.m */,
-				7E98A449146A4F6D006ADF77 /* ITActivityInspectorViewController.h */,
-				7E98A44A146A4F6D006ADF77 /* ITActivityInspectorViewController.m */,
+				7E98A449146A4F6D006ADF77 /* ITTrackersInspectorViewController.h */,
+				7E98A44A146A4F6D006ADF77 /* ITTrackersInspectorViewController.m */,
 				7E98A44C146A4F90006ADF77 /* ITFilesInspectorViewController.h */,
 				7E98A44D146A4F90006ADF77 /* ITFilesInspectorViewController.m */,
 				7E98A44F146A4FA3006ADF77 /* ITPeersInspectorViewController.h */,
@@ -1156,7 +1156,7 @@
 				7E667913145CFC0400C1E585 /* ITInspectorCollectionTabBar.m in Sources */,
 				7E667916145CFFA000C1E585 /* ITInspectorCollectionView.m in Sources */,
 				7E98A444146A4B78006ADF77 /* ITLogger.m in Sources */,
-				7E98A44B146A4F6D006ADF77 /* ITActivityInspectorViewController.m in Sources */,
+				7E98A44B146A4F6D006ADF77 /* ITTrackersInspectorViewController.m in Sources */,
 				7E98A44E146A4F91006ADF77 /* ITFilesInspectorViewController.m in Sources */,
 				7E98A451146A4FA3006ADF77 /* ITPeersInspectorViewController.m in Sources */,
 				7E2D9922146BF34300736336 /* LoggerClient.m in Sources */,
