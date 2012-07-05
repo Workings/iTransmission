@@ -61,6 +61,8 @@
 @synthesize enableUTP;
 @synthesize enableDHT;
 @synthesize enablePEX;
+@synthesize downloadDir;
+@synthesize downloadDirTextField;
 @synthesize handle;
 @synthesize sidebarItem;
 @synthesize reseteverything;
@@ -97,7 +99,7 @@
         case 4:
             return 5;
         case 5:
-            return 5;
+            return 6;
         case 6:
             return 1;
     }
@@ -135,6 +137,7 @@
     self.UploadLimit.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] UploadLimit]];
     // self.RPCUsernameTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCUsername]];
     // self.RPCPasswordTextField.text = [NSString stringWithFormat:[[[ITController sharedController] prefsController] RPCPassword]];
+    self.downloadDirTextField.text = [[[ITController sharedController] prefsController] downloadDir];
 }
 
 - (void)registerNotifications
@@ -316,6 +319,7 @@
                 case 2: return self.enablePEXCell;
                 case 3: return self.enableDHTCell;
                 case 4: return self.enableUTPCell;
+                case 5: return self.downloadDir;
             }
         }
         case 6:

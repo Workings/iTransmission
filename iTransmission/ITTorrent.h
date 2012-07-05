@@ -21,6 +21,7 @@
 @property (strong, nonatomic) UIImage *icon;
 @property (strong, nonatomic) NSString *hashString;
 @property (assign, nonatomic) tr_file_stat *fileStat;
+@property (assign, nonatomic) tr_peer_stat *peerStat;
 @property (strong, nonatomic) NSIndexSet* previousFinishedIndexes;
 @property (strong, nonatomic) NSDate *previousFinishedIndexesDate;
 @property (assign, nonatomic) NSInteger groupValue;

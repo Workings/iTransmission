@@ -17,6 +17,7 @@
 #import "ITApplication.h"
 #import "ITAppDelegate.h"
 #import "ITLogger.h"
+#import "ITAddTorrentOptionsViewController.h"
 
 static void altSpeedToggledCallback(tr_session * handle UNUSED, bool active, bool byUser, void * controller)
 {
@@ -592,14 +593,8 @@ NSUserDefaults* userDefaults;
         
         //determine download location
         NSString * location;
-        /*
-        else if ([[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadLocationConstant"])
-            location = [[fDefaults stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
-        else if (type != ADD_URL)
-            location = [torrentPath stringByDeletingLastPathComponent];
-        else
-            location = nil;
-         */
+        if ([[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadLocationConstant"])
+            location = [[[self.prefsController userDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
         location = [[[NSUserDefaults standardUserDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
 
         //determine to show the options window
@@ -608,7 +603,7 @@ NSUserDefaults* userDefaults;
         
         ITTorrent * torrent;
         if (!(torrent = [[ITTorrent alloc] initWithPath: torrentPath location: location
-                                      deleteTorrentFile: showWindow ? NO : deleteTorrentFile lib:self.handle])) {
+                                      deleteTorrentFile: showWindow ? YES : deleteTorrentFile lib:self.handle])) {
             retval = NO;
             continue;
         }
@@ -628,6 +623,8 @@ NSUserDefaults* userDefaults;
         //show the add window or add directly
         if (showWindow || !location)
         {
+            ITAddTorrentOptionsViewController * addController = [[ITAddTorrentOptionsViewController alloc] initWithPrebuiltTorrent:torrent];
+             [[ITNavigationController alloc] pushViewController:addController animated:YES];
         }
         else
         {

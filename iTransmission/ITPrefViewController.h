@@ -38,6 +38,7 @@
 @property (nonatomic, strong) IBOutlet UITableViewCell *enableDHTCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *enablePEXCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *reseteverything;
+@property (nonatomic, strong) IBOutlet UITableViewCell *downloadDir;
 @property (nonatomic, strong) IBOutlet UISwitch *enableRPCSwitch;
 @property (nonatomic, strong) IBOutlet UISwitch *enableRPCAuthenticationSwitch;
 @property (nonatomic, strong) IBOutlet UISwitch *useWiFiSwitch;
@@ -57,6 +58,7 @@
 @property (nonatomic, strong) IBOutlet UITextField *MaxPeersGlobal;
 @property (nonatomic, strong) IBOutlet UITextField *DownloadLimit;
 @property (nonatomic, strong) IBOutlet UITextField *UploadLimit;
+@property (nonatomic, strong) IBOutlet UITextField *downloadDirTextField;
 @property (nonatomic, strong) IBOutlet UITextView *webInterfaceURLTextView;
 @property (nonatomic, strong) IBOutlet UIButton *resetitransmission;
 @property (nonatomic, strong) IBOutlet ITPrefViewController *userDefaults;

@@ -1180,4 +1180,9 @@
     return [self.userDefaults stringForKey:@"BlocklistURL"];
 }
 
+- (NSString *)downloadDir
+{
+    return [self.userDefaults stringForKey:@"DownloadFolder"];
+}
+
 @end

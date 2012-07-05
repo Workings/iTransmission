@@ -65,7 +65,7 @@
 	<key>DownloadAskMulti</key>
 	<false/>
 	<key>DownloadFolder</key>
-	<string></string>
+	<string>/private/var/mobile/Downloads</string>
 	<key>DownloadLimit</key>
 	<integer>100</integer>
 	<key>DownloadLocationConstant</key>

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <libtransmission/transmission.h>
 #import "ITTimerListener.h"
+#import "ITPrefsController.h"
 
 #define kITNewTorrentAddedNotification @"kITNewTorrentAdded"
 #define kITTorrentStateChangedNotification @"kITTorrentStateChanged"

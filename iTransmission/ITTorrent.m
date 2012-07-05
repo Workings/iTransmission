@@ -836,12 +836,6 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
     int totalPeers;
     tr_peer_stat * peers = tr_torrentPeers(self.handle, &totalPeers);
     
-    /*
-    NSMutableArray * tmpary = [[NSMutableArray alloc] initWithCapacity: 46];
-    [tmpary addObject: [NSString stringWithCString: peers->addr encoding:NSASCIIStringEncoding]];
-    
-    return tmpary;
-     */
     NSMutableArray * allTrackers = [NSMutableArray arrayWithCapacity: totalPeers];
     
     for (NSInteger i=0; i < totalPeers; i++)
