@@ -72,7 +72,7 @@
     self.networkSwitcher = [[ITNetworkSwitcher alloc] init];
     
     [self performSelectorInBackground:@selector(startTransmission) withObject:nil];
-    [self performSelector:@selector(_test) withObject:nil afterDelay:1.0f];
+    // [self performSelector:@selector(_test) withObject:nil afterDelay:1.0f];
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -98,7 +98,7 @@
 {
     // [(id)self.statusBarController.contentViewController slideContainerViewToRightAnimated:YES];
     // [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"torrent" ofType:@"torrent"]] addType:ITAddTypeManual];
-    [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"ubuntu-11.10-desktop-i386.iso" ofType:@"torrent"]] addType:ITAddTypeManual];
+    // [self.controller openFiles:[NSArray arrayWithObject:[[NSBundle mainBundle] pathForResource:@"ubuntu-11.10-desktop-i386.iso" ofType:@"torrent"]] addType:ITAddTypeManual];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -109,6 +109,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    [self.controller startAllTransfers];
     [self.controller updateTorrentHistory];
 }
 
