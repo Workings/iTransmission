@@ -593,8 +593,6 @@ NSUserDefaults* userDefaults;
         
         //determine download location
         NSString * location;
-        if ([[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadLocationConstant"])
-            location = [[[self.prefsController userDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
         location = [[[NSUserDefaults standardUserDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
 
         //determine to show the options window

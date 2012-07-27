@@ -79,6 +79,7 @@
 - (IBAction)RPCUsernamechanged:(id)sender;
 - (IBAction)RPCPasswordchanged:(id)sender;
 - (IBAction)resetitransmission:(id)sender;
+- (IBAction)downloadDirChanged:(id)sender;
 
 - (void)preferencesUpdateNotificationReceived:(NSNotification*)notification;
 

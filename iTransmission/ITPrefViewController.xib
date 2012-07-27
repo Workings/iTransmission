@@ -52,7 +52,7 @@
 								<string key="NSFrame">{{9, 11}, {151, 21}}</string>
 								<reference key="NSSuperview" ref="109547976"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="373377416"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -382,7 +382,7 @@
 				<string key="IBUIReuseIdentifier">Download Limit</string>
 			</object>
 			<object class="IBUITableViewCell" id="174137910">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">296</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="44460914">
@@ -446,7 +446,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 44}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="44460914"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="44460914"/>
@@ -522,7 +521,7 @@
 				<reference key="IBUIContentView" ref="136242520"/>
 			</object>
 			<object class="IBUITableViewCell" id="466834444">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">296</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="1012860707">
@@ -574,7 +573,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 44}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="1012860707"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1137,7 +1135,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 				<string key="IBUIReuseIdentifier"/>
 			</object>
 			<object class="IBUITableViewCell" id="235693795">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="499883026">
@@ -1199,6 +1197,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="499883026"/>
 				<reference key="IBUIBackgroundColor" ref="28815123"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1207,7 +1206,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 				<string key="IBUIReuseIdentifier"/>
 			</object>
 			<object class="IBUITableViewCell" id="986516894">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="815770369">
@@ -1269,6 +1268,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="815770369"/>
 				<reference key="IBUIBackgroundColor" ref="28815123"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -2194,6 +2194,15 @@ AAgACAAIAAEAAQABAAE</bytes>
 					</object>
 					<int key="connectionID">210</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">downloadDirChanged:</string>
+						<reference key="source" ref="373377416"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">218</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -2777,7 +2786,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">216</int>
+			<int key="maxID">218</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2787,6 +2796,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="RPCPasswordchanged:">id</string>
 						<string key="RPCUsernamechanged:">id</string>
+						<string key="downloadDirChanged:">id</string>
 						<string key="enableAutoStart:">id</string>
 						<string key="enableBlocklist:">id</string>
 						<string key="enableDHT:">id</string>
@@ -2807,6 +2817,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 						</object>
 						<object class="IBActionInfo" key="RPCUsernamechanged:">
 							<string key="name">RPCUsernamechanged:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="downloadDirChanged:">
+							<string key="name">downloadDirChanged:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="enableAutoStart:">

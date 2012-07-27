@@ -17,7 +17,7 @@ old_library='libevent_extra.a'
 inherited_linker_flags=' '
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/Users/User/Documents/out/armv7/lib -L/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/usr/lib -L/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib'
+dependency_libs=' -L/Users/User/Documents/itransmission/libraries/out/armv7/lib -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/usr/lib -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/User/Documents/out/armv7/lib'
+libdir='/Users/User/Documents/itransmission/libraries/out/armv7/lib'

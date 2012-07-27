@@ -129,6 +129,7 @@
     // self.RPCUsernameTextField.delegate = self.keyboardController;
     // self.RPCPasswordTextField.delegate = self.keyboardController;
     // self.RPCPortTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] RPCPort]];
+    self.downloadDirTextField.delegate = self.keyboardController;
     self.bindPortTextField.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] bindPort]];
     self.webInterfaceURLTextView.text = [NSString stringWithFormat:@"http://127.0.0.1:%d/transmission/web/", [[[ITController sharedController] prefsController] RPCPort]];
     self.MaxPeersPerTorrent.text = [NSString stringWithFormat:@"%d", [[[ITController sharedController] prefsController] PeersPerTorrent]];
@@ -161,6 +162,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsDHTFlagUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsPEXFlagUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsBlocklistEnabled object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesUpdateNotificationReceived:) name:kITPrefsDownloadFoulderUpdated object:nil];
 }
 
 - (void)preferencesUpdateNotificationReceived:(NSNotification *)notification
@@ -231,6 +233,10 @@
     else if ([[notification name] isEqualToString:kITPrefsBlocklistEnabled])
     {
         self.enableBlocklist.on = [[[ITController sharedController] prefsController] isBlocklistEnabled];
+    }
+    else if ([[notification name] isEqualToString:kITPrefsDownloadFoulderUpdated])
+    {
+        self.downloadDirTextField.text = [[[ITController sharedController] prefsController] downloadDir];
     }
 }
 
@@ -416,6 +422,11 @@
 - (IBAction)RPCPasswordchanged:(id)sender
 {
     [[[ITController sharedController] prefsController] setRPCPassword:[sender string]];
+}
+
+- (IBAction)downloadDirChanged:(id)sender
+{
+    [[[ITController sharedController] prefsController] setDownloadDir:[sender string]];
 }
 
 - (ITKeyboardToolbarOptions)keyboardOptionsForTextField:(UITextField*)textField

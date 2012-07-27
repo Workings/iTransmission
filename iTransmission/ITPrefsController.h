@@ -36,6 +36,7 @@
 #define kITPrefsRPCWhiteListUpdatedNotification @"kITPrefsRPCWhiteListUpdated"
 #define kITPrefsLimitUpdatedNotification @"CheckDownload"
 #define kITPrefsBlocklistEnabled @"BlocklistEnabled"
+#define kITPrefsDownloadFoulderUpdated @"DownloadFoulder"
 bool fHasLoaded;
 NSString *fUploadLimit;
 
@@ -80,6 +81,7 @@ NSString *fUploadLimit;
 - (void)setKeychainPassword: (const char *) password forService: (const char *) service username: (const char *) username;
 - (void)updateRPCWhitelist;
 - (void)setLimits:(BOOL)enabled;
+- (void)setDownloadDir:(NSString*)downloaddir;
 + (NSInteger)dateToTimeSum: (NSDate *) date;
 + (NSDate *)timeSumToDate: (NSInteger) sum;
 - (BOOL)isRPCEnabled;

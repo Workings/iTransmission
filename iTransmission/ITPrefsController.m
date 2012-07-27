@@ -507,6 +507,13 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kITPrefsRenamePartialFilesFlagUpdatedNotification object:nil];
 }
 
+- (void) setDownloadDir:(NSString *)downloaddir
+{
+    [self.userDefaults setObject:downloaddir forKey:@"DownloadFoulder"];
+    tr_sessionSetDownloadDir(self.handle, [[self.userDefaults stringForKey: @"DownloadFoulder"] UTF8String]);
+    [[NSNotificationCenter defaultCenter] postNotificationName: kITPrefsDownloadFoulderUpdated object:nil];
+}
+
 /*
  - (void) setDoneScriptEnabled: (id) sender
  {
