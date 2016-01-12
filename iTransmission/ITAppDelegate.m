@@ -53,7 +53,6 @@
     self.timerEventListeners = [[NSMutableArray alloc] init];
     
     self.statusBarController = [[ITStatusBarController alloc] initWithNibName:@"ITStatusBarController" bundle:nil];
-    self.window.rootViewController = self.statusBarController;
     
     NSMutableArray *viewControllers = [NSMutableArray array];
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITTransfersViewController alloc] init]]];
@@ -68,6 +67,7 @@
     self.sidebarController.viewControllers = viewControllers;
     
     self.statusBarController.contentViewController = self.sidebarController;
+    self.window.rootViewController = self.statusBarController;
     
     self.networkSwitcher = [[ITNetworkSwitcher alloc] init];
     
