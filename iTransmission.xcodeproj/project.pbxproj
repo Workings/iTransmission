@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4818741B1C4404630053B282 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4818741A1C4404630053B282 /* Default-568h@2x.png */; };
 		7E137C97145284A30030DC13 /* ITTransfersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E137C96145284A30030DC13 /* ITTransfersViewController.m */; };
 		7E137C9A1452860E0030DC13 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E137C991452860E0030DC13 /* QuartzCore.framework */; };
 		7E137C9D145288D70030DC13 /* ITSidebarContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E137C9C145288D70030DC13 /* ITSidebarContainerView.m */; };
@@ -164,6 +165,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4818741A1C4404630053B282 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7E137C95145284A30030DC13 /* ITTransfersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTransfersViewController.h; sourceTree = "<group>"; };
 		7E137C96145284A30030DC13 /* ITTransfersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ITTransfersViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7E137C991452860E0030DC13 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -296,7 +298,7 @@
 		7E93E01C14527D0E001DF159 /* ITSidebarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSidebarItem.m; sourceTree = "<group>"; };
 		7E98A442146A4B77006ADF77 /* ITLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITLogger.h; sourceTree = "<group>"; };
 		7E98A443146A4B78006ADF77 /* ITLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITLogger.m; sourceTree = "<group>"; };
-		7E98A449146A4F6D006ADF77 /* ITTrackersInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ITTrackersInspectorViewController.h; sourceTree = "<group>"; };
+		7E98A449146A4F6D006ADF77 /* ITTrackersInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTrackersInspectorViewController.h; sourceTree = "<group>"; };
 		7E98A44A146A4F6D006ADF77 /* ITTrackersInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTrackersInspectorViewController.m; sourceTree = "<group>"; };
 		7E98A44C146A4F90006ADF77 /* ITFilesInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITFilesInspectorViewController.h; sourceTree = "<group>"; };
 		7E98A44D146A4F90006ADF77 /* ITFilesInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITFilesInspectorViewController.m; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 		7E246D3A144F076C008A8586 = {
 			isa = PBXGroup;
 			children = (
+				4818741A1C4404630053B282 /* Default-568h@2x.png */,
 				CEA49263157C5E1F000E62A8 /* preferences-icon.png */,
 				CEA49264157C5E1F000E62A8 /* preferences-icon@2x.png */,
 				CEA4925E157C59CC000E62A8 /* transfers-icon2.png */,
@@ -961,7 +964,12 @@
 		7E246D3C144F076C008A8586 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0720;
+				TargetAttributes = {
+					7E246D44144F076D008A8586 = {
+						DevelopmentTeam = RC7MQDN9Z7;
+					};
+				};
 			};
 			buildConfigurationList = 7E246D3F144F076C008A8586 /* Build configuration list for PBXProject "iTransmission" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -994,6 +1002,7 @@
 				7E14E9C214516408003520DA /* ITSidebar.xib in Resources */,
 				7E93E017145278B9001DF159 /* 33-cabinet.png in Resources */,
 				7E93E018145278B9001DF159 /* 33-cabinet@2x.png in Resources */,
+				4818741B1C4404630053B282 /* Default-568h@2x.png in Resources */,
 				7E137CA514529B380030DC13 /* sidebar-bg.png in Resources */,
 				7E137CB21452A23F0030DC13 /* SVWebViewController.bundle in Resources */,
 				7E137CB71452A62D0030DC13 /* browser-icon.png in Resources */,
@@ -1073,7 +1082,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/iphoneentitlements401/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Development\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+			shellScript = "# export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\n#if [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n#/iphoneentitlements401/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\n#codesign -f -s \"iPhone Development\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\n#fi";
 		};
 		CE9D3A2C1592D25D006247D8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1225,12 +1234,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1238,10 +1256,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1251,16 +1274,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1271,13 +1306,16 @@
 		7E246D5E144F076D008A8586 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ARCHS = armv7;
+				CODE_SIGN_IDENTITY = "iPhone Developer: twindagger@gmail.com (59Y3FR5HG6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: twindagger@gmail.com (59Y3FR5HG6)";
+				ENABLE_BITCODE = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTransmission/iTransmission-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/include";
 				INFOPLIST_FILE = "iTransmission/iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib/**";
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1290,7 +1328,9 @@
 					"-ldht",
 					"-lminiupnp",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = li.twindagger.iTransmission;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1298,13 +1338,16 @@
 		7E246D5F144F076D008A8586 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ARCHS = armv7;
+				CODE_SIGN_IDENTITY = "iPhone Developer: twindagger@gmail.com (59Y3FR5HG6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: twindagger@gmail.com (59Y3FR5HG6)";
+				ENABLE_BITCODE = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTransmission/iTransmission-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/include";
 				INFOPLIST_FILE = "iTransmission/iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib/**";
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1317,7 +1360,9 @@
 					"-ldht",
 					"-lminiupnp",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = li.twindagger.iTransmission;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
