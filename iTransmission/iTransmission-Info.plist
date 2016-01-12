@@ -35,7 +35,7 @@
 		<string>Icon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>li.ccp.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -46,6 +46,17 @@
 	<string>2.29</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.bittorrent.torrent</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>magnet</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>29</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -85,17 +96,6 @@
 				<key>public.mime-type</key>
 				<string>application/x-bittorrent</string>
 			</dict>
-		</dict>
-	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>magnet</string>
-			</array>
-			<key>CFBundleURLName</key>
-			<string>com.bittorrent.torrent</string>
 		</dict>
 	</array>
 </dict>
