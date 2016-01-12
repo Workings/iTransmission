@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4AE53282104A54A2B0E7810E4CB18604607C52D9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "ea2c5bf4-e737-6bbd-a72b-2b23c4d1b073++6393" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4AE53282104A54A2B0E7810E4CB18604607C52D9" : 0,
+    "ea2c5bf4-e737-6bbd-a72b-2b23c4d1b073++6393" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9C716FD8-F2CD-4BDF-823D-E38004989E5F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4AE53282104A54A2B0E7810E4CB18604607C52D9" : "iTransmission\/",
+    "ea2c5bf4-e737-6bbd-a72b-2b23c4d1b073++6393" : "iTransmission\/iTransmission\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "iTransmission",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iTransmission.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:twindagger\/iTransmission.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4AE53282104A54A2B0E7810E4CB18604607C52D9"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/koalaos127%40gmail.com@itransmission-ios.googlecode.com\/svn",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ea2c5bf4-e737-6bbd-a72b-2b23c4d1b073++6393"
+    }
+  ]
+}
