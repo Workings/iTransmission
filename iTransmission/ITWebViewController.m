@@ -10,7 +10,6 @@
 #import "ITSidebarItem.h"
 #import "ITNavigationController.h"
 #import <curl/curl.h>
-#import <curl/types.h>
 #import <curl/easy.h>
 #import "ITApplication.h"
 #import "ITTorrent.h"

@@ -55,3 +55,14 @@ Carthage/Build
 fastlane/report.xml
 fastlane/screenshots
 .DS_Store
+
+# build scripts output
+libraries/build-scripts/curl/curl-*
+libraries/build-scripts/curl/out
+libraries/build-scripts/libevent/dependencies
+libraries/build-scripts/openssl/openssl-*
+libraries/build-scripts/openssl/out
+libraries/build-scripts/transmission/ios
+libraries/build-scripts/transmission/src
+libraries/build-scripts/transmission/transmission-*
+

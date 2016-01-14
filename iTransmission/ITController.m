@@ -8,7 +8,7 @@
 
 #import "ITController.h"
 #import "ITPrefsController.h"
-#import <libtransmission/bencode.h>
+#import <libtransmission/variant.h>
 #import <libtransmission/utils.h>
 #import "ITPrefsController.h"
 #import "ITTorrent.h"
@@ -116,87 +116,89 @@ NSUserDefaults* userDefaults;
         [userDefaults registerDefaults: [NSDictionary dictionaryWithContentsOfFile:
                                          [[NSBundle mainBundle] pathForResource: @"Defaults" ofType: @"plist"]]];
         
-        tr_benc settings;
-        tr_bencInitDict(&settings, 41);
+        tr_variant settings;
+        tr_variantInitDict(&settings, 41);
         tr_sessionGetDefaultSettings(&settings);
         
         /* We don't care alternative speed limits but we leave them there if users prefer to use*/
         const BOOL usesSpeedLimitSched = [userDefaults boolForKey: @"SpeedLimitAuto"];
         if (!usesSpeedLimitSched)
-            tr_bencDictAddBool(&settings, TR_PREFS_KEY_ALT_SPEED_ENABLED, [userDefaults boolForKey: @"SpeedLimit"]);
+            tr_variantDictAddBool(&settings, TR_KEY_alt_speed_enabled, [userDefaults boolForKey: @"SpeedLimit"]);
         
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_ALT_SPEED_UP_KBps, [userDefaults integerForKey: @"SpeedLimitUploadLimit"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_ALT_SPEED_DOWN_KBps, [userDefaults integerForKey: @"SpeedLimitDownloadLimit"]);
+        tr_variantDictAddInt(&settings, TR_KEY_alt_speed_up, [userDefaults integerForKey: @"SpeedLimitUploadLimit"]);
+        tr_variantDictAddInt(&settings, TR_KEY_alt_speed_down, [userDefaults integerForKey: @"SpeedLimitDownloadLimit"]);
         
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_ALT_SPEED_TIME_ENABLED, [userDefaults boolForKey: @"SpeedLimitAuto"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_ALT_SPEED_TIME_BEGIN, [ITPrefsController dateToTimeSum:
+        tr_variantDictAddBool(&settings, TR_KEY_alt_speed_time_enabled, [userDefaults boolForKey: @"SpeedLimitAuto"]);
+        tr_variantDictAddInt(&settings, TR_KEY_alt_speed_time_begin, [ITPrefsController dateToTimeSum:
                                                                          [userDefaults objectForKey: @"SpeedLimitAutoOnDate"]]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_ALT_SPEED_TIME_END, [ITPrefsController dateToTimeSum:
+        tr_variantDictAddInt(&settings, TR_KEY_alt_speed_time_end, [ITPrefsController dateToTimeSum:
                                                                        [userDefaults objectForKey: @"SpeedLimitAutoOffDate"]]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_ALT_SPEED_TIME_DAY, [userDefaults integerForKey: @"SpeedLimitAutoDay"]);
+        tr_variantDictAddInt(&settings, TR_KEY_alt_speed_time_day, [userDefaults integerForKey: @"SpeedLimitAutoDay"]);
         
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_DSPEED_KBps, [userDefaults integerForKey: @"DownloadLimit"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_DSPEED_ENABLED, [userDefaults boolForKey: @"CheckDownload"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_USPEED_KBps, [userDefaults integerForKey: @"UploadLimit"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_USPEED_ENABLED, [userDefaults boolForKey: @"CheckUpload"]);
+        tr_variantDictAddInt(&settings, TR_KEY_speed_limit_down, [userDefaults integerForKey: @"DownloadLimit"]);
+        tr_variantDictAddBool(&settings, TR_KEY_speed_limit_down_enabled, [userDefaults boolForKey: @"CheckDownload"]);
+        tr_variantDictAddInt(&settings, TR_KEY_speed_limit_up, [userDefaults integerForKey: @"UploadLimit"]);
+        tr_variantDictAddBool(&settings, TR_KEY_speed_limit_up_enabled, [userDefaults boolForKey: @"CheckUpload"]);
         
         //hidden prefs
         if ([userDefaults objectForKey: @"BindAddressIPv4"])
-            tr_bencDictAddStr(&settings, TR_PREFS_KEY_BIND_ADDRESS_IPV4, [[userDefaults stringForKey: @"BindAddressIPv4"] UTF8String]);
+            tr_variantDictAddStr(&settings, TR_KEY_bind_address_ipv4, [[userDefaults stringForKey: @"BindAddressIPv4"] UTF8String]);
         if ([userDefaults objectForKey: @"BindAddressIPv6"])
-            tr_bencDictAddStr(&settings, TR_PREFS_KEY_BIND_ADDRESS_IPV6, [[userDefaults stringForKey: @"BindAddressIPv6"] UTF8String]);
+            tr_variantDictAddStr(&settings, TR_KEY_bind_address_ipv6, [[userDefaults stringForKey: @"BindAddressIPv6"] UTF8String]);
         
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_BLOCKLIST_ENABLED, [userDefaults boolForKey: @"BlocklistEnabled"]);
+        tr_variantDictAddBool(&settings, TR_KEY_blocklist_enabled, [userDefaults boolForKey: @"BlocklistEnabled"]);
         if ([userDefaults objectForKey: @"BlocklistURL"])
-            tr_bencDictAddStr(&settings, TR_PREFS_KEY_BLOCKLIST_URL, [[userDefaults stringForKey: @"BlocklistURL"] UTF8String]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_DHT_ENABLED, [userDefaults boolForKey: @"DHTGlobal"]);
-        if ([[userDefaults stringForKey:@"DownloadFolder"] isAbsolutePath]) 
-            tr_bencDictAddStr(&settings, TR_PREFS_KEY_DOWNLOAD_DIR, [[[userDefaults stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath] UTF8String]);
+            tr_variantDictAddStr(&settings, TR_KEY_blocklist_url, [[userDefaults stringForKey: @"BlocklistURL"] UTF8String]);
+        tr_variantDictAddBool(&settings, TR_KEY_dht_enabled, [userDefaults boolForKey: @"DHTGlobal"]);
+
+        if ([[userDefaults stringForKey:@"DownloadFolder"] isAbsolutePath])
+            tr_variantDictAddStr(&settings, TR_KEY_download_dir, [[[userDefaults stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath] UTF8String]);
         else 
-            tr_bencDictAddStr(&settings, TR_PREFS_KEY_DOWNLOAD_DIR, [[self downloadPath] UTF8String]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_DOWNLOAD_QUEUE_ENABLED, [userDefaults boolForKey: @"Queue"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_DOWNLOAD_QUEUE_SIZE, [userDefaults integerForKey: @"QueueDownloadNumber"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_IDLE_LIMIT, [userDefaults integerForKey: @"IdleLimitMinutes"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_IDLE_LIMIT_ENABLED, [userDefaults boolForKey: @"IdleLimitCheck"]);
+            tr_variantDictAddStr(&settings, TR_KEY_download_dir, [[self downloadPath] UTF8String]);
+        
+        tr_variantDictAddBool(&settings, TR_KEY_download_queue_enabled, [userDefaults boolForKey: @"Queue"]);
+        tr_variantDictAddInt(&settings, TR_KEY_download_queue_size, [userDefaults integerForKey: @"QueueDownloadNumber"]);
+        tr_variantDictAddInt(&settings, TR_KEY_idle_limit, [userDefaults integerForKey: @"IdleLimitMinutes"]);
+        tr_variantDictAddBool(&settings, TR_KEY_idle_seeding_limit_enabled, [userDefaults boolForKey: @"IdleLimitCheck"]);
         if ([[userDefaults stringForKey:@"IncompleteDownloadFolder"] isAbsolutePath]) 
-            tr_bencDictAddStr(&settings, TR_PREFS_KEY_INCOMPLETE_DIR, [[[userDefaults stringForKey: @"IncompleteDownloadFolder"]
+            tr_variantDictAddStr(&settings, TR_KEY_incomplete_dir, [[[userDefaults stringForKey: @"IncompleteDownloadFolder"]
                                                                     stringByExpandingTildeInPath] UTF8String]);
         else
-            tr_bencDictAddStr(&settings, TR_PREFS_KEY_INCOMPLETE_DIR, [[self downloadPath] UTF8String]);
+            tr_variantDictAddStr(&settings, TR_KEY_incomplete_dir, [[self downloadPath] UTF8String]);
 
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_INCOMPLETE_DIR_ENABLED, [userDefaults boolForKey: @"UseIncompleteDownloadFolder"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_LPD_ENABLED, [userDefaults boolForKey: @"LocalPeerDiscoveryGlobal"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_MSGLEVEL, TR_MSG_DBG);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_PEER_LIMIT_GLOBAL, [userDefaults integerForKey: @"PeersTotal"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_PEER_LIMIT_TORRENT, [userDefaults integerForKey: @"PeersTorrent"]);
+        tr_variantDictAddBool(&settings, TR_KEY_incomplete_dir_enabled, [userDefaults boolForKey: @"UseIncompleteDownloadFolder"]);
+        tr_variantDictAddBool(&settings, TR_KEY_lpd_enabled, [userDefaults boolForKey: @"LocalPeerDiscoveryGlobal"]);
+        tr_variantDictAddInt(&settings, TR_KEY_message_level, TR_LOG_DEBUG);
+        tr_variantDictAddInt(&settings, TR_KEY_peer_limit_global, [userDefaults integerForKey: @"PeersTotal"]);
+        tr_variantDictAddInt(&settings, TR_KEY_peer_limit_per_torrent, [userDefaults integerForKey: @"PeersTorrent"]);
         
         const BOOL randomPort = [userDefaults boolForKey: @"RandomPort"];
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_PEER_PORT_RANDOM_ON_START, randomPort);
+        tr_variantDictAddBool(&settings, TR_KEY_peer_port_random_on_start, randomPort);
         if (!randomPort)
-            tr_bencDictAddInt(&settings, TR_PREFS_KEY_PEER_PORT, [userDefaults integerForKey: @"BindPort"]);
+            tr_variantDictAddInt(&settings, TR_KEY_peer_port, [userDefaults integerForKey: @"BindPort"]);
         
         //hidden pref
         if ([userDefaults objectForKey: @"PeerSocketTOS"])
-            tr_bencDictAddStr(&settings, TR_PREFS_KEY_PEER_SOCKET_TOS, [[userDefaults stringForKey: @"PeerSocketTOS"] UTF8String]);
+            tr_variantDictAddStr(&settings, TR_KEY_peer_socket_tos, [[userDefaults stringForKey: @"PeerSocketTOS"] UTF8String]);
         
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_PEX_ENABLED, [userDefaults boolForKey: @"PEXGlobal"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_PORT_FORWARDING, [userDefaults boolForKey: @"NatTraversal"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_QUEUE_STALLED_ENABLED, [userDefaults boolForKey: @"CheckStalled"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_QUEUE_STALLED_MINUTES, [userDefaults integerForKey: @"StalledMinutes"]);
-        tr_bencDictAddReal(&settings, TR_PREFS_KEY_RATIO, [userDefaults floatForKey: @"RatioLimit"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_RATIO_ENABLED, [userDefaults boolForKey: @"RatioCheck"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_RENAME_PARTIAL_FILES, [userDefaults boolForKey: @"RenamePartialFiles"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_RPC_AUTH_REQUIRED,  [userDefaults boolForKey: @"RPCAuthorize"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_RPC_ENABLED,  [userDefaults boolForKey: @"RPC"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_RPC_PORT, [userDefaults integerForKey: @"RPCPort"]);
-        tr_bencDictAddStr(&settings, TR_PREFS_KEY_RPC_USERNAME,  [[userDefaults stringForKey: @"RPCUsername"] UTF8String]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_RPC_WHITELIST_ENABLED,  [userDefaults boolForKey: @"RPCUseWhitelist"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_SEED_QUEUE_ENABLED, [userDefaults boolForKey: @"QueueSeed"]);
-        tr_bencDictAddInt(&settings, TR_PREFS_KEY_SEED_QUEUE_SIZE, [userDefaults integerForKey: @"QueueSeedNumber"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_START, [userDefaults boolForKey: @"AutoStartDownload"]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_SCRIPT_TORRENT_DONE_ENABLED, [userDefaults boolForKey: @"DoneScriptEnabled"]);
-        tr_bencDictAddStr(&settings, TR_PREFS_KEY_SCRIPT_TORRENT_DONE_FILENAME, [[userDefaults stringForKey: @"DoneScriptPath"] UTF8String]);
-        tr_bencDictAddBool(&settings, TR_PREFS_KEY_UTP_ENABLED, [userDefaults boolForKey: @"UTPGlobal"]);
+        tr_variantDictAddBool(&settings, TR_KEY_pex_enabled, [userDefaults boolForKey: @"PEXGlobal"]);
+        tr_variantDictAddBool(&settings, TR_KEY_port_forwarding_enabled, [userDefaults boolForKey: @"NatTraversal"]);
+        tr_variantDictAddBool(&settings, TR_KEY_queue_stalled_enabled, [userDefaults boolForKey: @"CheckStalled"]);
+        tr_variantDictAddInt(&settings, TR_KEY_queue_stalled_minutes, [userDefaults integerForKey: @"StalledMinutes"]);
+        tr_variantDictAddReal(&settings, TR_KEY_ratio_limit, [userDefaults floatForKey: @"RatioLimit"]);
+        tr_variantDictAddBool(&settings, TR_KEY_ratio_limit_enabled, [userDefaults boolForKey: @"RatioCheck"]);
+        tr_variantDictAddBool(&settings, TR_KEY_rename_partial_files, [userDefaults boolForKey: @"RenamePartialFiles"]);
+        tr_variantDictAddBool(&settings, TR_KEY_rpc_authentication_required,  [userDefaults boolForKey: @"RPCAuthorize"]);
+        tr_variantDictAddBool(&settings, TR_KEY_rpc_enabled,  [userDefaults boolForKey: @"RPC"]);
+        tr_variantDictAddInt(&settings, TR_KEY_rpc_port, [userDefaults integerForKey: @"RPCPort"]);
+        tr_variantDictAddStr(&settings, TR_KEY_rpc_username,  [[userDefaults stringForKey: @"RPCUsername"] UTF8String]);
+        tr_variantDictAddBool(&settings, TR_KEY_rpc_whitelist_enabled,  [userDefaults boolForKey: @"RPCUseWhitelist"]);
+        tr_variantDictAddBool(&settings, TR_KEY_seed_queue_enabled, [userDefaults boolForKey: @"QueueSeed"]);
+        tr_variantDictAddInt(&settings, TR_KEY_seed_queue_size, [userDefaults integerForKey: @"QueueSeedNumber"]);
+        tr_variantDictAddBool(&settings, TR_KEY_start_added_torrents, [userDefaults boolForKey: @"AutoStartDownload"]);
+        tr_variantDictAddBool(&settings, TR_KEY_torrent_complete_notification_enabled, [userDefaults boolForKey: @"DoneScriptEnabled"]);
+        tr_variantDictAddStr(&settings, TR_KEY_torrent_complete_notification_command, [[userDefaults stringForKey: @"DoneScriptPath"] UTF8String]);
+        tr_variantDictAddBool(&settings, TR_KEY_utp_enabled, [userDefaults boolForKey: @"UTPGlobal"]);
         
         tr_formatter_size_init(1000,
                                [NSLocalizedString(@"KB", "File size - kilobytes") UTF8String],
@@ -219,7 +221,7 @@ NSUserDefaults* userDefaults;
         
         const char * configDir = [[self configPath] UTF8String];
         self.handle = tr_sessionInit("ios", configDir, YES, &settings);
-        tr_bencFree(&settings);
+        tr_variantFree(&settings);
         
         self.torrents = [[NSMutableArray alloc] init];
         self.unconfirmedTorrents = [[NSMutableArray alloc] init];
@@ -254,7 +256,8 @@ NSUserDefaults* userDefaults;
 - (void)pumpLogMessages
 {
     static NSString *libtransmissionDomain = @"libtransmission";
-    const tr_msg_list * l;
+    
+    const tr_log_message * l;
     
     /*
      TR_MSG_ERR = 1,
@@ -262,13 +265,13 @@ NSUserDefaults* userDefaults;
      TR_MSG_DBG = 3
      */
     
-    tr_msg_list * list = tr_getQueuedMessages( );
+    tr_log_message * list = tr_logGetQueue( );
 
     for( l=list; l!=NULL; l=l->next ) {
         LogMessage(libtransmissionDomain, l->level, @"%s %s (%s:%d)", l->name, l->message, l->file, l->line );
     }
     
-    tr_freeMessageList( list );
+    tr_logFreeQueue( list );
 }
 
 - (void)updateStatistics
@@ -592,8 +595,7 @@ NSUserDefaults* userDefaults;
         }
         
         //determine download location
-        NSString * location;
-        location = [[[NSUserDefaults standardUserDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
+        NSString * location = [self getDownloadLocation];
 
         //determine to show the options window
         const BOOL showWindow = type == [[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadAsk"] && ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive && false);
@@ -605,14 +607,6 @@ NSUserDefaults* userDefaults;
             retval = NO;
             continue;
         }
-        //change the location if the group calls for it (this has to wait until after the torrent is created)
-        /*
-        if (!lockDestination && [[GroupsController groups] usesCustomDownloadLocationForIndex: [torrent groupValue]])
-        {
-            location = [[GroupsController groups] customDownloadLocationForIndex: [torrent groupValue]];
-            [torrent changeDownloadFolderBeforeUsing: location];
-        }
-         */
         
         //verify the data right away if it was newly created
         if (type == ITAddTypeCreated)
@@ -637,47 +631,25 @@ NSUserDefaults* userDefaults;
     return retval;
 }
 
-- (BOOL)openMagnet:(NSArray *)url
+- (BOOL)openMagnet:(NSArray *)urls
 {
     BOOL retval = YES;
     
     //ensure torrent doesn't already exist
-    for (NSString * magnetPath in url)
+    for (NSString * magnetPath in urls)
     {
         tr_ctor * ctor = tr_ctorNew(self.handle);
         tr_ctorSetMetainfoFromMagnetLink(ctor, [magnetPath UTF8String]);
         
-        tr_info info;
         tr_ctorFree(ctor);
         
         //determine download location
-        NSString * location;
-        /*
-         else if ([[NSUserDefaults standardUserDefaults] boolForKey: @"DownloadLocationConstant"])
-         location = [[fDefaults stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
-         else if (type != ADD_URL)
-         location = [torrentPath stringByDeletingLastPathComponent];
-         else
-         location = nil;
-         */
-        location = [[[NSUserDefaults standardUserDefaults] stringForKey: @"DownloadFolder"] stringByExpandingTildeInPath];
+        NSString * location = [self getDownloadLocation];
         
-        tr_metainfoFree(&info);
-        continue;
-        
-        ITTorrent * torrent;
-        torrent = [[ITTorrent alloc] initWithMagnetAddress: magnetPath location: location
+        ITTorrent * torrent = [[ITTorrent alloc] initWithMagnetAddress: magnetPath location: location
                                                     lib:self.handle];
-        //change the location if the group calls for it (this has to wait until after the torrent is created)
-        /*
-         if (!lockDestination && [[GroupsController groups] usesCustomDownloadLocationForIndex: [torrent groupValue]])
-         {
-         location = [[GroupsController groups] customDownloadLocationForIndex: [torrent groupValue]];
-         [torrent changeDownloadFolderBeforeUsing: location];
-         }
-        */
         
-        [torrent isMagnet];
+        [torrent resetCache];
         [torrent startTransfer];
         
         [torrent update];
@@ -686,5 +658,12 @@ NSUserDefaults* userDefaults;
         [self updateTorrentHistory];
     }
     return retval;
+}
+
+- (NSString *)getDownloadLocation
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return documentsDirectory;
 }
 @end

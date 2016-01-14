@@ -48,11 +48,10 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // overide for customization
-    self.window.backgroundColor = [UIColor blackColor];
+    //self.window.backgroundColor = [UIColor blackColor];
     
     self.timerEventListeners = [[NSMutableArray alloc] init];
     
-    self.statusBarController = [[ITStatusBarController alloc] initWithNibName:@"ITStatusBarController" bundle:nil];
     
     NSMutableArray *viewControllers = [NSMutableArray array];
     [viewControllers addObject:[[ITNavigationController alloc] initWithRootViewController:[[ITTransfersViewController alloc] init]]];
@@ -66,6 +65,7 @@
     self.sidebarController = [[ITSidebarController alloc] init];
     self.sidebarController.viewControllers = viewControllers;
     
+    self.statusBarController = [[ITStatusBarController alloc] initWithNibName:@"ITStatusBarController" bundle:nil];
     self.statusBarController.contentViewController = self.sidebarController;
     self.window.rootViewController = self.statusBarController;
     
@@ -85,13 +85,20 @@
         return [self.controller openFiles:[NSArray arrayWithObject:filePath] addType:ITAddTypeManual];
     }
     
-    return TRUE;
+    if ([[[url scheme] lowercaseString] isEqualToString: @"magnet"]) {
+        return [self openMagnet: url];
+    }
+    
+    return NO;
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+- (BOOL) openMagnet:(NSURL *)url
 {
-    NSString *magnet = [url path];
-    return [self.controller openMagnet:magnet];
+    NSString *magnet = [url absoluteString];
+    if (nil != magnet) {
+        return [self.controller openMagnet: [NSArray arrayWithObject:magnet]];
+    }
+    return NO;
 }
 
 - (void)_test

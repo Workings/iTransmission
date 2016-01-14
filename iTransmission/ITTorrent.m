@@ -281,7 +281,7 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
 {
     if (self.resumeOnWake)
     {
-        tr_ninf( self.info->name, "restarting because of wakeUp" );
+        NSLog( @"%s restarting because of wakeUp", self.info->name );
         tr_torrentStart(self.handle);
     }
 }
@@ -308,7 +308,7 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
 
 - (void) resetCache
 {
-    tr_torrentVerify(self.handle);
+    tr_torrentVerify(self.handle, NULL, NULL);
     [self update];
 }
 
@@ -1529,7 +1529,7 @@ legacyIncompleteFolder: (NSString *) incompleteFolder
             result = tr_ctorSetMetainfoFromHash(ctor, [hashString UTF8String]);
         
         if (result == TR_PARSE_OK)
-            self.handle = tr_torrentNew(ctor, NULL);
+            self.handle = tr_torrentNew(ctor, NULL, NULL);
         
         tr_ctorFree(ctor);
         
